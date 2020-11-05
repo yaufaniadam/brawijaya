@@ -104,4 +104,9 @@ class Logbook extends BaseController
             return redirect()->back()->with('warning', 'terjadi kesalahan :(');
         }
     }
+
+    public function detail()
+    {
+        # code...
+    }
 }

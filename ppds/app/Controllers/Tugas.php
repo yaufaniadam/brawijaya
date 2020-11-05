@@ -7,6 +7,8 @@ use App\Models\TugasModel;
 use App\Models\StasePpdsModel;
 use App\Models\StaseModel;
 use App\Models\SupervisorModel;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use CodeIgniter\Validation\Rules;
 
 class Tugas extends BaseController
@@ -257,6 +259,7 @@ class Tugas extends BaseController
         if ($result) {
             $file->move('ppds_tugas', $encrypted_file_name);
             $file_pre->move('ppds_presentasi', $encrypted_file_pre_name);
+            $this->sidangMailer();
 
             return redirect()->to($url)->with('success', 'Tugas berhasil diunggah!');
         } else {
@@ -436,6 +439,48 @@ class Tugas extends BaseController
                     $file_pre->move('ppds_presentasi', $encrypted_file_pre_name);
                 }
                 return redirect()->to(base_url('tugas/saya/ilmiah'))->with('success', 'data tugas berhasil dirubah');
+            }
+        }
+    }
+
+    public function sidangMailer()
+    {
+        require_once "vendor/autoload.php";
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('ci_users');
+
+        $builder->select("email");
+        $builder->where('role !=', 4);
+        $result = $builder->get()->getResultArray();
+        $user_emails = $result;
+        // dd($user_email);
+
+        // $info_ppds = $this->user_model->userProfile();
+        // $email_ppds = $info_ppds->email;
+
+        //PHPMailer Object
+        $mail = new PHPMailer(true); //Argument true in constructor enables exceptions
+
+        $mail->From = "admin@miokard.solusidesain.net";
+        $mail->FromName = "Full Name";
+
+        foreach ($user_emails as $user_email) {
+
+            $mail->addAddress($user_email['email']); //Recipient name is optional
+
+            //Send HTML or Plain Text email
+            $mail->isHTML(true);
+
+            $mail->Subject = "Subject Text";
+            $mail->Body = "<i>Mail body in HTML</i>";
+            $mail->AltBody = "This is the plain text version of the email content";
+
+            try {
+                $mail->send();
+                echo "Message has been sent successfully";
+            } catch (Exception $e) {
+                echo "Mailer Error: " . $mail->ErrorInfo;
             }
         }
     }
