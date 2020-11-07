@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 require_once SYSTEMPATH . 'Config/AutoloadConfig.php';
 
@@ -51,7 +53,7 @@ class Autoload extends \CodeIgniter\Config\AutoloadConfig
 		 */
 		$psr4 = [
 			'App'         => APPPATH,                // To ensure filters, etc still found,
-			APP_NAMESPACE => APPPATH,                // For custom namespace
+			'APP_NAMESPACE' => APPPATH,                // For custom namespace
 			'Config'      => APPPATH . 'Config',
 		];
 
