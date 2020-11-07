@@ -156,12 +156,12 @@ class Users extends BaseController
         $data = [
             'title' => 'Detail User',
             'page_header' => 'Detail User',
-            'data_user' => $this->user_model->getUserById($id_ppds),
+            'data_user' => $this->user_model->userProfile($id_ppds),
             'validation' => \Config\Services::validation(),
         ];
 
+        // dd($data);
         return view('admin/users/detail', $data);
-        dd($data);
     }
 
     public function lobby()

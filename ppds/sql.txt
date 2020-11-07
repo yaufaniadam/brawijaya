@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2020 at 05:34 AM
+-- Generation Time: Nov 07, 2020 at 05:03 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -50,15 +50,7 @@ CREATE TABLE `ci_users` (
 --
 
 INSERT INTO `ci_users` (`id`, `username`, `nama_lengkap`, `email`, `photo`, `password`, `role`, `spv`, `stase`, `token`, `password_reset_code`, `last_ip`, `created_at`, `updated_at`) VALUES
-(3, 'admin', 'admin', 'admin@ppdsinternasolo.id', '1596515084_00f4374c035b6277a67a.png', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 1, 0, 0, '', '', '', '2017-09-29 10:09:44', '2020-10-22 01:23:09'),
-(295, 'supervisor1', 'dr. Cholid Tri Tjahjono, M.Kes, SpJP', 'spv@spv.co', '', '$2y$10$pgQukXdBBxX9zAr4HNVghugYQfvhfO1Ngye81rrF2ppyLdMn2YGsm', 3, 0, 2, '', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(318, 'supervisor2', 'dr. M. Saifur Rohman, SpJP, PhD, FICA', 'spv2@mail.co', '', '$2y$10$5N1ooSnIQEH6VRxaEN3sgeZ8tim1IouB1vjTH7uYXBZ0OznSjpmqS', 3, 0, 5, '', '', '', '2020-09-14 23:59:49', '2020-09-14 23:59:49'),
-(321, 'kklklk', 'supervisor2', 'ajshsad@asds.cl', '', '$2y$10$ppAXpYsEbNYkvNwysSpwtOn8rNQ34l37zpyzLwzmSGbc6XovOROWy', 4, 295, 1, '', '', '', '2020-09-22 03:36:37', '2020-09-22 03:36:37'),
-(323, 'spv2', 'supervisor3', 'spv2@asdas.asd', '', '$2y$10$OdWBUvtjX6lKyWguRILNme1bqdUr6tBWF5tt1P0grFhRp28g0X9/C', 3, 0, 8, '', '', '', '2020-10-19 22:38:03', '2020-10-19 22:38:03'),
-(324, 'spv3', 'supervisor4', 'spv3@asdf.asdf', '', '$2y$10$98xpC/x7JYufObDPN8rGLOYzX77S7EB/zGgJghxLb6QJyTRNH617G', 3, 0, 6, '', '', '', '2020-10-19 22:38:35', '2020-10-19 22:38:35'),
-(325, 'ppdstest', 'ppds tester 1', 'tester@test.co', '', '$2y$10$w5.jCkewlaSFDTe/5ZNiG.BhW.i2ZvrbJ7zD5.M7zbXcDaYaljCia', 4, 295, 0, '', '', '', '2020-10-22 01:29:12', '2020-10-22 01:29:54'),
-(326, 'tester2', 'tester ppds', 'tester@test.co', '', '$2y$10$GmbUqaYoWPrVvZaDDJgJPeOBfg3S0ft1VHWkmK0LYJpJjGWbVMatC', 4, 318, 0, '', '', '', '2020-10-22 01:59:35', '2020-10-23 21:20:04'),
-(327, 'qwdasd', '', 'asasdas@asdas.asdf', '', '$2y$10$rtgtgoPAlMuOpes8wlhpVeoh4mjuTgIzBcKAmB7mnYACs0nae2D6a', 3, 0, 19, '', '', '', '2020-10-24 00:19:00', '2020-10-24 00:19:00');
+(3, 'admin', 'admin', 'admin@ppdsinternasolo.id', '1596515084_00f4374c035b6277a67a.png', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 1, 0, 0, '', '', '', '2017-09-29 10:09:44', '2020-10-22 01:23:09');
 
 -- --------------------------------------------------------
 
@@ -107,13 +99,6 @@ CREATE TABLE `log_book` (
   `jenis_tindakan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `log_book`
---
-
-INSERT INTO `log_book` (`id`, `judul`, `keterangan`, `id_ppds`, `waktu`, `pasien`, `jenis_kelamin`, `usia`, `jenis_tindakan`) VALUES
-(3, 'logbook 1', 'logbook 1', 326, '2020-10-23', 'pasien', 'l', 23, 'tindakan');
-
 -- --------------------------------------------------------
 
 --
@@ -130,16 +115,6 @@ CREATE TABLE `notif` (
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `notif`
---
-
-INSERT INTO `notif` (`id`, `sender`, `receiver`, `title`, `isi`, `tanggal`, `status`) VALUES
-(35, 3, 326, 'stase selesai', 'stase selesai', '2020-10-22 07:08:50', 0),
-(36, 3, 326, 'stase selesai', 'stase selesai', '2020-10-22 07:16:31', 0),
-(37, 3, 326, 'stase selesai', 'stase selesai', '2020-10-22 07:17:16', 0),
-(38, 3, 326, 'stase selesai', 'stase selesai', '2020-10-22 07:17:37', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -151,13 +126,6 @@ CREATE TABLE `presensi_sidang` (
   `id_ppds` int(11) NOT NULL,
   `id_sidang` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `presensi_sidang`
---
-
-INSERT INTO `presensi_sidang` (`id`, `id_ppds`, `id_sidang`) VALUES
-(5, 326, 45);
 
 -- --------------------------------------------------------
 
@@ -249,18 +217,6 @@ CREATE TABLE `stase_ppds` (
   `id_stase` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `stase_ppds`
---
-
-INSERT INTO `stase_ppds` (`id`, `id_user`, `tanggal_mulai`, `tanggal_selesai`, `id_stase`) VALUES
-(53, 325, '2020-10-22', '0000-00-00', 1),
-(54, 326, '2020-10-22', '2020-10-22', 1),
-(55, 326, '2020-10-22', '2020-10-22', 3),
-(56, 326, '2020-10-22', '2020-10-22', 2),
-(57, 326, '2020-10-22', '2020-10-22', 4),
-(58, 326, '2020-10-22', '0000-00-00', 6);
-
 -- --------------------------------------------------------
 
 --
@@ -296,15 +252,6 @@ CREATE TABLE `tahap_ppds` (
   `id_tahap` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tahap_ppds`
---
-
-INSERT INTO `tahap_ppds` (`id`, `id_user`, `tanggal_mulai`, `tanggal_selesai`, `id_tahap`) VALUES
-(30, 325, '2020-10-22', '0000-00-00', 1),
-(31, 326, '2020-10-22', '2020-10-22', 1),
-(32, 326, '2020-10-22', '0000-00-00', 2);
-
 -- --------------------------------------------------------
 
 --
@@ -333,19 +280,6 @@ CREATE TABLE `tugas` (
   `status` int(11) NOT NULL,
   `deleted_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tugas`
---
-
-INSERT INTO `tugas` (`id`, `id_ppds`, `judul`, `id_stase`, `deskripsi`, `id_kategori`, `jenis_tugas`, `file`, `file_presentasi`, `jadwal_sidang`, `id_penguji_1`, `id_penguji_2`, `id_pembimbing_1`, `id_pembimbing_2`, `nilai_1`, `nilai_2`, `nilai_3`, `nilai_4`, `status`, `deleted_at`) VALUES
-(44, 326, 'ilmiah test', 1, 'ilmiah test', 4, 1, '1603350094_5d8e60de498502d5197d.pdf', '', '2020-10-25 18:00:00', 0, 0, 0, 0, 78, 80, 67, 75, 0, '0000-00-00 00:00:00'),
-(45, 326, 'tugas besar 1', 1, 'tugas besar 1', 8, 2, '1603350252_9c0ea68d2e0de556dbe5.pdf', '', '2020-10-23 18:08:00', 323, 295, 318, 324, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(46, 326, 'ilmiah 2', 3, 'ilmiah 2', 3, 1, '1603350924_0b292997a6598c060b89.pdf', '', '2020-10-23 18:20:00', 0, 0, 0, 0, 80, 90, 67, 70, 0, '0000-00-00 00:00:00'),
-(47, 326, 'kjajbskda', 6, 'asdaksd', 9, 2, '1603511708_f152a06ab280b9849046.pdf', '1603511708_75b8d68d143e5b86831b.pptx', '2020-10-26 10:56:00', 295, 318, 323, 324, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(48, 325, 'asdas', 1, 'asdas', 3, 1, '1603693323_540a3737b190d921794c.pdf', '1603693323_4675ebfe651df50b3759.pptx', '2020-10-27 18:21:00', 295, 0, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(49, 325, 'asdasdas', 1, 'fffasdasd', 8, 2, '1603781029_4c363c7457cc7c983c6b.pdf', '1603781029_8f749c718a2195211905.pptx', '2020-10-21 16:00:00', 318, 295, 323, 324, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(50, 325, 'testestest', 1, 'asdasdf', 8, 2, '1603781723_41779996bf89fe7ab046.pdf', '1603781723_d3b5ac342eaf1e8ab73f.pptx', '2020-10-28 18:00:00', 295, 323, 318, 324, 0, 0, 0, 0, 0, '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -449,7 +383,7 @@ ALTER TABLE `log_book`
 -- AUTO_INCREMENT for table `notif`
 --
 ALTER TABLE `notif`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `presensi_sidang`
@@ -479,7 +413,7 @@ ALTER TABLE `stase`
 -- AUTO_INCREMENT for table `stase_ppds`
 --
 ALTER TABLE `stase_ppds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `tahap`
@@ -491,13 +425,13 @@ ALTER TABLE `tahap`
 -- AUTO_INCREMENT for table `tahap_ppds`
 --
 ALTER TABLE `tahap_ppds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

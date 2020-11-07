@@ -28,4 +28,16 @@ class LogbookModel extends Model
             "
         )->getResultArray();
     }
+
+    public function detail($id_logbook)
+    {
+        $db = \Config\Database::connect();
+
+        return $db->query(
+            "SELECT * FROM log_book
+            LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
+            WHERE log_book.id = $id_logbook
+            "
+        )->getRowObject();
+    }
 }

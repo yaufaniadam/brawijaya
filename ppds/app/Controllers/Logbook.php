@@ -105,8 +105,13 @@ class Logbook extends BaseController
         }
     }
 
-    public function detail()
+    public function detail($id_logbook)
     {
-        # code...
+        $data = [
+            'title' => 'Detail Logbook',
+            'page_header' => 'Detail Logbook',
+            'query' => $this->logbook_model->detail($id_logbook),
+        ];
+        dd($data);
     }
 }
