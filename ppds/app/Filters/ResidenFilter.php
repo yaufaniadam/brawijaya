@@ -11,7 +11,7 @@ class ResidenFilter implements FilterInterface
     public function before(RequestInterface $request)
     {
         if (session('role') != 4) {
-            return redirect()->to('/')->with('warning', "you don't have permission to access this feature");
+            return redirect()->to(base_url('/'))->with('warning', "you don't have permission to access this feature");
         }
     }
 

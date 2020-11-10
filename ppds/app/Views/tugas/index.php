@@ -86,7 +86,7 @@
                                             <a href="<?= base_url("/tugas/" . $tugas['id']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-info"></span></a>
                                             <?php if ($page_header == 'Tugas Besar Saya' || $page_header == 'Daftar Ilmiah Saya') { ?>
                                                 <a href="<?= base_url('/tugas/edit/' . $tugas['id']); ?>" class="btn btn-flat btn-outline-warning btn-xs"><span class="ti-pencil"></span></a>
-                                                <form class="d-inline" action="<?= base_url('/tugas/' . $tugas['id']); ?>" method="POST">
+                                                <form class="d-inline" action="<?= base_url('tugas/' . $tugas['id']); ?>" method="POST">
                                                     <?= csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button type="" class="btn btn-flat btn-outline-danger btn-xs" onclick="return confirm('Hapus Ilmiah?')"><span class="ti-trash"></span></button>

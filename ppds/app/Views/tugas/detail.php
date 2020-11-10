@@ -15,10 +15,10 @@
                             <p class="mt-2"><b><?= $tugas['nama_lengkap']; ?></b></p>
                         </div>
                         <div class="mt-3 ml-auto mr-auto">
-                            <div class="form-group row">
+                            <!-- <div class="form-group row">
                                 <label class="col-sm-7 col-form-label">Diunggah</label>
                                 <label class="col-sm-5 col-form-label text-right">20-06-2020</label>
-                            </div>
+                            </div> -->
                             <div class="form-group row">
                                 <label class="col-sm-7 col-form-label">Tanggal Sidang</label>
                                 <label class="col-sm-5 col-form-label text-right"><?= $tugas['jadwal_sidang']; ?></label>

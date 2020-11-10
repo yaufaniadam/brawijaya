@@ -98,16 +98,6 @@
 
 <?= $this->section('js'); ?>
 <script>
-    // $('#tugas').addClass('active');
-    // $('#tugas_divisi').addClass('active');
-    // $('#semua_tugas').addClass('active');
-    $("#role").change(function() {
 
-        if ($(this).val() == "4") {
-            $('#spvr').show()
-        } else {
-            $('#spvr').hide()
-        }
-    });
 </script>
 <?= $this->endSection(); ?>

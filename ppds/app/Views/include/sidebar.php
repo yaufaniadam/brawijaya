@@ -56,6 +56,13 @@
                             </li>
                         </ul>
                     </li>
+
+                    <li id="logbook">
+                        <a href="<?= base_url('/logbook'); ?>">
+                            <i class="ti-book"></i> <span>Log Book</span>
+                        </a>
+                    </li>
+
                     <li id="dashboard">
                         <a href="<?= base_url('/sidang'); ?>">
                             <i class="ti-dashboard"></i> <span>Sidang</span>

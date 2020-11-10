@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/owl.carousel.min.css'); ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/slicknav.min.css'); ?>">
     <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" /> -->
     <!-- Start datatable css -->
     <?= $this->renderSection('data_css'); ?>
     <!-- others css -->

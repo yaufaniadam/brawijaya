@@ -11,7 +11,7 @@ class AdminAndSpvFilter implements FilterInterface
     public function before(RequestInterface $request)
     {
         if (session('role') != 3) {
-            return redirect()->to('/')->with('warning', "you don't have <strong>permission</strong> to access this feature");
+            return redirect()->to(base_url('/'))->with('warning', "you don't have <strong>permission</strong> to access this feature");
         }
     }
 

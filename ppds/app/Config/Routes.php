@@ -54,6 +54,9 @@ $routes->get('tugas/bimbingansaya/(:any)', 'Tugas::bimbinganSaya/$1', ['filter' 
 // logbook routes
 $routes->get('logbook/', 'Logbook::index');
 $routes->get('logbook/(:num)', 'Logbook::detail/$1');
+$routes->delete('logbook/(:num)', 'Logbook::delete/$1', ['filter' => 'checkresiden']);
+$routes->get('logbook/edit/(:num)', 'Logbook::edit/$1');
+$routes->get('logbook/update/', 'Logbook::update');
 $routes->get('logbook/tambah', 'Logbook::tambah');
 $routes->post('logbook/tambah', 'Logbook::post', ['filter' => 'checkresiden']);
 

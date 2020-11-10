@@ -16,11 +16,13 @@
                     </div>
                 <?php } ?>
 
-                <div class="row">
-                    <div class="col-sm-2">
-                        <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/logbook/tambah'); ?>">Tambah Logbook</a>
+                <?php if (session('role') == 4) { ?>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/logbook/tambah'); ?>">Tambah Logbook</a>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
                 <div class="col-12 mt-3">
                     <div class="data-tables datatable-dark">
                         <table id="dataTable" class="text-center">
@@ -29,7 +31,7 @@
                                     <th style="width: 30%;">Judul</th>
                                     <th style="width: 30%;">Tanggal</th>
                                     <th style="width: 20%;">PPDS</th>
-                                    <th style="width: 20%;">Diperiksa</th>
+                                    <th style="width: 20%;"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,7 +40,19 @@
                                         <td><?= $logbook['judul']; ?></td>
                                         <td><?= $logbook['waktu']; ?></td>
                                         <td><?= $logbook['nama_lengkap']; ?></td>
-                                        <td><i class="ti-check"></i></td>
+                                        <td>
+                                            <a href="<?= base_url("logbook/" . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-success btn-xs">
+                                                <span class="ti-info"></span>
+                                            </a>
+                                            <?php if ($logbook['id_ppds'] == session('user_id')) { ?>
+                                                <a href="<?= base_url('/logbook/edit/' . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-warning btn-xs"><span class="ti-pencil"></span></a>
+                                                <form class="d-inline" action="<?= base_url('logbook/' . $logbook['id_logbook']); ?>" method="POST">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="" class="btn btn-flat btn-outline-danger btn-xs" onclick="return confirm('Hapus Ilmiah?')"><span class="ti-trash"></span></button>
+                                                </form>
+                                            <?php } ?>
+                                        </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

@@ -23,7 +23,7 @@ class LogbookModel extends Model
         $db = \Config\Database::connect();
 
         return $db->query(
-            "SELECT *,ci_users.nama_lengkap FROM log_book
+            "SELECT *,ci_users.nama_lengkap,log_book.id AS id_logbook FROM log_book
             LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
             "
         )->getResultArray();
@@ -34,7 +34,7 @@ class LogbookModel extends Model
         $db = \Config\Database::connect();
 
         return $db->query(
-            "SELECT * FROM log_book
+            "SELECT *,log_book.id AS id_logbook FROM log_book
             LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
             WHERE log_book.id = $id_logbook
             "
