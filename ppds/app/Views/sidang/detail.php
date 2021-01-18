@@ -52,21 +52,25 @@
                                 <p class="text-secondary"><?= $sidang->pj1; ?></p>
                                 <h5>Penguji 1</h5>
                             </div>
-                            <div class="mr-auto ml-auto text-center">
-                                <p class="text-secondary"><?= $sidang->pj2; ?></p>
-                                <h5>Penguji 2</h5>
-                            </div>
+                            <?php if ($sidang->jenis_tugas == 2) { ?>
+                                <div class="mr-auto ml-auto text-center">
+                                    <p class="text-secondary"><?= $sidang->pj2; ?></p>
+                                    <h5>Penguji 2</h5>
+                                </div>
+                            <?php } ?>
                         </div>
-                        <div class="row mt-5">
-                            <div class="mr-auto ml-auto text-center">
-                                <p class="text-secondary"><?= $sidang->pb1; ?></p>
-                                <h5>Pembimbing 1</h5>
+                        <?php if ($sidang->jenis_tugas == 2) { ?>
+                            <div class="row mt-5">
+                                <div class="mr-auto ml-auto text-center">
+                                    <p class="text-secondary"><?= $sidang->pb1; ?></p>
+                                    <h5>Pembimbing 1</h5>
+                                </div>
+                                <div class="mr-auto ml-auto text-center">
+                                    <p class="text-secondary"><?= $sidang->pb2; ?></p>
+                                    <h5>Pembimbing 2</h5>
+                                </div>
                             </div>
-                            <div class="mr-auto ml-auto text-center">
-                                <p class="text-secondary"><?= $sidang->pb2; ?></p>
-                                <h5>Pembimbing 2</h5>
-                            </div>
-                        </div>
+                        <?php } ?>
                         <form action="<?= base_url('sidang/absen'); ?>" method="POST">
                             <input type="hidden" name="id_sidang" value="<?= $sidang->id; ?>">
                             <?php if (session('role') != 4) { ?>

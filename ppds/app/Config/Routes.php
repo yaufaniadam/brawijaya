@@ -54,7 +54,7 @@ $routes->get('tugas/bimbingansaya/(:any)', 'Tugas::bimbinganSaya/$1', ['filter' 
 // logbook routes
 $routes->get('logbook/', 'Logbook::index');
 $routes->get('logbook/(:num)', 'Logbook::detail/$1');
-$routes->delete('logbook/(:num)', 'Logbook::delete/$1', ['filter' => 'checkresiden']);
+$routes->delete('logbook/(:num)', 'Logbook::delete/$1');
 $routes->get('logbook/edit/(:num)', 'Logbook::edit/$1');
 $routes->get('logbook/update/', 'Logbook::update');
 $routes->get('logbook/tambah', 'Logbook::tambah');
@@ -74,6 +74,10 @@ $routes->group('admin', function ($routes) {
 	$routes->get('/', 'Home::index');
 	$routes->get('users/(:num)', 'Admin\Users::detail/$1');
 	$routes->get('users/', 'Admin\Users::view');
+	$routes->get('new_users/', 'Admin\Users::newUsersList');
+	$routes->get('user/aktifkan/(:num)', 'Admin\Users::activate/$1');
+	$routes->get('supervisor/', 'Admin\Users::supervisor');
+	$routes->get('supervisor/(:num)', 'Admin\Users::detailSupervisor/$1');
 	$routes->get('ppds/lobby', 'Admin\Users::lobby');
 	$routes->post('stase', 'StaseResource::index');
 	$routes->post('ppds/selectstaseppds', 'Admin\Users::postPpdsStase');
@@ -100,14 +104,17 @@ $routes->group('residen', function ($routes) {
 	$routes->get('/', 'Home::index');
 });
 
-
 $routes->get('/user/profile', 'User::profile');
 $routes->post('/user/edit_profile', 'User::edit_profile');
 
-
 $routes->group('login', function ($routes) {
-	$routes->get('', 'Auth::view');
+	$routes->get('', 'Auth::login_view');
 	$routes->post('', 'Auth::login');
+});
+
+$routes->group('register', function ($routes) {
+	$routes->get('', 'Auth::register');
+	$routes->post('', 'Auth::register_post');
 });
 
 $routes->get('/logout', 'Auth::logout');

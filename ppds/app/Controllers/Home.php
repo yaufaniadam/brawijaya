@@ -37,6 +37,9 @@ class Home extends BaseController
 			$data = [
 				'title' => 'Dashboard',
 				'page_header' => 'Dashboard',
+				'number_of_ppds' => $this->user_model->countUserByRole(4),
+				'number_of_spv' => $this->user_model->countUserByRole(3),
+				'number_of_new_users' => $this->user_model->countNewUsers(),
 			];
 			return view('home', $data);
 		}

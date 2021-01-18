@@ -38,7 +38,7 @@ class Sidang extends BaseController
         $data = [
             'title' => 'Daftar Sidang',
             'page_header' => 'Daftar Sidang',
-            'query' => $this->tugas_model->getAllTugasBesar()
+            'query' => $this->tugas_model->getSidang()
         ];
 
         return view('sidang/index', $data);

@@ -74,3 +74,23 @@ function getCurrentPpdsStase()
 
     return $query;
 }
+
+function ppdsBimbingan($id_spv)
+{
+    $db      = \Config\Database::connect();
+    $query = $db->query(
+        "SELECT 
+        ci_users.nama_lengkap,
+        ci_users.id AS id_ppds,
+        stase_ppds.id_stase,
+        stase.stase,
+        stase_ppds.tanggal_mulai,
+        stase_ppds.tanggal_selesai 
+        FROM ci_users
+        LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+        LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+        WHERE ci_users.spv = $id_spv"
+    )->getResultArray();
+
+    return $query;
+}

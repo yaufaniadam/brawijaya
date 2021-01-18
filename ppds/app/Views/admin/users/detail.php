@@ -15,7 +15,7 @@
                         <div class="col-5">
                             <div style="background-image: url(<?= $data_user->photo == '' ? base_url('images/profile/dummy.png') : $data_user->photo; ?>);width:170px;height:170px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;">
                                 <input disabled type="file" name="photo_profile" id="photo_profile" style="width:20px;width:20px;display:none;bottom: 0;" value="<?= $data_user->photo; ?>">
-                                <label for="photo_profile" style="width:170px;height:170px;border-radius: 100%;background-image: url(https://i7.uihere.com/icons/258/694/503/picture-add-87b731e3ad0022412047e14cb6a3f7e5.png);background-position:center center;background-size:50%;background-repeat: no-repeat;background-color: #9a9999;opacity: 70%;"></label>
+                                <label for="photo_profile" style="width:170px;height:170px;border-radius: 100%;background-position:center center;background-size:50%;background-repeat: no-repeat;background-color: #9a9999;opacity: 70%;"></label>
                                 <input type="hidden" name="old_photo" value="<?= $data_user->photo; ?>">
                             </div>
                             <div class="text-center mt-1" style="width:170px;">
@@ -43,12 +43,36 @@
                                 <input type="hidden" name="old_nama" value="<?= $data_user->nama_lengkap; ?>">
                             </div>
                             <div class="form-group has-primary">
-                                <label for="inputHorizontalPrimary" class="col-form-label">Password</label>
-                                <p id="password_static">*********</p>
-                                <input type="hidden" name="old_password" value="<?= $data_user->password; ?>">
+                                <label for="inputHorizontalPrimary" class="col-form-label">Jenis Kelamin</label>
+                                <p id="nama_lengkap_static"><?= $data_user->nama_lengkap; ?></p>
+                                <input type="hidden" name="old_nama" value="<?= $data_user->jenis_kelamin; ?>">
                             </div>
-                            <!-- <input type="submit" class="btn btn-dark mb-3 float-right" style="background: #370EFA;border-color: #370EFA;" value="Save"> -->
-                            <!-- <button type="button" id="edit_btn" class="btn btn-dark mb-3 float-right mr-2">Edit</button> -->
+                            <div class="form-group has-primary">
+                                <label for="inputHorizontalPrimary" class="col-form-label">Alamat Asal</label>
+                                <p id="nama_lengkap_static"><?= $data_user->nama_lengkap; ?></p>
+                                <input type="hidden" name="old_nama" value="<?= $data_user->alamat_asal; ?>">
+                            </div>
+                            <div class="form-group has-primary">
+                                <label for="inputHorizontalPrimary" class="col-form-label">Alamat Domisili</label>
+                                <p id="nama_lengkap_static"><?= $data_user->nama_lengkap; ?></p>
+                                <input type="hidden" name="old_nama" value="<?= $data_user->alamat_domisili; ?>">
+                            </div>
+                            <div class="form-group has-primary">
+                                <label for="inputHorizontalPrimary" class="col-form-label">No. Telp</label>
+                                <p id="nama_lengkap_static"><?= $data_user->nama_lengkap; ?></p>
+                                <input type="hidden" name="old_nama" value="<?= $data_user->no_telp; ?>">
+                            </div>
+                            <div class="form-group has-primary">
+                                <label for="inputHorizontalPrimary" class="col-form-label">No. Telp Darurat/Keluarga</label>
+                                <p id="nama_lengkap_static"><?= $data_user->nama_lengkap; ?></p>
+                                <input type="hidden" name="old_nama" value="<?= $data_user->no_telp_drt; ?>">
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <?php if ($data_user->aktif == 0) { ?>
+                                <a class="btn btn-dark float-right" style="background: #370EFA;border-color: #370EFA;" href="<?= base_url('admin/user/aktifkan/' . $data_user->id_ppds); ?>">Aktifkan</a>
+                            <?php } ?>
                         </div>
 
                     </div>

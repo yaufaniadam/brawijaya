@@ -63,9 +63,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- <hr class="mt-5">
+                                <b style="margin-left: 12px;"><span>Tanggal Pemeriksaan</span></b>
+                                <span style="margin-left: 35px;"><?= $logbook->waktu; ?></span> -->
                                 <hr class="mt-5">
                                 <b style="margin-left: 12px;"><span>Tanggal Pemeriksaan</span></b>
-                                <span style="margin-left: 35px;"><?= $logbook->waktu; ?></span>
+                                <p style="margin-left: 12px;"><?= $logbook->waktu; ?></p>
                                 <hr class="mt-5">
                                 <b style="margin-left: 12px;"><span>Jenis Tindakan</span></b>
                                 <p style="margin-left: 12px;"><?= $logbook->jenis_tindakan; ?></p>

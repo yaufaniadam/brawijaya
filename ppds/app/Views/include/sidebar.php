@@ -63,11 +63,18 @@
                         </a>
                     </li>
 
-                    <li id="dashboard">
+                    <li id="sidang">
                         <a href="<?= base_url('/sidang'); ?>">
                             <i class="ti-dashboard"></i> <span>Sidang</span>
                         </a>
                     </li>
+
+                    <li id="spv">
+                        <a href="<?= base_url('/admin/supervisor'); ?>">
+                            <i class="ti-dashboard"></i> <span>Supervisor</span>
+                        </a>
+                    </li>
+
                     <li id="pdps">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
                             <span>Users</span>

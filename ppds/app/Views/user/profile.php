@@ -13,7 +13,7 @@
                     <div class="row">
 
                         <div class="col-5">
-                            <div style="background-image: url(<?= $data_user->photo == '' ? base_url('images/profile/dummy.png') : $data_user->photo; ?>);width:170px;height:170px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;">
+                            <div style="background-image: url(<?= $data_user->photo == '' ? base_url('images/profile/dummy.png') : base_url('users_profile_pic/' . $data_user->photo); ?>);width:170px;height:170px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;">
                                 <input disabled type="file" name="photo_profile" id="photo_profile" style="width:20px;width:20px;display:none;bottom: 0;" value="<?= $data_user->photo; ?>">
                                 <label for="photo_profile" style="width:170px;height:170px;border-radius: 100%;background-image: url(https://i7.uihere.com/icons/258/694/503/picture-add-87b731e3ad0022412047e14cb6a3f7e5.png);background-position:center center;background-size:50%;background-repeat: no-repeat;background-color: #9a9999;opacity: 70%;"></label>
                                 <input type="hidden" name="old_photo" value="<?= $data_user->photo; ?>">

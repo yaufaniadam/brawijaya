@@ -46,6 +46,74 @@
                         <div class="card-body">
                             <div class="">
                                 <div class="col-sm-12 mt-4">
+                                    <div id="headingOne">
+                                        <h2 class="mb-0">
+                                            <a href="#" class="btn btn-danger btn-block text-left" type="button" data-toggle="collapse" data-target="#detail" aria-expanded="true" aria-controls="detail">
+                                                Detail PPDS
+                                            </a>
+                                        </h2>
+                                    </div>
+                                    <div id="detail" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                        <div class="card-body" style="border : solid #EFF1F2; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius:5px;">
+                                            <div id="headingOne">
+                                                <table class="table">
+                                                    <tr>
+                                                        <th scope="col">Nama Lengkap</th>
+                                                        <th scope="col"><?= $ppds->nama_lengkap; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Usia</th>
+                                                        <th scope="col"><?= $ppds->usia; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Jenis Kelamin</th>
+                                                        <th scope="col"><?= $ppds->jenis_kelamin == 'p' ? 'Pria' : 'Wanita'; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Alamat Asal</th>
+                                                        <th scope="col"><?= $ppds->alamat_asal; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Alamat Domisili</th>
+                                                        <th scope="col"><?= $ppds->alamat_domisili; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">No. Telp</th>
+                                                        <th scope="col"><?= $ppds->no_telp; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">No. Telp Keluarga/Darurat</th>
+                                                        <th scope="col"><?= $ppds->no_telp_drt; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">NIM</th>
+                                                        <th scope="col"><?= $ppds->nim; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col"><?= $ppds->status; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">NO SIP</th>
+                                                        <th scope="col"><?= $ppds->no_sip; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">NO STR</th>
+                                                        <th scope="col"><?= $ppds->no_str; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">NO BPJS</th>
+                                                        <th scope="col"><?= $ppds->no_bpjs; ?></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="col">NO Rekening</th>
+                                                        <th scope="col"><?= $ppds->no_rekening; ?></th>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
                                     <?php foreach ($tahap as $tahap) { ?>
                                         <div id="headingOne">
                                             <h2 class="mb-0">

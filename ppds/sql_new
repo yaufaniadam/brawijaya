@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 13, 2021 at 10:00 AM
+-- Generation Time: Jan 18, 2021 at 11:45 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -50,6 +50,7 @@ CREATE TABLE `ci_users` (
   `no_bpjs` varchar(30) NOT NULL,
   `no_rekening` varchar(40) NOT NULL,
   `usia` varchar(3) NOT NULL,
+  `aktif` int(1) NOT NULL,
   `token` varchar(255) NOT NULL,
   `password_reset_code` varchar(255) NOT NULL,
   `last_ip` varchar(30) NOT NULL,
@@ -61,13 +62,18 @@ CREATE TABLE `ci_users` (
 -- Dumping data for table `ci_users`
 --
 
-INSERT INTO `ci_users` (`id`, `username`, `nama_lengkap`, `email`, `photo`, `password`, `role`, `spv`, `stase`, `jenis_kelamin`, `alamat_asal`, `alamat_domisili`, `no_telp`, `no_telp_drt`, `nim`, `status`, `no_sip`, `no_str`, `no_bpjs`, `no_rekening`, `usia`, `token`, `password_reset_code`, `last_ip`, `created_at`, `updated_at`) VALUES
-(3, 'admin', 'admin', 'admin@ppdsinternasolo.id', '1596515084_00f4374c035b6277a67a.png', '$2y$10$DtFLFRrZIikuMDo7mg6lruOUbEKYdCUZXgnvn/lZeRMJyT/9HwFMq', 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2017-09-29 10:09:44', '2020-10-22 01:23:09'),
-(328, 'spv1', 'supervisor1', 'supervisor1@spv.com', '1605497845_8c50490e7e0fd46fb801.png', '$2y$10$GHkbu0gMBrcZLKPEhkqQXuy7yLQVanw3cRszlEQFB29FPHl1L2yh.', 3, 0, 1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-11-09 19:59:53', '2020-11-15 21:37:25'),
-(329, 'ppds1', 'ppds1', 'ppds1@ppds.com', '', '$2y$10$2AILUCFkxa5dFg2Uk1OzfujYmQBcKh4p6L.I5v5jl.mF41xiUiTpa', 4, 328, 0, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2020-11-09 20:00:32', '2020-11-09 20:50:40'),
-(330, 'spv2', '', 'asdasd@asdasd.asda', '', '$2y$10$hKLRhKmoGJgXKWWp7IURge3j7nLPsSkBNazY2Q0T6OUSSPTVkWbmS', 3, 0, 3, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-01-08 02:06:38', '2021-01-08 02:06:38'),
-(331, 'spv3', '', 'asdasdas@asdasd.asd', '', '$2y$10$EH.ae6jDyfZ0vCUfEFH.COV9jt2sjJuXZYjrhylbR04Q3XXkq/.f6', 3, 0, 13, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-01-08 02:07:08', '2021-01-08 02:07:08'),
-(332, 'spv4', '', 'asasdas@asasd.asd', '', '$2y$10$4VwsVQMnBEsPFZJoqEWnDuSiwt34b9wLUj2hF.mk0W0RfQoH81Me2', 3, 0, 17, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '2021-01-08 02:07:38', '2021-01-08 02:07:38');
+INSERT INTO `ci_users` (`id`, `username`, `nama_lengkap`, `email`, `photo`, `password`, `role`, `spv`, `stase`, `jenis_kelamin`, `alamat_asal`, `alamat_domisili`, `no_telp`, `no_telp_drt`, `nim`, `status`, `no_sip`, `no_str`, `no_bpjs`, `no_rekening`, `usia`, `aktif`, `token`, `password_reset_code`, `last_ip`, `created_at`, `updated_at`) VALUES
+(3, 'admin', '', '', '', '$2y$10$GHkbu0gMBrcZLKPEhkqQXuy7yLQVanw3cRszlEQFB29FPHl1L2yh.', 1, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2017-09-29 10:09:44', '2021-01-16 01:55:18'),
+(328, 'spv1', 'supervisor1', 'supervisor1@spv.com', '1605497845_8c50490e7e0fd46fb801.png', '$2y$10$GHkbu0gMBrcZLKPEhkqQXuy7yLQVanw3cRszlEQFB29FPHl1L2yh.', 3, 0, 1, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2020-11-09 19:59:53', '2020-11-15 21:37:25'),
+(329, 'ppds1', 'ppds1', 'ppds1@ppds.com', '', '$2y$10$2AILUCFkxa5dFg2Uk1OzfujYmQBcKh4p6L.I5v5jl.mF41xiUiTpa', 4, 328, 0, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2020-11-09 20:00:32', '2020-11-09 20:50:40'),
+(330, 'spv2', '', 'asdasd@asdasd.asda', '', '$2y$10$hKLRhKmoGJgXKWWp7IURge3j7nLPsSkBNazY2Q0T6OUSSPTVkWbmS', 3, 0, 3, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2021-01-08 02:06:38', '2021-01-08 02:06:38'),
+(331, 'spv3', '', 'asdasdas@asdasd.asd', '', '$2y$10$EH.ae6jDyfZ0vCUfEFH.COV9jt2sjJuXZYjrhylbR04Q3XXkq/.f6', 3, 0, 13, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2021-01-08 02:07:08', '2021-01-08 02:07:08'),
+(332, 'spv4', '', 'asasdas@asasd.asd', '', '$2y$10$4VwsVQMnBEsPFZJoqEWnDuSiwt34b9wLUj2hF.mk0W0RfQoH81Me2', 3, 0, 17, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '2021-01-08 02:07:38', '2021-01-08 02:07:38'),
+(335, 'test_reg', 'ngetest register', 'test@reg.com', '', '$2y$10$S106e58dsNmpiASQ6UnnOucNs2VEo9lWryA9s9m5k30Ssyvr8tpuO', 4, 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 1, '', '', '', '2021-01-18 03:15:59', '2021-01-18 03:15:59'),
+(336, 'test2', 'ngetest register 2', 'test@test.com', '', '$2y$10$CRROUCBu/iuHWOGZpgfQwOdqLknaqJ57MJkL9EWtVW1uOaoz150oK', 4, 328, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '2021-01-18 04:32:59', '2021-01-18 04:32:59'),
+(337, 'test3', 'ngetest register 3', 'ngetest3@test.com', '', '$2y$10$APfE3G4wz2QZM97iySCebO9X2YXJWlSk.nn7uOpMj9K1dk3aQEfNO', 4, 331, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '2021-01-18 04:34:44', '2021-01-18 04:34:44'),
+(338, 'abcdefg', 'lkasdasd', 'skdas@sdasd.co', '', '$2y$10$XC2RAQLQpjEnbySdODajDet98Zzr4vwBlpMvxnfR7bdDx4mXN/lSa', 4, 332, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '2021-01-18 04:36:51', '2021-01-18 04:36:51'),
+(339, 'test4', 'ngetest register 4', 'testing4@test.co', '', '$2y$10$ib.ylzJ.XG/177sh6xFlMu4R1UWFa/sMvirGgJPQrhmE3IXyNxn4m', 4, 328, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '2021-01-18 04:44:18', '2021-01-18 04:44:18');
 
 -- --------------------------------------------------------
 
@@ -255,7 +261,14 @@ CREATE TABLE `stase_ppds` (
 --
 
 INSERT INTO `stase_ppds` (`id`, `id_user`, `tanggal_mulai`, `tanggal_selesai`, `id_stase`) VALUES
-(68, 329, '2020-11-10', '0000-00-00', 1);
+(68, 329, '2020-11-10', '0000-00-00', 1),
+(69, 333, '2021-01-18', '0000-00-00', 1),
+(70, 334, '2021-01-18', '0000-00-00', 1),
+(71, 335, '2021-01-18', '0000-00-00', 1),
+(72, 336, '2021-01-18', '0000-00-00', 1),
+(73, 337, '2021-01-18', '0000-00-00', 1),
+(74, 338, '2021-01-18', '0000-00-00', 1),
+(75, 339, '2021-01-18', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -297,7 +310,14 @@ CREATE TABLE `tahap_ppds` (
 --
 
 INSERT INTO `tahap_ppds` (`id`, `id_user`, `tanggal_mulai`, `tanggal_selesai`, `id_tahap`) VALUES
-(37, 329, '2020-11-10', '0000-00-00', 1);
+(37, 329, '2020-11-10', '0000-00-00', 1),
+(38, 333, '2021-01-18', '0000-00-00', 1),
+(39, 334, '2021-01-18', '0000-00-00', 1),
+(40, 335, '2021-01-18', '0000-00-00', 1),
+(41, 336, '2021-01-18', '0000-00-00', 1),
+(42, 337, '2021-01-18', '0000-00-00', 1),
+(43, 338, '2021-01-18', '0000-00-00', 1),
+(44, 339, '2021-01-18', '0000-00-00', 1);
 
 -- --------------------------------------------------------
 
@@ -337,7 +357,8 @@ INSERT INTO `tugas` (`id`, `id_ppds`, `judul`, `id_stase`, `deskripsi`, `id_kate
 (71, 329, 'asasdf', 1, 'asdas', 3, 1, '1604994418_4ed3c3de01281af834b8.pdf', '1604994418_de4ba891c28575210039.pptx', '2020-11-25 19:00:00', 328, 0, 0, 0, 90, 0, 0, 0, 0, '0000-00-00 00:00:00'),
 (72, 329, 'asdasdas', 1, 'asdasdas', 8, 2, '1610093295_0dc39db0f15103d30baa.pdf', '1610093295_ba81e896ddf382ba2fd2.pdf', '2021-01-15 15:08:00', 328, 330, 331, 332, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
 (73, 329, 'asdas', 1, 'dasdasda', 8, 2, '1610093358_2332b8746d625106d345.pdf', '1610093358_513d83e244625433bf8a', '2021-01-14 15:09:00', 328, 330, 331, 332, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(74, 329, 'asdasd', 1, 'asdasd', 8, 2, '1610093425_7b38441e83b82897eda7.pdf', '1610093425_1f44ab7b0e1d53fced7e.pdf', '2021-01-20 15:10:00', 328, 330, 331, 332, 0, 0, 0, 0, 0, '0000-00-00 00:00:00');
+(74, 329, 'asdasd', 1, 'asdasd', 8, 2, '1610093425_7b38441e83b82897eda7.pdf', '1610093425_1f44ab7b0e1d53fced7e.pdf', '2021-01-20 15:10:00', 328, 330, 331, 332, 0, 0, 0, 0, 0, '0000-00-00 00:00:00'),
+(75, 329, 'zxczxczxc', 1, 'xcvxcvxcbvnfg', 4, 1, '1610613425_28e1651f841a9e9aa00d.pdf', '1610613425_1b00a554c0505a2779c8.pdf', '2021-01-29 15:36:00', 328, 330, 0, 0, 0, 0, 0, 0, 0, '0000-00-00 00:00:00');
 
 --
 -- Indexes for dumped tables
@@ -423,7 +444,7 @@ ALTER TABLE `tugas`
 -- AUTO_INCREMENT for table `ci_users`
 --
 ALTER TABLE `ci_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=340;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -471,7 +492,7 @@ ALTER TABLE `stase`
 -- AUTO_INCREMENT for table `stase_ppds`
 --
 ALTER TABLE `stase_ppds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `tahap`
@@ -483,13 +504,13 @@ ALTER TABLE `tahap`
 -- AUTO_INCREMENT for table `tahap_ppds`
 --
 ALTER TABLE `tahap_ppds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `tugas`
 --
 ALTER TABLE `tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

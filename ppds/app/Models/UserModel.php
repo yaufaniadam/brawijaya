@@ -8,7 +8,7 @@ class UserModel extends Model
 {
     protected $table = 'ci_users';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['username', 'email', 'password', 'role', 'spv', 'stase', 'nama_lengkap', 'photo'];
+    protected $allowedFields = ['username', 'email', 'password', 'role', 'spv', 'stase', 'nama_lengkap', 'photo', 'usia', 'jenis_kelamin',];
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
@@ -24,6 +24,7 @@ class UserModel extends Model
 
     function userProfile($id_user)
     {
+        $this->builder->select('*,ci_users.id as id_ppds');
         $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
         return $query;
     }
@@ -47,6 +48,7 @@ class UserModel extends Model
     {
         $this->builder->select('*,role.role as nama_role,ci_users.id as id_ppds');
         $this->builder->join('role', 'role.id = ci_users.role');
+        $this->builder->where(['aktif' => 1]);
         $query = $this->builder->get()->getResultArray();
         return $query;
     }
@@ -110,11 +112,46 @@ class UserModel extends Model
 
     public function getPpdsByTahap($tahap)
     {
-        return $this->db->query("SELECT ci_users.nama_lengkap,ci_users.id AS id_ppds,stase_ppds.id_stase,stase.stase,stase_ppds.tanggal_mulai,stase_ppds.tanggal_selesai FROM ci_users
-        LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
-        LEFT JOIN stase ON stase.id = stase_ppds.id_stase
-        WHERE stase.id_tahap = $tahap AND stase.id != 25")->getResultArray();
+        return $this->db->query(
+            "SELECT 
+            ci_users.nama_lengkap,
+            ci_users.id AS id_ppds,
+            stase_ppds.id_stase,
+            stase.stase,
+            stase_ppds.tanggal_mulai,
+            stase_ppds.tanggal_selesai 
+            FROM ci_users
+            LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+            LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+            WHERE ci_users.aktif = 1
+            AND stase.id != 25"
+                . ($tahap == 0 ? '' : " AND stase.id_tahap = $tahap")
+        )->getResultArray();
         // tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = ci_users.id) AND
+    }
+
+    public function getAllSupervisor()
+    {
+        // $query = $this->builder->getWhere(['id' => 2])->getRowObject();
+        $this->builder->select('*,ci_users.id AS id_spv');
+        $this->builder->join('role', 'role.id=ci_users.role');
+        $this->builder->join('stase', 'stase.id=ci_users.stase');
+        // $this->builder->where('role.id', 3);
+        return $this->builder->getWhere(['role.id' => 3, 'ci_users.aktif' => 1])->getResultArray();
+    }
+
+    public function detailSpv($id_spv)
+    {
+        $this->builder->select('*,ci_users.id AS id_spv');
+        $this->builder->join('role', 'role.id=ci_users.role', 'left');
+        $this->builder->join('stase', 'stase.id=ci_users.stase', 'left');
+        // $this->builder->where('role.id', 3);
+        return $this->builder->getWhere(
+            [
+                'role.id' => 3,
+                'ci_users.id' => $id_spv
+            ]
+        )->getRowObject();
     }
 
     public function getPpdsByStase()
@@ -161,5 +198,42 @@ class UserModel extends Model
 
         $query = $this->db->table('tahap_ppds')->update($data, array('id' => $id_tahap_ppds, 'id_user' => $id_ppds));
         return $query;
+    }
+
+    public function countUserByRole($id_role)
+    {
+        $this->builder->select('*');
+        $this->builder->where(
+            [
+                'role' => $id_role,
+                'aktif' => 1,
+            ]
+        );
+        return $this->builder->countAllResults();
+    }
+
+    public function getNewUsers()
+    {
+        $this->builder->select('*,role.role as nama_role,ci_users.id as id_ppds');
+        $this->builder->join('role', 'role.id = ci_users.role');
+        $this->builder->where(['aktif' => 0]);
+        $query = $this->builder->get()->getResultArray();
+        return $query;
+    }
+
+    public function aktivate($id_ppds)
+    {
+        $this->builder->set('aktif', 1);
+        $this->builder->where('id', $id_ppds);
+        $this->builder->update();
+
+        return true;
+    }
+
+    public function countNewUsers()
+    {
+        $this->builder->select('*');
+        $this->builder->where('aktif', 0);
+        return $this->builder->countAllResults();
     }
 }

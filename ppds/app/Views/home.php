@@ -19,6 +19,10 @@
                     <b>
                         <h5>Selamat datang <?= $user_data->nama_lengkap == '' ? 'PPDS' : $user_data->nama_lengkap; ?></h5>
                     </b>
+                <?php } elseif (session('role') == 3 || session('role') == 1) { ?>
+                    <b>
+                        <h5>Selamat datang</h5>
+                    </b>
                 <?php } ?>
             </div>
         </div>
@@ -132,6 +136,51 @@
                                         </tbody>
                                     </table>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } elseif (session('role') == 1) { ?>
+            <div class="row mt-4">
+                <div class="col-4">
+                    <div class="single-report mb-xs-30">
+                        <div class="s-report-inner pr--20 pt--30 mb-3">
+                            <div class="icon"><i class="fa fa-file"></i></div>
+                            <div class="s-report-title d-flex justify-content-between">
+                                <h4 class="header-title mb-0"><a href="<?= base_url('admin/new_users'); ?>">Perlu Diverifikasi</a></h4>
+                            </div>
+                            <div class="d-flex justify-content-between pb-2">
+                                <h2></h2>
+                                <h2><?= $number_of_new_users; ?></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="single-report mb-xs-30">
+                        <div class="s-report-inner pr--20 pt--30 mb-3">
+                            <div class="icon bg-warning"><i class="fa fa-file"></i></div>
+                            <div class="s-report-title d-flex justify-content-between">
+                                <h4 class="header-title mb-0"><a href="<?= base_url('admin/ppds/tahap/0'); ?>">Semua PPDS</a></h4>
+                            </div>
+                            <div class="d-flex justify-content-between pb-2">
+                                <h2></h2>
+                                <h2><?= $number_of_ppds; ?></h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="single-report mb-xs-30">
+                        <div class="s-report-inner pr--20 pt--30 mb-3">
+                            <div class="icon bg-success"><i class="fa fa-file"></i></div>
+                            <div class="s-report-title d-flex justify-content-between">
+                                <h4 class="header-title mb-0"><a href="<?= base_url('/admin/supervisor'); ?>">Semua Supervisor</a></h4>
+                            </div>
+                            <div class="d-flex justify-content-between pb-2">
+                                <h2></h2>
+                                <h2><?= $number_of_spv; ?></h2>
                             </div>
                         </div>
                     </div>

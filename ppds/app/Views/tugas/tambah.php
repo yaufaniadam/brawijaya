@@ -94,34 +94,35 @@
                         </div>
                     </div>
 
+
+                    <div id="list-penguji" class="form-group row">
+                        <label class="col-sm-4 col-form-label" for="penguji_1"><?= $page_header == 'Tugas_Besar' ? 'Penguji Satu' : 'Pembimbing Satu'; ?></label>
+                        <div class="col-sm-8">
+                            <select name="penguji_1" class="form-control" id="penguji_1" <?= $validation->hasError('penguji_1') ? "is-invalid" : ""; ?>>
+                                <option value=""><?= $page_header == 'Tugas_Besar' ? 'Pilih penguji satu' : 'Pilih pembimbing satu'; ?></option>
+                                <?php foreach ($penguji as $penguji) { ?>
+                                    <option value="<?= $penguji['id']; ?>"><?= $penguji['nama_lengkap']; ?></option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('penguji_1'); ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="list-penguji" class="form-group row">
+                        <label class="col-sm-4 col-form-label" for="penguji_2"><?= $page_header == 'Tugas_Besar' ? 'Penguji Dua' : 'Pembimbing Dua'; ?></label>
+                        <div class="col-sm-8">
+                            <select name="penguji_2" class="penguji_2 form-control" id="penguji_2" <?= $validation->hasError('penguji_2') ? "is-invalid" : ""; ?>>
+                                <option value=""><?= $page_header == 'Tugas_Besar' ? 'Pilih penguji dua' : 'Pilih pembimbing dua'; ?></option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('penguji_2'); ?>
+                            </div>
+                        </div>
+                    </div>
+
                     <?php if ($page_header == 'Tugas Besar') { ?>
-                        <div id="list-penguji" class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="penguji_1">Penguji Satu</label>
-                            <div class="col-sm-8">
-                                <select name="penguji_1" class="form-control" id="penguji_1" <?= $validation->hasError('penguji_1') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Penguji Satu</option>
-                                    <?php foreach ($penguji as $penguji) { ?>
-                                        <option value="<?= $penguji['id']; ?>"><?= $penguji['nama_lengkap']; ?></option>
-                                    <?php } ?>
-                                </select>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('penguji_1'); ?>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="list-penguji" class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="penguji_2">Penguji Dua</label>
-                            <div class="col-sm-8">
-                                <select name="penguji_2" class="penguji_2 form-control" id="penguji_2" <?= $validation->hasError('penguji_2') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Penguji Dua</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('penguji_2'); ?>
-                                </div>
-                            </div>
-                        </div>
-
                         <div id="list-penguji" class="form-group row">
                             <label class="col-sm-4 col-form-label" for="pembimbing_1">Pembimbing Satu</label>
                             <div class="col-sm-8">
@@ -177,33 +178,35 @@
         }
     }
 
-    <?php if ($page_header == "Tugas Besar") { ?>
 
-        $(document).ready(function() {
-            $('#penguji_1').change(function() {
-                var id_penguji_1 = $(this).val();
-                $.ajax({
-                    url: '<?= base_url('spvresource/pengujidua'); ?>',
-                    method: 'POST',
-                    data: {
-                        id_penguji_1: id_penguji_1
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        // console.log(data)
-                        var html = '<option > Pilih Penguji Dua </option>';
-                        var i;
-                        if (data.length == 0) {
-                            html += '<option>Penanggungjawab tidak ditemukan</option>'
-                        } else {
-                            for (i = 0; i < data.length; i++) {
-                                html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
-                            }
+
+    $(document).ready(function() {
+        $('#penguji_1').change(function() {
+            var id_penguji_1 = $(this).val();
+            $.ajax({
+                url: '<?= base_url('spvresource/pengujidua'); ?>',
+                method: 'POST',
+                data: {
+                    id_penguji_1: id_penguji_1
+                },
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data)
+                    var html = '<option > <?= $page_header == 'Tugas_Besar' ? 'Pilih penguji dua' : 'Pilih pembimbing dua'; ?> </option>';
+                    var i;
+                    if (data.length == 0) {
+                        html += '<option>Penanggungjawab tidak ditemukan</option>'
+                    } else {
+                        for (i = 0; i < data.length; i++) {
+                            html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
                         }
-                        $('#penguji_2').html(html);
                     }
-                });
+                    $('#penguji_2').html(html);
+                }
             });
+        });
+
+        <?php if ($page_header == "Tugas Besar") { ?>
 
             $('#penguji_2').change(function() {
                 var id_penguji_1 = $('#penguji_1').val();
@@ -262,8 +265,8 @@
                     }
                 });
             });
-        });
 
-    <?php } ?>
+        <?php } ?>
+    });
 </script>
 <?= $this->endSection(); ?>

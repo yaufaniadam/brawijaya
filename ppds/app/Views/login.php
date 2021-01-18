@@ -54,22 +54,32 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                    <?php } elseif (session('success')) { ?>
+                        <div class="alert alert-success alert-dismissible fade show mx-5 mt-5" role="alert">
+                            <strong> <?= session('success'); ?> </strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <?php } ?>
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="text" name="username" id="exampleInputEmail1">
+                            <input type="text" name="username" id="exampleInputEmail1" required>
                             <i class="ti-email"></i>
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" id="exampleInputPassword1">
+                            <input type="password" name="password" id="exampleInputPassword1" required>
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                        </div>
+                        <div class="form-footer text-center mt-5">
+                            <p class="text-muted">Don't have an account? <a href="<?= base_url('/register'); ?>">Sign up</a></p>
                         </div>
                     </div>
                 </form>

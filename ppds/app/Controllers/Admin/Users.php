@@ -41,6 +41,14 @@ class Users extends BaseController
         return view('admin/users/index', $data);
     }
 
+    public function newUsersList()
+    {
+        $data['title'] = 'Daftar User';
+        $data['query'] = $this->user_model->getNewUsers();
+        $data['page_header'] = 'Users list';
+        return view('admin/users/index', $data);
+    }
+
     public function show()
     {
         $data = [
@@ -107,6 +115,7 @@ class Users extends BaseController
             'role' => $role,
             'spv' => $supervisor,
             'stase' => $stase,
+            'aktif' => 1,
         ];
 
         $is_supervisor_exist = $this->spv_model->getSpecificSpv($supervisor);
@@ -217,7 +226,7 @@ class Users extends BaseController
         // dd($data);
     }
 
-    public function ppds($id_tahap)
+    public function ppds($id_tahap = 0)
     {
         $data = [
             'title' => 'PPDS',
@@ -226,6 +235,29 @@ class Users extends BaseController
         ];
         // dd($this->user_model->getPpdsByTahap($id_tahap));
         return view('admin/ppds/index', $data);
+    }
+
+    public function supervisor()
+    {
+        $data = [
+            'title' => 'Supervisor',
+            'page_header' => 'Daftar Supervisor',
+            'query' => $this->user_model->getAllSupervisor(),
+        ];
+        // dd($this->user_model->getAllSupervisor());
+        return view('admin/spv/index', $data);
+    }
+
+    public function detailSupervisor($id_spv)
+    {
+        $data = [
+            'title' => 'Supervisor',
+            'page_header' => 'Detail Supervisor',
+            'spv' => $this->user_model->detailSpv($id_spv),
+        ];
+        // dd($this->user_model->detailSpv($id_spv));
+        return view('admin/spv/detail', $data);
+        echo "detail spv";
     }
 
     public function detailppds($id_ppds)
@@ -344,7 +376,7 @@ class Users extends BaseController
 
         //From email address and name
         $mail->From = "admin@miokard.solusidesain.net";
-        $mail->FromName = "Full Name";
+        // $mail->FromName = "Full Name";
 
         //To address and name
         $mail->addAddress($email_ppds); //Recipient name is optional
@@ -353,21 +385,30 @@ class Users extends BaseController
         // $mail->addReplyTo("reply@yourdomain.com", "Reply");
 
         //CC and BCC
-        $mail->addCC("cc@example.com");
-        $mail->addBCC("bcc@example.com");
+        // $mail->addCC("cc@example.com");
+        // $mail->addBCC("bcc@example.com");
 
         //Send HTML or Plain Text email
         $mail->isHTML(true);
 
-        $mail->Subject = "Subject Text";
-        $mail->Body = "<i>Mail body in HTML</i>";
-        $mail->AltBody = "This is the plain text version of the email content";
+        $mail->Subject = "Naik Tahap";
+        $mail->Body = "<i>Anda dinyatakan naik ke tahap selanjutnya</i>";
+        $mail->AltBody = "Anda dinyatakan naik ke tahap selanjutnya";
 
         try {
             $mail->send();
             echo "Message has been sent successfully";
         } catch (Exception $e) {
             echo "Mailer Error: " . $mail->ErrorInfo;
+        }
+    }
+
+    public function activate($id_ppds)
+    {
+        if ($this->user_model->aktivate($id_ppds)) {
+            return redirect()->to(base_url('admin/new_users'))->with('success', 'Pengguna berhasil diaktifkan!');
+        } else {
+            return redirect()->back()->with('danger', 'Terjadi kesalahan!');
         }
     }
 }

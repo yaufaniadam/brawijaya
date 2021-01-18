@@ -93,6 +93,7 @@ class Tugas extends BaseController
                 'page_header' => 'Ilmiah',
                 'validation' => \Config\Services::validation(),
                 'kategori' => $this->kategori_model->getAllIlmiahKategories(),
+                'penguji' => $this->spv_model->getAllSpv(),
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [
@@ -240,8 +241,8 @@ class Tugas extends BaseController
             'file' => $encrypted_file_name,
             'file_presentasi' => $encrypted_file_pre_name,
             'jadwal_sidang' => $this->request->getVar('jadwal_sidang'),
-            'id_penguji_1' => $jenis == 2 ? $this->request->getVar('penguji_1') : $id_spv,
-            'id_penguji_2' => $jenis == 2 ? $this->request->getVar('penguji_2') : '',
+            'id_penguji_1' => $this->request->getVar('penguji_1'),
+            'id_penguji_2' => $this->request->getVar('penguji_2'),
             'id_pembimbing_1' => $jenis == 2 ? $this->request->getVar('pembimbing_1') : '',
             'id_pembimbing_2' => $jenis == 2 ? $this->request->getVar('pembimbing_2') : '',
             'id_stase' => $this->stase_ppds_model->getCurrentUserStase(),

@@ -127,7 +127,7 @@ class Logbook extends BaseController
         }
     }
 
-    public function edit($id_logbook)
+    public function edit($id_logbook = 0)
     {
         $data = [
             'title' => 'Logbook',
