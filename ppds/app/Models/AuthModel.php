@@ -10,18 +10,22 @@ class AuthModel extends Model
     {
         $username = $data['username'];
         $query = $this->db->table("ci_users")->where(array('username' => $username));
-        $is_active = $query->get()->getRowObject();
+        $result = $query->countAllResults();
 
-        if ($query->countAllResults() == 0) {
+        // dd($result);
+
+        if ($result == 0) {
             return false;
         } else {
-            $query = $this->db->table("ci_users")->where(array('username' => $username));
-            $result = $query->get()->getRowArray();
+            $query2 = $this->db->table("ci_users")->where(array('username' => $username));
+            $result = $query2->get()->getRowArray();
+            // return $result['aktif'];
             $valid_password = password_verify($data['password'], $result['password']);
             if ($valid_password) {
-                if ($is_active->aktif == 1) {
-                    $query = $this->db->table("ci_users")->where(array('username' => $username));
-                    return $result = $query->get()->getRowArray();
+                if ($result['aktif'] == 1) {
+                    $query2 = $this->db->table("ci_users")->where(array('username' => $username));
+                    return $result = $query2->get()->getRowArray();
+                    // return $is_active;
                 } else {
                     return false;
                 }

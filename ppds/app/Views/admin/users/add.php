@@ -64,28 +64,28 @@
                     <div class="form-group row" style="display: none;" id="spvr">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Supervisor</label>
                         <div class="col-sm-8">
-                            <select class="custom-select" name="spv" id="spv">
+                            <select class="custom-select <?= $validation->hasError('spv') ? "is-invalid" : ""; ?>" name="spv" id="spv">
                                 <option value="">Pilih Supervisor</option>
                                 <?php foreach ($spv as $spv) { ?>
                                     <option <?= $spv['id'] == old('spv') ? "selected" : ""; ?> value="<?= $spv['id']; ?>"><?= $spv['nama_lengkap']; ?></option>
                                 <?php } ?>
                             </select>
                             <div class="invalid-feedback">
-                                <?= $validation->getError('id_kategori'); ?>
+                                <?= $validation->getError('spv'); ?>
                             </div>
                         </div>
                     </div>
                     <div class="form-group row" style="display: none;" id="stase">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Stase</label>
                         <div class="col-sm-8">
-                            <select class="custom-select" name="stase" id="spv">
+                            <select class="custom-select <?= $validation->hasError('stase') ? "is-invalid" : ""; ?>" name="stase" id="spv">
                                 <option value="">Pilih Stase</option>
                                 <?php foreach ($stase as $stase) { ?>
                                     <option <?= $stase['id'] == old('stase') ? "selected" : ""; ?> value="<?= $stase['id']; ?>"><?= $stase['stase']; ?></option>
                                 <?php } ?>
                             </select>
                             <div class="invalid-feedback">
-                                <?= $validation->getError('id_kategori'); ?>
+                                <?= $validation->getError('stase'); ?>
                             </div>
                         </div>
                     </div>
@@ -116,5 +116,13 @@
             $('#stase').hide()
         }
     });
+
+    <?php if (old('role') == 4) { ?>
+        $('#spvr').show();
+    <?php } ?>
+
+    <?php if (old('role') == 3) { ?>
+        $('#stase').show();
+    <?php } ?>
 </script>
 <?= $this->endSection(); ?>

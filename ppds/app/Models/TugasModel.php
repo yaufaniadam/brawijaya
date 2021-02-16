@@ -78,7 +78,7 @@ class TugasModel extends Model
         $this->builder->join('ci_users', 'ci_users.id = tugas.id_ppds');
         $this->builder->join('stase', 'stase.id = tugas.id_stase');
         $this->builder->where('deleted_at', !0);
-        // $this->builder->where('tugas.jenis_tugas', 2);
+        $this->builder->where('tugas.jenis_tugas', 2);
         $query = $this->builder->get()->getResultArray();
         return $query;
     }
@@ -101,7 +101,7 @@ class TugasModel extends Model
         $this->builder->join('kategori', 'kategori.id = tugas.id_kategori');
         $this->builder->join('ci_users', 'ci_users.id = tugas.id_ppds');
         $this->builder->join('stase', 'stase.id = tugas.id_stase');
-        $this->builder->where('deleted_at', !0);
+        $this->builder->where('tugas.deleted_at', !0);
         $this->builder->where('id_ppds', session('user_id'));
         $this->builder->where('tugas.jenis_tugas', 2);
         $query = $this->builder->get()->getResultArray();
@@ -130,10 +130,10 @@ class TugasModel extends Model
         $this->builder->where('tugas.deleted_at', !0);
         $this->builder->where('tugas.jenis_tugas', 1);
         // $this->builder->groupStart();
-        $this->builder->where('tugas.id_penguji_1', session('user_id'));
+        // $this->builder->where('tugas.id_penguji_1', session('user_id'));
         // $this->builder->orWhere('tugas.id_penguji_2', session('user_id'));
-        // $this->builder->orWhere('tugas.id_pembimbing_1', session('user_id'));
-        // $this->builder->orWhere('tugas.id_pembimbing_2', session('user_id'));
+        $this->builder->where('tugas.id_pembimbing_1', session('user_id'));
+        $this->builder->orWhere('tugas.id_pembimbing_2', session('user_id'));
         // $this->builder->groupEnd();
         $query = $this->builder->get()->getResultArray();
         return $query;
@@ -165,7 +165,11 @@ class TugasModel extends Model
 
     public function detailTugas($id_tugas)
     {
-        $this->builder->select("*,tugas.id,kategori.kategori,ci_users.nama_lengkap");
+        $this->builder->select("
+        *,
+        tugas.id,
+        kategori.kategori,
+        ci_users.nama_lengkap");
         $this->builder->join('kategori', 'kategori.id = tugas.id_kategori');
         $this->builder->join('ci_users', 'ci_users.id = tugas.id_ppds');
         $this->builder->join('stase', 'stase.id = tugas.id_stase');
@@ -212,20 +216,29 @@ class TugasModel extends Model
 
     public function detailSidang($id_sidang)
     {
-        if ($this->builder->getWhere(['id' => $id_sidang])->getRowObject()->jenis_tugas == 2) {
+        $query = $this->builder->getWhere(['id' => $id_sidang])->getRowObject();
+
+        $jenis_tugas = $query->jenis_tugas;
+        // $pembimbing_1 = $query->id_pembimbing_1;
+        $pembimbing_2 = $query->id_pembimbing_2;
+        $penguji_2 = $query->id_penguji_2;
+
+        if ($jenis_tugas == 2) {
             $this->builder->select(
                 'tugas.*,
                 ci_users.nama_lengkap as ppds,
-                penguji_1.nama_lengkap as pj1,
-                penguji_2.nama_lengkap as pj2,
-                pembimbing_1.nama_lengkap as pb1,
-                pembimbing_2.nama_lengkap as pb2'
+                penguji_1.nama_lengkap as pj1,'
+                    . ($penguji_2 != 0 ? 'penguji_2.nama_lengkap as pj2,' : '') .
+                    'pembimbing_1.nama_lengkap as pb1,'
+                    . ($pembimbing_2 != 0 ? 'pembimbing_2.nama_lengkap as pb2' : '')
             );
             $this->builder->join('ci_users', 'ci_users.id = tugas.id_ppds');
             $this->builder->join('ci_users penguji_1', 'penguji_1.id = tugas.id_penguji_1');
             $this->builder->join('ci_users penguji_2', 'penguji_2.id = tugas.id_penguji_2');
             $this->builder->join('ci_users pembimbing_1', 'pembimbing_1.id = tugas.id_pembimbing_1');
-            $this->builder->join('ci_users pembimbing_2', 'pembimbing_2.id = tugas.id_pembimbing_2');
+            if ($pembimbing_2 != 0) {
+                $this->builder->join('ci_users pembimbing_2', 'pembimbing_2.id = tugas.id_pembimbing_2');
+            }
             $this->builder->where('tugas.id', $id_sidang);
         } else {
             $this->builder->select(
@@ -253,9 +266,18 @@ class TugasModel extends Model
     public function daftarHadirSidang($id_sidang)
     {
         return $this->db->query(
-            "SELECT presensi_sidang.id,ci_users.nama_lengkap FROM presensi_sidang 
+            "SELECT stase.stase,presensi_sidang.id,ci_users.nama_lengkap FROM presensi_sidang 
             LEFT JOIN ci_users ON presensi_sidang.id_ppds = ci_users.id
-            WHERE presensi_sidang.id_sidang = $id_sidang"
+            LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+            LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+            WHERE presensi_sidang.id_sidang = $id_sidang
+            AND stase.id = (SELECT id_stase 
+                            FROM stase_ppds
+                            WHERE id = (SELECT MAX(id) 
+                                        FROM stase_ppds
+                                        WHERE id_user = ci_users.id)
+                            )
+            "
         )->getResultArray();
     }
 

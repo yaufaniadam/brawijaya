@@ -42,8 +42,8 @@
                 <form class="user" action="<?= base_url('/register'); ?>" method="POST">
                     <?= csrf_field(); ?>
                     <div class="login-form-head" style="background-color: #E82C23;">
-                        <div class="logo mb-2">
-                            <a href="#"><img src="<?= base_url('assets/images/icon/logomiokard-login.png'); ?>" alt="logo"></a>
+                        <div class="mb-2">
+                            <a href="#"><img src="<?= base_url('assets/images/icon/logo_miokard_login-01.png'); ?>" alt="logo"></a>
                         </div>
                         <!-- <h4>Sign In</h4> -->
                     </div>
@@ -58,86 +58,74 @@
                     <div class="login-form-body">
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Username</label>
-                            <input type="text" name="username" id="exampleInputEmail1">
+                            <input type="text" name="username" id="username" value="<?= old('username'); ?>">
                             <i class="ti-user"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('username'); ?>
+                            </div>
                         </div>
                         <div class="form-gp">
                             <label for="pass">Password</label>
-                            <input type="password" name="password" id="pass">
+                            <input type="password" name="password" id="pass" value="<?= old('password'); ?>">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('password'); ?>
+                            </div>
                         </div>
                         <div class="form-gp">
                             <label for="re_pass">Repeat Password</label>
-                            <input type="password" name="re_password" id="re_pass">
+                            <input type="password" name="re_password" id="re_pass" value="<?= old('re_password'); ?>">
                             <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('re_password'); ?>
+                            </div>
                         </div>
                         <div class="form-gp">
                             <label for="e_mail">E-mail</label>
-                            <input type="email" name="email" id="e_mail">
+                            <input type="email" name="email" id="e_mail" value="<?= old('email'); ?>">
                             <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('email'); ?>
+                            </div>
                         </div>
                         <div class="form-gp">
                             <label for="fullname">Nama Lengkap</label>
-                            <input type="text" name="nama_lengkap" id="fullname">
+                            <input type="text" name="nama_lengkap" id="fullname" value="<?= old('nama_lengkap'); ?>">
                             <i class="ti-user"></i>
-                            <div class="text-danger"></div>
-                        </div>
-                        <div class="form-gp">
-                            <label for="usia">Usia</label>
-                            <input type="number" name="usia" id="usia">
-                            <i class="ti-user"></i>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('nama_lengkap'); ?>
+                            </div>
                         </div>
                         <div class="form-gp">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <br>
                             <select class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                <option value="p">Pria</option>
-                                <option value="w">Wanita</option>
+                                <option>Pilih jenis kelamin</option>
+                                <option <?= old('jenis_kelamin') == 'l' ? "selected" : ""; ?> value="l">laki-laki</option>
+                                <option <?= old('jenis_kelamin') == 'p' ? "selected" : ""; ?> value="w">perempuan</option>
                             </select>
-                            <div class="text-danger"></div>
+                            <div class="text-danger">
+                                <?= $validation->getError('jenis_kelamin'); ?>
+                            </div>
                         </div>
                         <div class="form-gp" id="spvr">
                             <label for="spv">Supervisor</label>
                             <br>
                             <select class="custom-select" name="spv" id="spv">
-                                <option value="">Pilih Supervisor</option>
+                                <option>Pilih Supervisor</option>
                                 <?php foreach ($spv as $spv) { ?>
                                     <option <?= $spv['id'] == old('spv') ? "selected" : ""; ?> value="<?= $spv['id']; ?>"><?= $spv['nama_lengkap']; ?></option>
                                 <?php } ?>
                             </select>
                             <div class="invalid-feedback">
-                                <?/*= $validation->getError('id_kategori');*/ ?>
+                                <?= $validation->getError('spv'); ?>
                             </div>
                         </div>
-                        <!-- <div class="form-gp">
-                            <label for="alamat">Alamat Asal</label>
-                            <textarea name="alamat" id="alamat" class="form-control"></textarea>
-                            <div class="text-danger"></div>
-                        </div>
-                        <div class="form-gp">
-                            <label for="alamat_domisili">Alamat Domisili</label>
-                            <textarea name="alamat_domisili" id="alamat_domisili" class="form-control"></textarea>
-                            <div class="text-danger"></div>
-                        </div>
-                        <div class="form-gp">
-                            <label for="no_telp">No. Telp</label>
-                            <input type="number" name="no_telp" id="no_telp">
-                            <i class="ti-telephone"></i>
-                            <div class="text-danger"></div>
-                        </div>
-                        <div class="form-gp">
-                            <label for="no_telp_drt">No. Telp Keluarga / Darurat</label>
-                            <input type="number" name="no_telp_drt" id="no_telp_drt">
-                            <i class="ti-telephone"></i>
-                            <div class="text-danger"></div>
-                        </div> -->
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Submit<i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">Daftar<i class="ti-arrow-right"></i></button>
+                        </div>
+                        <div class="form-footer text-center mt-5">
+                            <p class="text-muted">Sudah memiliki akun? <a href="<?= base_url('/login'); ?>">Login</a></p>
                         </div>
                     </div>
                 </form>

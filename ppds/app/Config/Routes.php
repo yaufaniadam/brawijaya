@@ -44,7 +44,7 @@ $routes->post('tugas/nilai/post', 'Tugas::postNilai', ['filter' => 'checkadminsp
 $routes->get('tugas/tambah', 'Tugas::tambah', ['filter' => 'checkresiden']);
 $routes->get('tugas/saya', 'Tugas::saya', ['filter' => 'checkresiden']);
 $routes->delete('tugas/(:num)', 'Tugas::delete/$1', ['filter' => 'checkresiden']);
-$routes->get('tugas/edit/(:num)', 'Tugas::edit/$1', ['filter' => 'checkresiden']);
+$routes->get('tugas/edit/(:num)', 'Tugas::edit/$1');
 $routes->post('tugas/edit', 'Tugas::update', ['filter' => 'checkresiden']);
 $routes->get('tugas/(:num)', 'Tugas::detail/$1');
 $routes->get('tugas/jenis/(:any)', 'Tugas::index/$1');
@@ -68,7 +68,7 @@ $routes->get('sidang/isiabsen/(:id_sidang)', 'Sidang::isiAbsen/$1');
 
 // notif routes
 $routes->get('notifications', 'Notif::index');
-$routes->get('notifications/(:num)', 'Notif::index/$1');
+$routes->get('notification/(:num)', 'Notif::detail/$1');
 
 $routes->group('admin', function ($routes) {
 	$routes->get('/', 'Home::index');
@@ -79,7 +79,7 @@ $routes->group('admin', function ($routes) {
 	$routes->get('supervisor/', 'Admin\Users::supervisor');
 	$routes->get('supervisor/(:num)', 'Admin\Users::detailSupervisor/$1');
 	$routes->get('ppds/lobby', 'Admin\Users::lobby');
-	$routes->post('stase', 'StaseResource::index');
+	$routes->post('staseresource', 'StaseResource::index');
 	$routes->post('ppds/selectstaseppds', 'Admin\Users::postPpdsStase');
 	$routes->post('ppds/staseselesai', 'Admin\Users::staseSelesai');
 	$routes->get('ppds/tahap/(:num)', 'Admin\Users::ppds/$1');
@@ -93,12 +93,14 @@ $routes->group('admin', function ($routes) {
 // ppds by my stase
 $routes->group('supervisor', function ($routes) {
 	$routes->get('/', 'Home::index');
+	$routes->get('ppds/(:num)', 'Admin\Users::detailppds/$1');
 	$routes->get('ppds_saya/', 'Admin\Users::ppdsPerSpv');
 	$routes->get('ppds_saya/stase/', 'Admin\Users::ppdsPerStase');
+	$routes->get('ppds/tahap/(:num)', 'Admin\Users::ppds/$1');
 });
 
 // penguji api
-$routes->resource('Spvresource');
+$routes->resource('SpvResource');
 
 $routes->group('residen', function ($routes) {
 	$routes->get('/', 'Home::index');
@@ -115,6 +117,16 @@ $routes->group('login', function ($routes) {
 $routes->group('register', function ($routes) {
 	$routes->get('', 'Auth::register');
 	$routes->post('', 'Auth::register_post');
+});
+
+$routes->group('forgot_password', function ($routes) {
+	$routes->get('', 'Auth::forgot_password');
+	$routes->post('', 'Auth::send_link_reset_pass');
+});
+
+$routes->group('reset_password', function ($routes) {
+	$routes->get('', 'Auth::reset_password');
+	$routes->post('', 'Auth::save_new_pass');
 });
 
 $routes->get('/logout', 'Auth::logout');

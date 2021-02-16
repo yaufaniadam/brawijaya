@@ -3,7 +3,9 @@
 <?= $this->extend('layouts/main'); ?>
 
 <?= $this->section('content'); ?>
+
 <div class="main-content-inner">
+
     <div class="row m-4">
         <div class="col-sm-4 mt-5">
             <div class="card">
@@ -23,15 +25,17 @@
                                 <label class="col-sm-7 col-form-label">Tahap</label>
                                 <label class="col-sm-5 col-form-label text-right"><?= $ppds->tahap; ?></label>
                             </div>
-                            <?php if ($tahap_selesai) { ?>
-                                <div class="form-group row">
-                                    <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="tahap">Tahap Selesai</button>
-                                </div>
-                            <?php } else { ?>
-                                <?php if ($ppds->id_stase != 25) { ?>
+                            <?php if (session('role') == 1) { ?>
+                                <?php if ($tahap_selesai) { ?>
                                     <div class="form-group row">
-                                        <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="stase">Stase Selesai</button>
+                                        <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="tahap">Tahap Selesai</button>
                                     </div>
+                                <?php } else { ?>
+                                    <?php if ($ppds->id_stase != 25) { ?>
+                                        <div class="form-group row">
+                                            <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="stase">Stase Selesai</button>
+                                        </div>
+                                    <?php } ?>
                                 <?php } ?>
                             <?php } ?>
                         </div>
@@ -57,6 +61,7 @@
                                         <div class="card-body" style="border : solid #EFF1F2; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius:5px;">
                                             <div id="headingOne">
                                                 <table class="table">
+                                                    <a class="btn btn-dark mb-3 float-left" style="background: #370EFA;border-color: #370EFA;" href="<?= base_url('admin/users/' . $ppds->id_ppds); ?>">Edit Profile</a>
                                                     <tr>
                                                         <th scope="col">Nama Lengkap</th>
                                                         <th scope="col"><?= $ppds->nama_lengkap; ?></th>
@@ -66,8 +71,12 @@
                                                         <th scope="col"><?= $ppds->usia; ?></th>
                                                     </tr>
                                                     <tr>
+                                                        <th scope="col">Supervisor</th>
+                                                        <th scope="col"><?= $ppds->spv; ?></th>
+                                                    </tr>
+                                                    <tr>
                                                         <th scope="col">Jenis Kelamin</th>
-                                                        <th scope="col"><?= $ppds->jenis_kelamin == 'p' ? 'Pria' : 'Wanita'; ?></th>
+                                                        <th scope="col"><?= $ppds->jenis_kelamin == 'l' ? 'laki-laki' : 'perempuan'; ?></th>
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Alamat Asal</th>

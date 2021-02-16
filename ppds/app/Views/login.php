@@ -42,8 +42,9 @@
                 <form class="user" action="<?= base_url('/login'); ?>" method="POST">
                     <?= csrf_field(); ?>
                     <div class="login-form-head" style="background-color: #E82C23;">
-                        <div class="logo mb-2">
-                            <a href="#"><img src="<?= base_url('assets/images/icon/logomiokard-login.png'); ?>" alt="logo"></a>
+                        <!-- <div class="logo mb-2"> -->
+                        <div class="mb-2">
+                            <a href="#"><img src="<?= base_url('assets/images/icon/logo_miokard_login-01.png'); ?>" alt="logo"></a>
                         </div>
                         <!-- <h4>Sign In</h4> -->
                     </div>
@@ -75,11 +76,16 @@
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                         </div>
+                        <div class="row mb-4 rmber-area">
+                            <div class="col-12 text-right">
+                                <a href="<?= base_url('/forgot_password'); ?>">Lupa Password?</a>
+                            </div>
+                        </div>
                         <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
+                            <button id="form_submit" type="submit">Login <i class="ti-arrow-right"></i></button>
                         </div>
                         <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="<?= base_url('/register'); ?>">Sign up</a></p>
+                            <p class="text-muted">Belum memiliki akun? <a href="<?= base_url('/register'); ?>">Daftar</a></p>
                         </div>
                     </div>
                 </form>

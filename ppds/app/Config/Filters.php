@@ -25,7 +25,7 @@ class Filters extends BaseConfig
 			// 'options',
 			//'honeypot'
 			// 'csrf',
-			'checklogin' => ['except' => 'login|register']
+			'checklogin' => ['except' => 'login|register|forgot_password|reset_password']
 		],
 		'after'  => [
 			'toolbar',

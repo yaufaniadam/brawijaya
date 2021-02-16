@@ -17,9 +17,15 @@
                         </a>
                     </li>
 
+                    <li id="logbook">
+                        <a href="<?= base_url('admin/ppds/tahap/0'); ?>">
+                            <i class="ti-user"></i> <span>PPDS</span>
+                        </a>
+                    </li>
+
                     <li id="pdps">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
-                            <span>PPDS</span>
+                            <span>Arsip PPDS</span>
                         </a>
                         <ul class="collapse">
                             <li>

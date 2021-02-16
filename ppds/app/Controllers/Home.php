@@ -32,8 +32,7 @@ class Home extends BaseController
 				'incoming_sidang' => $this->tugas_model->incomingSidang(),
 				'my_incoming_sidang' => $this->tugas_model->myIncomingSidang(),
 			];
-			return view('home', $data);
-		} else {
+		} elseif (session('role') == 1) {
 			$data = [
 				'title' => 'Dashboard',
 				'page_header' => 'Dashboard',
@@ -41,8 +40,18 @@ class Home extends BaseController
 				'number_of_spv' => $this->user_model->countUserByRole(3),
 				'number_of_new_users' => $this->user_model->countNewUsers(),
 			];
-			return view('home', $data);
+		} elseif (session('role') == 3) {
+			$data = [
+				'title' => 'Dashboard',
+				'page_header' => 'Dashboard',
+				'ppds_saya' => $this->user_model->jumlahPpdsBimbinganSaya(session('user_id')),
+				'ppds_stase_saya' => $this->user_model->jumlahPpdsStatseSaya(session('stase_spv')),
+				'number_of_new_users' => $this->user_model->countNewUsers(),
+				'number_of_ppds' => $this->user_model->countUserByRole(4),
+			];
 		}
+		// dd($data);
+		return view('home', $data);
 		// }
 	}
 

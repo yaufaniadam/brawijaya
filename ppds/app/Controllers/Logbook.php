@@ -112,6 +112,7 @@ class Logbook extends BaseController
             'page_header' => 'Detail Logbook',
             'logbook' => $this->logbook_model->detail($id_logbook),
         ];
+        // dd($data);
         return view('logbook/detail', $data);
     }
 

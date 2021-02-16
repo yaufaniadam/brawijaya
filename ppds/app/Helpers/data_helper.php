@@ -1,13 +1,31 @@
 <?php
 
-function user_nama_lengkap()
+function user_nama_lengkap($id_user = 0)
 {
     $db      = \Config\Database::connect();
     $builder = $db->table('ci_users');
 
-    $query = $builder->getWhere(['id' => session('user_id')])->getRowObject();
+    if ($id_user == 0) {
+        $query = $builder->getWhere(['id' => session('user_id')])->getRowObject();
+    } else {
+        $query = $builder->getWhere(['id' => $id_user])->getRowObject();
+    }
     return $query->nama_lengkap;
 }
+
+function user_photo_profile($id_user = 0)
+{
+    $db      = \Config\Database::connect();
+    $builder = $db->table('ci_users');
+
+    if ($id_user == 0) {
+        $query = $builder->getWhere(['id' => session('user_id')])->getRowObject();
+    } else {
+        $query = $builder->getWhere(['id' => $id_user])->getRowObject();
+    }
+    return $query->photo;
+}
+
 
 function checkSpvPosition($pos, $id_tugas)
 {
@@ -54,10 +72,29 @@ function listNotif()
     $id_user = session('user_id');
 
     $query   = $db->query(
-        "SELECT * FROM notif WHERE receiver = $id_user"
+        "SELECT 
+        * 
+        FROM notif 
+        WHERE receiver = $id_user
+        AND status = 0 
+        ORDER BY tanggal DESC"
     )->getResultArray();
 
     return $query;
+}
+
+function countNotif()
+{
+    $db      = \Config\Database::connect();
+    $builder = $db->table('notif');
+    $id_user = session('user_id');
+
+    $builder->where([
+        'receiver' => $id_user,
+        'status' => 0
+    ]);
+
+    return $builder->countAllResults();
 }
 
 function getCurrentPpdsStase()

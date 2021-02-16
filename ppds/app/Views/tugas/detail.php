@@ -31,6 +31,30 @@
                                 <label class="col-sm-7 col-form-label">Nilai</label>
                                 <label class="col-sm-5 col-form-label text-right"><?= ($tugas['nilai_1'] + $tugas['nilai_2'] + $tugas['nilai_3'] + $tugas['nilai_4']) / 4; ?></label>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-7 col-form-label">Pembimbing</label>
+                                <?php if ($tugas['id_pembimbing_1'] != 0) { ?>
+                                    <label class="col-sm-5 col-form-label text-right"><?= user_nama_lengkap($tugas['id_pembimbing_1']); ?></label>
+                                <?php } ?>
+                            </div>
+                            <?php if ($tugas['id_pembimbing_2'] != 0) { ?>
+                                <div class="form-group row">
+                                    <label class="col-sm-7 col-form-label"></label>
+                                    <label class="col-sm-5 col-form-label text-right"><?= user_nama_lengkap($tugas['id_pembimbing_2']); ?></label>
+                                </div>
+                            <?php } ?>
+                            <?php if ($tugas['id_penguji_1'] != 0) { ?>
+                                <div class="form-group row">
+                                    <label class="col-sm-7 col-form-label">Penguji</label>
+                                    <label class="col-sm-5 col-form-label text-right"><?= user_nama_lengkap($tugas['id_penguji_1']); ?></label>
+                                </div>
+                            <?php } ?>
+                            <?php if ($tugas['id_penguji_2'] != 0) { ?>
+                                <div class="form-group row">
+                                    <label class="col-sm-7 col-form-label"></label>
+                                    <label class="col-sm-5 col-form-label text-right"><?= user_nama_lengkap($tugas['id_penguji_2']); ?></label>
+                                </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -49,6 +73,7 @@
                                 <div class="col-sm-12 mt-4">
                                     <div class="row">
                                         <a href="<?= base_url('ppds_tugas/' . $tugas['file']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File</a>
+                                        <a href="<?= base_url('ppds_presentasi/' . $tugas['file_presentasi']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File Presentasi</a>
                                         <?php if (session('role') == 3 || session('role') == 1) { ?>
                                             <button type="button" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block" data-toggle="modal" data-target="#exampleModalCenter">Masukkan Nilai</button>
                                         <?php } ?>

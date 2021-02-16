@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Libraries\Notif;
 use App\Models\RoleModel;
 use App\Models\UserModel;
 use App\Models\TahapModel;
@@ -22,6 +23,7 @@ class Users extends BaseController
     protected $stase_model;
     protected $spv_model;
     protected $notif_model;
+    protected $notif;
     public function __construct()
     {
         $this->user_model = new UserModel();
@@ -31,6 +33,7 @@ class Users extends BaseController
         $this->stase_model = new StaseModel();
         $this->spv_model = new SuperVisorModel();
         $this->notif_model = new NotifModel();
+        $this->notif = new Notif();
     }
 
     public function view()
@@ -71,39 +74,81 @@ class Users extends BaseController
         $supervisor = $this->request->getVar('spv');
         $stase = $this->request->getVar('stase');
 
-        if (!$this->validate([
-            'username' => [
-                'rules' => 'required|is_unique[ci_users.username]',
-                'errors' => [
-                    'required' => 'username cant be empty',
-                    'is_unique' => 'username already taken'
+        if ($role == 4) {
+            $rules = [
+                'username' => [
+                    'rules' => 'required|is_unique[ci_users.username]',
+                    'errors' => [
+                        'required' => 'username harus diisi',
+                        'is_unique' => 'username sudah terpakai'
+                    ]
+                ],
+                'email' => [
+                    'rules' => 'required|is_unique[ci_users.email]|valid_email',
+                    'errors' => [
+                        'required' => 'email harus diisi',
+                        'is_unique' => 'email sudah terpakai',
+                        'valid_email' => 'email tidak valid'
+                    ]
+                ],
+                'password' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'password harus diisi',
+                    ]
+                ],
+                'role' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'role harus diisi',
+                    ]
+                ],
+                'spv' => [
+                    'rules' => ['required'],
+                    'errors' => [
+                        'required' => 'supervisor harus diisi',
+                    ]
                 ]
-            ],
-            'email' => [
-                'rules' => 'required|is_unique[ci_users.email]',
-                'errors' => [
-                    'required' => 'email cant be empty',
-                    'is_unique' => 'email already taken'
+            ];
+        } elseif ($role == 3) {
+            $rules = [
+                'username' => [
+                    'rules' => 'required|is_unique[ci_users.username]',
+                    'errors' => [
+                        'required' => 'username harus diisi',
+                        'is_unique' => 'username sudah terpakai'
+                    ]
+                ],
+                'email' => [
+                    'rules' => 'required|is_unique[ci_users.email]|valid_email',
+                    'errors' => [
+                        'required' => 'email harus diisi',
+                        'is_unique' => 'email sudah terpakai',
+                        'valid_email' => 'email tidak valid'
+                    ]
+                ],
+                'password' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'password harus diisi',
+                    ]
+                ],
+                'role' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'role harus diisi',
+                    ]
+                ],
+                'stase' => [
+                    'rules' => ['required'],
+                    'errors' => [
+                        'required' => 'stase harus diisi',
+                    ]
                 ]
-            ],
-            'password' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'password cant be empty',
-                ]
-            ],
-            'role' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'role cant be empty',
-                ]
-            ],
-            // 'spv' => [
-            //     'rules' => ['']
-            // ]
-        ])) {
-            // dd(session());
+            ];
+        }
 
+        if (!$this->validate($rules)) {
             $validation = \Config\Services::validation();
             return redirect()->back()->withInput()->with('validation', $validation);
         }
@@ -117,6 +162,8 @@ class Users extends BaseController
             'stase' => $stase,
             'aktif' => 1,
         ];
+
+        // dd($data);
 
         $is_supervisor_exist = $this->spv_model->getSpecificSpv($supervisor);
 
@@ -138,39 +185,52 @@ class Users extends BaseController
                         'tanggal_mulai' => date("Y-m-d")
                     ];
                     $this->stase_ppds_model->insert($dataForStase);
-                    return redirect()->to('/admin/users')->with('success', 'Pengguna baru berhasil ditambahkan!');
+                    return redirect()->to(base_url('/admin/users'))->with('success', 'Pengguna baru berhasil ditambahkan!');
                 }
             } else {
                 return redirect()->back()->withInput()->with('danger', 'Data supervisor tidak ditemukan!');
             }
         } else {
             if ($this->user_model->insert($data)) {
-                return redirect()->to('/admin/users')->with('success', 'Pengguna baru berhasil ditambahkan!');
+                return redirect()->to(base_url('/admin/users'))->with('success', 'Pengguna baru berhasil ditambahkan!');
             }
         }
     }
 
     public function delete($user_id)
     {
-        $result = $this->user_model->delete($user_id);
-        if ($result) {
-            return redirect()->to(base_url('admin/users'))->with('success', 'Pengguna berhasil dihapus!');
+        // $result = $this->user_model->delete($user_id);
+        if ($this->user_model->delete($user_id)) {
+            // return redirect()->to(base_url('admin/users'))->with('success', 'Pengguna berhasil dihapus!');
+            return redirect()->back()->with('success', 'Pengguna berhasil dihapus!');
         } else {
-            return redirect()->to(base_url('admin/users'))->with('danger', 'Terjadi kesalahan saat menghapus data :(');
+            return redirect()->back()->with('danger', 'Terjadi kesalahan saat menghapus data');
         }
     }
 
     public function detail($id_ppds)
     {
+        // $data = [
+        //     'title' => 'Detail User',
+        //     'page_header' => 'Detail User',
+        //     'data_user' => $this->user_model->userProfile($id_ppds),
+        //     'validation' => \Config\Services::validation(),
+        // ];
+
+        // // dd($data);
+        // return view('admin/users/detail', $data);
+
+        session();
         $data = [
+            'data_user' => $this->user_model->userProfile($id_ppds),
             'title' => 'Detail User',
             'page_header' => 'Detail User',
-            'data_user' => $this->user_model->userProfile($id_ppds),
             'validation' => \Config\Services::validation(),
         ];
 
         // dd($data);
-        return view('admin/users/detail', $data);
+
+        return view('user/profile', $data);
     }
 
     public function lobby()
@@ -204,7 +264,7 @@ class Users extends BaseController
     {
         $data = [
             'title' => 'PPDS Stase Saya',
-            'page_header' => 'Daftar PPDS',
+            'page_header' => 'PPDS Stase Saya',
             'query' => $this->user_model->getPpdsByStase(),
         ];
 
@@ -217,7 +277,7 @@ class Users extends BaseController
     {
         $data = [
             'title' => 'PPDS Bimbingan Saya',
-            'page_header' => 'Daftar PPDS',
+            'page_header' => 'PPDS Bimbingan Saya',
             'query' => $this->user_model->getPpdsBySpv(),
         ];
 
@@ -229,8 +289,8 @@ class Users extends BaseController
     public function ppds($id_tahap = 0)
     {
         $data = [
-            'title' => 'PPDS',
-            'page_header' => 'Daftar PPDS',
+            'title' => ($id_tahap != 0 ? 'Arsip PPDS' : 'PPDS'),
+            'page_header' => ($id_tahap != 0 ? 'Arsip PPDS Tahap ' . $id_tahap : 'Daftar Semua PPDS'),
             'query' => $this->user_model->getPpdsByTahap($id_tahap),
         ];
         // dd($this->user_model->getPpdsByTahap($id_tahap));
@@ -314,6 +374,9 @@ class Users extends BaseController
         $jumlah_stase_per_tahap = $this->stase_model->countStasePerTahap($tahap_ppds);
         $jumlah_ppds_stase = $this->stase_ppds_model->countPpdsStaseByTahap($id_ppds, $tahap_ppds);
 
+        $info_ppds = $this->user_model->userProfile($id_ppds);
+        $email_ppds = $info_ppds->email;
+
         // dd($this->request->getVar());
 
         if ($this->request->getVar('type') == 'stase') {
@@ -325,19 +388,16 @@ class Users extends BaseController
                     'tanggal_mulai' => date("Y-m-d")
                 ];
 
-                $datanotif = [
-                    'sender' => session('user_id'),
-                    'receiver' => $id_ppds,
-                    'title' => 'stase selesai',
-                    'isi' => 'stase selesai',
-                ];
-                $this->naikTahapOrStaseMailer($id_ppds);
-                $this->stase_ppds_model->insert($dataForStase);
-                $this->notif_model->insert($datanotif);
-                return redirect()->to(base_url('/admin/ppds/lobby'))->with('success', 'PPDS telah menyelesaikan stase');
+                if ($this->stase_ppds_model->insert($dataForStase)) {
+                    $this->notif->send_mail($email_ppds, 'stase selesai', 'anda telah menyelesaikan stase');
+                    // $this->naikTahapOrStaseMailer($id_ppds);
+                    $this->notif->send_notif($id_ppds, 'stase selesai', 'ada telah menyelesaikan stase');
+                    return redirect()->to(base_url('/admin/ppds/lobby'))->with('success', 'PPDS telah menyelesaikan stase');
+                }
             }
         } elseif ($this->request->getVar('type') == 'tahap') {
             if ($tahap_ppds < 4) {
+
                 if ($this->user_model->staseSelesai($id_ppds)) {
                     date_default_timezone_set('Asia/Jakarta');
                     $dataForStase = [
@@ -345,7 +405,9 @@ class Users extends BaseController
                         'id_stase' => 25,
                         'tanggal_mulai' => date("Y-m-d")
                     ];
-                    $this->naikTahapOrStaseMailer($id_ppds);
+                    // $this->naikTahapOrStaseMailer($id_ppds);
+                    $this->notif->send_mail($email_ppds, 'stase selesai', 'anda telah menyelesaikan stase');
+
                     $this->stase_ppds_model->insert($dataForStase);
                     if ($this->user_model->tahapSelesai($id_ppds)) {
                         $dataForTahap = [
@@ -354,7 +416,10 @@ class Users extends BaseController
                             'tanggal_mulai' => date("Y-m-d")
                         ];
 
-                        $this->naikTahapOrStaseMailer($id_ppds);
+                        // $this->naikTahapOrStaseMailer($id_ppds);
+
+                        $this->notif->send_mail($email_ppds, 'stase selesai', 'anda telah menyelesaikan stase');
+
                         $this->tahap_model->insert($dataForTahap);
 
                         return redirect()->to(base_url('/admin/ppds/lobby'))->with('success', 'PPDS dinyatakan naik ke tahap selanjutnya');
@@ -406,6 +471,21 @@ class Users extends BaseController
     public function activate($id_ppds)
     {
         if ($this->user_model->aktivate($id_ppds)) {
+            date_default_timezone_set('Asia/Jakarta');
+            $ppds_id = $id_ppds;
+            $dataForTahap = [
+                'id_user' => $ppds_id,
+                'id_tahap' => 1,
+                'tanggal_mulai' => date("Y-m-d")
+            ];
+            $this->tahap_model->insert($dataForTahap);
+
+            $dataForStase = [
+                'id_user' => $ppds_id,
+                'id_stase' => 1,
+                'tanggal_mulai' => date("Y-m-d")
+            ];
+            $this->stase_ppds_model->insert($dataForStase);
             return redirect()->to(base_url('admin/new_users'))->with('success', 'Pengguna berhasil diaktifkan!');
         } else {
             return redirect()->back()->with('danger', 'Terjadi kesalahan!');

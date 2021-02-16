@@ -3,6 +3,8 @@
 <?php session() ?>
 
 <?= $this->section('content'); ?>
+<link rel="stylesheet" href="<?= base_url('assets/css/jquery.datetimepicker.min.css'); ?>">
+
 <div class="main-content-inner">
 
     <div class="col-lg-8 mt-5 ml-auto mr-auto">
@@ -39,9 +41,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Waktu</label>
+                        <label for="datetimepicker" class="col-sm-4 col-form-label">Waktu</label>
                         <div class="col-sm-8">
-                            <input type="date" name="waktu" class="form-control <?= $validation->hasError('waktu') ? 'is-invalid' : ''; ?>" id="password" value="<?= old('waktu'); ?>">
+                            <input required id="datetimepicker" name="waktu" class="form-control <?= $validation->hasError('waktu') ? "is-invalid" : ""; ?>" type="text" value="<?= old('waktu'); ?>">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('waktu'); ?>
                             </div>
@@ -59,7 +61,7 @@
                     <div class="form-group row">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Usia Pasien</label>
                         <div class="col-sm-8">
-                            <input type="number" name="usia" class="form-control <?= $validation->hasError('usia') ? 'is-invalid' : ''; ?>" id="usia" value=" <?= old('usia'); ?>">
+                            <input type="number" name="usia" class="form-control <?= $validation->hasError('usia') ? 'is-invalid' : ''; ?>" id="usia" value="<?= old('usia'); ?>">
                             <div class="invalid-feedback">
                                 <?= $validation->getError('usia'); ?>
                             </div>
@@ -97,7 +99,10 @@
 <?= $this->endSection(); ?>
 
 <?= $this->section('js'); ?>
+<script src="<?= base_url('assets/js/jquery.datetimepicker.full.js'); ?>"></script>
 <script>
-
+    jQuery('#datetimepicker').datetimepicker({
+        format: 'Y/m/d H:i',
+    });
 </script>
 <?= $this->endSection(); ?>

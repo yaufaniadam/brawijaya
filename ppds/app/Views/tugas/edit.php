@@ -1,6 +1,9 @@
 <?= $this->extend('layouts/main'); ?>
 
-<?php session() ?>
+<?php
+session();
+helper('data_helper');
+?>
 
 <?= $this->section('content'); ?>
 
@@ -60,7 +63,7 @@
                                 </small>
                             <?php } ?>
                             <small>
-                                * format file yang didukung : pdf,doc,docx,ppt,pptx
+                                * format file yang didukung : pdf,doc,docx
                             </small>
                         </div>
                     </div>
@@ -78,7 +81,7 @@
                                 </small>
                             <?php } ?>
                             <small>
-                                * format file yang didukung : pdf,doc,docx,ppt,pptx
+                                * format file yang didukung : ppt,pptx
                             </small>
                         </div>
                     </div>
@@ -93,15 +96,48 @@
                             <?= $validation->getError('jadwal_sidang'); ?>
                         </div>
                     </div>
+
+                    <div id="list-penguji" class="form-group row">
+                        <label class="col-sm-4 col-form-label" for="pembimbing_1">Pembimbing Satu</label>
+                        <div class="col-sm-8">
+                            <select name="pembimbing_1" class="form-control" id="pembimbing_1" <?= $validation->hasError('pembimbing_1') ? "is-invalid" : ""; ?>>
+                                <option value="">Pilih pembimbing satu</option>
+                                <?php foreach ($penguji as $penguji) { ?>
+                                    <option value="<?= $penguji['id']; ?>" <?= $penguji['id'] == $data_tugas['id_pembimbing_1'] ? 'selected' : ''; ?>>
+                                        <?= $penguji['nama_lengkap']; ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('pembimbing_1'); ?>
+                            </div>
+                            <input type="hidden" name="hidden_pembimbing_1" value="<?= $data_tugas['id_pembimbing_1']; ?>">
+                        </div>
+                    </div>
+
+                    <div id="list-penguji" class="form-group row">
+                        <label class="col-sm-4 col-form-label" for="pembimbing_2">Pembimbing Dua</label>
+                        <div class="col-sm-8">
+                            <select name="pembimbing_2" class="pembimbing_2 form-control" id="pembimbing_2" <?= $validation->hasError('pembimbing_2') ? "is-invalid" : ""; ?>>
+                                <option <?= $data_tugas['id_pembimbing_2'] == '' ? '' : 'selected'; ?> value="<?= $data_tugas['id_pembimbing_2'] != 0 ? $data_tugas['id_pembimbing_2'] : ''; ?>">
+                                    <?= $data_tugas['id_pembimbing_2'] != 0 ? user_nama_lengkap($data_tugas['id_pembimbing_2']) : 'Pilih Pembimbing'; ?>
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                <?= $validation->getError('pembimbing_2'); ?>
+                            </div>
+                            <input type="hidden" name="hidden_pembimbing_2" value="<?= $data_tugas['id_pembimbing_2']; ?>">
+                        </div>
+                    </div>
+
                     <?php if ($data_tugas['jenis_tugas'] == 2) { ?>
                         <div id="list-penguji" class="form-group row">
                             <label class="col-sm-4 col-form-label" for="penguji_1">Penguji Satu</label>
                             <div class="col-sm-8">
                                 <select name="penguji_1" class="form-control" id="penguji_1" <?= $validation->hasError('penguji_1') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Penguji Satu</option>
-                                    <?php foreach ($penguji as $penguji) { ?>
-                                        <option value="<?= $penguji['id']; ?>"><?= $penguji['nama_lengkap']; ?></option>
-                                    <?php } ?>
+                                    <option <?= $data_tugas['id_penguji_1'] == '' ? '' : 'selected'; ?> value="<?= $data_tugas['id_penguji_1'] == '' ? '' : $data_tugas['id_penguji_1']; ?>">
+                                        <?= $data_tugas['id_penguji_1'] == '' ? '' : user_nama_lengkap($data_tugas['id_penguji_1']); ?>
+                                    </option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('penguji_1'); ?>
@@ -113,39 +149,15 @@
                         <div id="list-penguji" class="form-group row">
                             <label class="col-sm-4 col-form-label" for="penguji_2">Penguji Dua</label>
                             <div class="col-sm-8">
-                                <select name="penguji_2" class="penguji_2 form-control" id="penguji_2" <?= $validation->hasError('penguji_2') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Penguji Dua</option>
+                                <select name="penguji_2" class="form-control" id="penguji_2" <?= $validation->hasError('penguji_2') ? "is-invalid" : ""; ?>>
+                                    <option <?= $data_tugas['id_penguji_2'] == '' ? '' : 'selected'; ?> value="<?= $data_tugas['id_penguji_1'] == '' ? '' : $data_tugas['id_penguji_2']; ?>">
+                                        <?= $data_tugas['id_penguji_2'] == '' ? '' : user_nama_lengkap($data_tugas['id_penguji_2']); ?>
+                                    </option>
                                 </select>
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('penguji_2'); ?>
                                 </div>
                                 <input type="hidden" name="hidden_penguji_2" value="<?= $data_tugas['id_penguji_2']; ?>">
-                            </div>
-                        </div>
-
-                        <div id="list-penguji" class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="pembimbing_1">Pembimbing Satu</label>
-                            <div class="col-sm-8">
-                                <select name="pembimbing_1" class="form-control" id="pembimbing_1" <?= $validation->hasError('pembimbing_1') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Pembimbing Satu</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('pembimbing_1'); ?>
-                                </div>
-                                <input type="hidden" name="hidden_pembimbing_1" value="<?= $data_tugas['id_pembimbing_1']; ?>">
-                            </div>
-                        </div>
-
-                        <div id="list-penguji" class="form-group row">
-                            <label class="col-sm-4 col-form-label" for="pembimbing_2">Pembimbing Dua</label>
-                            <div class="col-sm-8">
-                                <select name="pembimbing_2" class="form-control" id="pembimbing_2" <?= $validation->hasError('pembimbing_2') ? "is-invalid" : ""; ?>>
-                                    <option value="">Pilih Pembimbing Dua</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    <?= $validation->getError('pembimbing_2'); ?>
-                                </div>
-                                <input type="hidden" name="hidden_pembimbing_2" value="<?= $data_tugas['id_pembimbing_2']; ?>">
                             </div>
                         </div>
                     <?php } ?>
@@ -162,7 +174,7 @@
 <script src="<?= base_url('assets/js/jquery.datetimepicker.full.js'); ?>"></script>
 <script>
     jQuery('#datetimepicker').datetimepicker({
-        format: 'Y/m/d H:i',
+        format: 'Y/m/d H:i:s',
     });
 
     function onFileUpload() {
@@ -179,24 +191,84 @@
         }
     }
 
-    <?php if ($data_tugas['jenis_tugas'] == 2) { ?>
+    $(document).ready(function() {
+        $('#pembimbing_1').change(function() {
+            var id_pembimbing_1 = $(this).val();
+            // console.log(id_pembimbing_1)
+            $.ajax({
+                url: '<?= base_url('spvresource/pengujidua'); ?>',
+                method: 'POST',
+                data: {
+                    id_penguji_1: id_pembimbing_1
+                },
+                dataType: 'json',
+                success: function(data) {
+                    // console.log(data)
+                    var html = '<option value = 0> Pilih supervisor </option>';
+                    var i;
+                    if (data.length == 0) {
+                        html += '<option>Pembimbing tidak ditemukan</option>'
+                    } else {
+                        for (i = 0; i < data.length; i++) {
+                            html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
+                        }
+                    }
+                    $('#pembimbing_2').html(html);
+                    $('#penguji_1').html(html);
+                }
+            });
+        });
 
-        $(document).ready(function() {
-            $('#penguji_1').change(function() {
-                var id_penguji_1 = $(this).val();
+        <?php if ($data_tugas['jenis_tugas'] == 2) { ?>
+
+            $('#pembimbing_2').change(function() {
+                var id_pembimbing_1 = $('#pembimbing_1').val();
+                var id_pembimbing_2 = $(this).val();
+
                 $.ajax({
-                    url: '<?= base_url('spvresource/pengujidua'); ?>',
+                    url: '<?= base_url('spvresource/pembimbingsatu'); ?>',
                     method: 'POST',
                     data: {
-                        id_penguji_1: id_penguji_1
+                        id_penguji_1: id_pembimbing_1,
+                        id_penguji_2: id_pembimbing_2,
                     },
                     dataType: 'json',
                     success: function(data) {
                         // console.log(data)
-                        var html = '<option > Pilih Penguji Dua </option>';
+                        var html = '<option>Pilih supervisor</option>';
                         var i;
                         if (data.length == 0) {
-                            html += '<option>Penanggungjawab tidak ditemukan</option>'
+                            html += '<option>Supervisor tidak ditemukan</option>'
+                        } else {
+                            for (i = 0; i < data.length; i++) {
+                                html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
+                            }
+                        }
+                        $('#penguji_1').html(html);
+                    }
+                });
+            });
+
+            $('#penguji_1').change(function() {
+                var id_pembimbing_1 = $('#pembimbing_1').val();
+                var id_pembimbing_2 = $('#pembimbing_2').val();
+                var id_penguji_1 = $(this).val();
+
+                $.ajax({
+                    url: '<?= base_url('spvresource/pembimbingdua'); ?>',
+                    method: 'POST',
+                    data: {
+                        id_penguji_1: id_pembimbing_1,
+                        id_penguji_2: id_pembimbing_2,
+                        id_pembimbing_1: id_penguji_1,
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        // console.log(data)
+                        var html = '<option>Pilih supervisor</option>';
+                        var i;
+                        if (data.length == 0) {
+                            html += '<option>Supervisor tidak ditemukan</option>'
                         } else {
                             for (i = 0; i < data.length; i++) {
                                 html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
@@ -207,66 +279,10 @@
                 });
             });
 
-            $('#penguji_2').change(function() {
-                var id_penguji_1 = $('#penguji_1').val();
-                var id_penguji_2 = $(this).val();
+        <?php } ?>
 
-                $.ajax({
-                    url: '<?= base_url('spvresource/pembimbingsatu'); ?>',
-                    method: 'POST',
-                    data: {
-                        id_penguji_1: id_penguji_1,
-                        id_penguji_2: id_penguji_2,
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        // console.log(data)
-                        var html = '<option>Pilih Supervisor</option>';
-                        var i;
-                        if (data.length == 0) {
-                            html += '<option>Supervisor tidak ditemukan</option>'
-                        } else {
-                            for (i = 0; i < data.length; i++) {
-                                html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
-                            }
-                        }
-                        $('#pembimbing_1').html(html);
-                    }
-                });
-            });
+    });
 
-            $('#pembimbing_1').change(function() {
-                var id_penguji_1 = $('#penguji_1').val();
-                var id_penguji_2 = $('#penguji_2').val();
-                var id_pembimbing_1 = $(this).val();
-
-                $.ajax({
-                    url: '<?= base_url('spvresource/pembimbingdua'); ?>',
-                    method: 'POST',
-                    data: {
-                        id_penguji_1: id_penguji_1,
-                        id_penguji_2: id_penguji_2,
-                        id_pembimbing_1: id_pembimbing_1,
-                    },
-                    dataType: 'json',
-                    success: function(data) {
-                        // console.log(data)
-                        var html = '<option>Pilih Supervisor</option>';
-                        var i;
-                        if (data.length == 0) {
-                            html += '<option>Supervisor tidak ditemukan</option>'
-                        } else {
-                            for (i = 0; i < data.length; i++) {
-                                html += '<option value = ' + data[i].id + '>' + data[i].nama_lengkap + '</option>'
-                            }
-                        }
-                        $('#pembimbing_2').html(html);
-                    }
-                });
-            });
-        });
-
-    <?php } ?>
 
     // $('#tugas').addClass('active');
     // $('#tugas_divisi').addClass('active');

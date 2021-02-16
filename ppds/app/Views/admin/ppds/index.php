@@ -1,6 +1,7 @@
 <?= $this->extend('layouts/main'); ?>
 
 <?= $this->section('content'); ?>
+
 <div class="main-content-inner">
     <div class="col-lg-12 mt-5">
         <div class="card">
@@ -32,9 +33,15 @@
                             <thead class="text-capitalize">
                                 <tr class="text-left">
                                     <th style="width: 20%;">Nama Lengkap</th>
-                                    <th style="width: 10%;">Stase</th>
+                                    <!-- <th style="width: 10%;">Tahap</th> -->
+                                    <?php if ($page_header == 'Daftar Semua PPDS') { ?>
+                                        <th style="width: 3%;">Tahap</th>
+                                    <?php } ?>
+                                    <th style="width: 7%;">Stase</th>
                                     <th style="width: 15%;">Tanggal Mulai</th>
-                                    <th style="width: 15%;">Tanggal Selesai</th>
+                                    <?php if ($title == "Arsip PPDS") { ?>
+                                        <th style="width: 15%;">Tanggal Selesai</th>
+                                    <?php } ?>
                                     <th style="width: 10%;"></th>
                                 </tr>
                             </thead>
@@ -44,17 +51,24 @@
                                         <td>
                                             <?= $ppds['nama_lengkap']; ?>
                                         </td>
+                                        <?php if ($page_header == 'Daftar Semua PPDS') { ?>
+                                            <td>
+                                                <?= $ppds['id_tahap']; ?>
+                                            </td>
+                                        <?php } ?>
                                         <td>
                                             <?= $ppds['stase']; ?>
                                         </td>
                                         <td>
                                             <?= $ppds['tanggal_mulai']; ?>
                                         </td>
-                                        <td>
-                                            <?= $ppds['tanggal_selesai']; ?>
-                                        </td>
+                                        <?php if ($title == "Arsip PPDS") { ?>
+                                            <td>
+                                                <?= $ppds['tanggal_selesai']; ?>
+                                            </td>
+                                        <?php } ?>
                                         <td class="text-center">
-                                            <a href="<?= base_url("admin/ppds/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
+                                            <a href="<?= base_url((session('role') == 1 ? "admin" : "supervisor") . "/ppds/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
                                         </td>
                                     </tr>
                                 <?php } ?>

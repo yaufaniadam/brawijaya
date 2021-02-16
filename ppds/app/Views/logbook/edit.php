@@ -91,8 +91,12 @@
                         <div class="col-sm-8">
                             <select id="jenis_kelamin" class="custom-select <?= $validation->hasError('jenis_kelamin') ? 'is-invalid' : ''; ?>" name="jenis_kelamin">
                                 <option value="">pilih jenis kelamin</option>
-                                <option value="l" <?= $logbook->jenis_kelamin == 'l' ? 'selected' : '' ?>>laki-laki</option>
-                                <option value="p" <?= $logbook->jenis_kelamin == 'p' ? 'selected' : '' ?>>perempuan</option>
+                                <option value="l" <?= (old('jenis_kelamin') || $logbook->jenis_kelamin  == 'l') ? 'selected' : '' ?>>
+                                    laki-laki
+                                </option>
+                                <option value="p" <?= ($logbook->jenis_kelamin || old('jenis_kelamin') == 'p') ? 'selected' : '' ?>>
+                                    perempuan
+                                </option>
                             </select>
                             <div class="invalid-feedback">
                                 <?= $validation->getError('jenis_kelamin'); ?>

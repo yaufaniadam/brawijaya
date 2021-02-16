@@ -10,7 +10,7 @@ class AdminAndSpvFilter implements FilterInterface
 {
     public function before(RequestInterface $request)
     {
-        if (session('role') != 3) {
+        if (session('role') != 3 && session('role') != 1) {
             return redirect()->to(base_url('/'))->with('warning', "you don't have <strong>permission</strong> to access this feature");
         }
     }

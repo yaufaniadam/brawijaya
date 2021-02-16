@@ -119,7 +119,7 @@
         $("#id_stase_ppds").val(stase_ppds_id);
         $.ajax({
             type: 'post',
-            url: '<?= base_url('admin/stase') ?>',
+            url: '<?= base_url('admin/staseresource') ?>',
             data: {
                 id_ppds
             },

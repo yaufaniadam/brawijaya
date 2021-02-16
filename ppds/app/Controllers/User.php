@@ -39,10 +39,21 @@ class User extends BaseController
     function editProfile()
     {
         $email = $this->request->getVar('email');
-        $nama_lengkap = $this->request->getVar('nama');
+        $nama_lengkap = $this->request->getVar('nama_lengkap');
         $password = $this->request->getVar('password');
         $hidden_pass = $this->request->getVar('old_password');
         $photo = $this->request->getFile('photo_profile');
+        $alamat_asal = $this->request->getVar('alamat_asal');
+        $alamat_domisili = $this->request->getVar('alamat_domisili');
+        $no_telp = $this->request->getVar('no_telp');
+        $no_telp_drt = $this->request->getVar('no_telp_drt');
+        $nim = $this->request->getVar('nim');
+        $status = $this->request->getVar('status');
+        $pembiayaan = $this->request->getVar('pembiayaan');
+        $no_sip = $this->request->getVar('no_sip');
+        $no_str = $this->request->getVar('no_str');
+        $no_bpjs = $this->request->getVar('no_bpjs');
+        $no_rekening = $this->request->getVar('no_rekening');
 
         // dd($this->request->getVar());
 
@@ -76,7 +87,9 @@ class User extends BaseController
             }
         }
 
-        $user_id = $_SESSION['user_id'];
+        $userid = $this->request->getVar('id_ppds');
+
+        $user_id = $_SESSION['user_id'] == $userid ? $_SESSION['user_id'] : $userid;
         // $query = $this->user_model->getUserById($user_id);
         // $current_user_photo = $query['photo'];
 
@@ -84,12 +97,24 @@ class User extends BaseController
             'nama_lengkap' => $nama_lengkap,
             'email' => $email,
             'photo' => $photoName,
-            'password' => $password == "" ? $hidden_pass : $password,
+            'password' => $password == "" ? $hidden_pass : password_hash($password, PASSWORD_BCRYPT),
+            'alamat_asal' => $alamat_asal,
+            'alamat_domisili' => $alamat_domisili,
+            'no_telp' => $no_telp,
+            'no_telp_drt' => $no_telp_drt,
+            'nim' => $nim,
+            'status' => $status,
+            'pembiayaan' => $pembiayaan,
+            'no_sip' => $no_sip,
+            'no_str' => $no_str,
+            'no_bpjs' => $no_bpjs,
+            'no_rekening' => $no_rekening,
         ];
         // dd($data);
         $result = $this->user_model->update($user_id, $data);
         if ($result) {
-            return redirect()->to(base_url('/user/profile'))->with('success', 'Profile berhasil diubah');
+            return redirect()->back()->with('success', 'Profile berhasil diubah');
+            // return redirect()->to(base_url('/user/profile'))->with('success', 'Profile berhasil diubah');
         }
     }
 

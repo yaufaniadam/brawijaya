@@ -21,23 +21,32 @@ class LogbookModel extends Model
     public function getLogbook()
     {
         $db = \Config\Database::connect();
+        $builder = $db->table('log_book');
 
-        return $db->query(
-            "SELECT *,ci_users.nama_lengkap,log_book.id AS id_logbook FROM log_book
-            LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
-            "
-        )->getResultArray();
+        $builder->select('*,ci_users.nama_lengkap,log_book.id AS id_logbook');
+        $builder->join('ci_users', 'ci_users.id = log_book.id_ppds', 'LEFT');
+        if (session('role') != 1) {
+            $builder->where(['log_book.id_ppds' => session('user_id')]);
+        }
+        $result = $builder->get();
+        return $result->getResultArray();
+
+        // return $db->query(
+        //     "SELECT *,ci_users.nama_lengkap,log_book.id AS id_logbook FROM log_book
+        //     LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
+        //     "
+        // )->getResultArray();
     }
 
     public function detail($id_logbook)
     {
         $db = \Config\Database::connect();
 
-        return $db->query(
-            "SELECT *,log_book.id AS id_logbook FROM log_book
-            LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
-            WHERE log_book.id = $id_logbook
-            "
-        )->getRowObject();
+        $builder = $db->table('log_book');
+        $builder->select('*,log_book.id AS id_logbook, log_book.usia AS usia_pasien,log_book.jenis_kelamin AS gender_pasien');
+        $builder->join('ci_users', 'ci_users.id = log_book.id_ppds', 'LEFT');
+        $builder->where(['log_book.id' => $id_logbook]);
+        $result = $builder->get();
+        return $result->getRowObject();
     }
 }

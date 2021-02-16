@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class StaseResource extends ResourceController
+class Staseresource extends ResourceController
 {
     protected $format       = 'json';
     protected $modelName    = 'App\Models\StaseModel';

@@ -62,11 +62,11 @@
                                         </td>
                                         <td class="text-center">
                                             <!-- <a href="<?= base_url('admin/users/edit/' . $ppds['id']); ?>" class="btn btn-warning btn-xs"><span class="ti-pencil"></span></a> -->
-                                            <a href="<?= base_url("admin/users/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-info"></span></a>
+                                            <a title="detail" href="<?= base_url("admin/users/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-info"></span></a>
                                             <form class="d-inline" action="<?= base_url('admin/users/' . $ppds['id_ppds']); ?>" method="POST">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="DELETE">
-                                                <button type="" class="btn btn-flat btn-outline-danger btn-xs" onclick="return confirm('Hapus Ilmiah?')"><span class="ti-trash"></span></button>
+                                                <button type="" title="hapus" class="btn btn-flat btn-outline-danger btn-xs" onclick="return confirm('Anda yakin ingin menghapus?')"><span class="ti-trash"></span></button>
                                             </form>
                                         </td>
                                     </tr>

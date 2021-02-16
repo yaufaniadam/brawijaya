@@ -46,17 +46,13 @@
                                                         <td><b><span>Jenis Kelamin</span></b></td>
                                                         <td>
                                                             <span>
-                                                                <?php if ($logbook->jenis_kelamin == 'l') {
-                                                                    echo "Laki-laki";
-                                                                } else {
-                                                                    echo "Perempuan";
-                                                                } ?>
+                                                                <?= $logbook->gender_pasien === 'p' ? 'Perempuan' : 'Laki-laki'; ?>
                                                             </span>
                                                         </td>
                                                     </tr>
                                                     <tr class="text-left">
                                                         <td><b><span>Umur</span></b></td>
-                                                        <td><span><?= $logbook->usia; ?></span></td>
+                                                        <td><span><?= $logbook->usia_pasien; ?></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

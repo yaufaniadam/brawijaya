@@ -1,4 +1,5 @@
 <?php helper('data') ?>
+
 <!-- header area start -->
 <div class="header-area">
     <div class="row align-items-center">
@@ -17,16 +18,17 @@
             <ul class="notification-area pull-right">
                 <li class="dropdown">
                     <i class="ti-bell dropdown-toggle" data-toggle="dropdown">
-                        <!-- <span>2</span> -->
+                        <span><?= countNotif(); ?></span>
                     </i>
                     <div class="dropdown-menu bell-notify-box notify-box">
-                        <span class="notify-title">You have 3 new notifications <a href="<?= base_url('notifications'); ?>">view
+                        <span class="notify-title"><?= countNotif(); ?> pemberitahuan <a href="<?= base_url('notifications'); ?>">view
                                 all</a></span>
                         <div class="nofity-list">
                             <?php foreach (listNotif() as $notif) { ?>
-                                <a href="" class="notify-item">
+                                <a href="<?= base_url('notification/' . $notif['id']); ?>" class="notify-item">
                                     <div class="notify-text">
                                         <p><?= substr($notif['title'], 0, 20); ?></p>
+                                        <span>PPDS mengunggah Tugas baru <?= $notif['isi']; ?></span> <br>
                                         <span><?= $notif['tanggal']; ?></span>
                                     </div>
                                 </a>
@@ -49,10 +51,9 @@
         </div>
         <div class="col-sm-6 clearfix">
             <div class="user-profile pull-right">
-                <img class="avatar user-thumb" src="<?= base_url('assets/images/author/avatar.png'); ?>" alt="avatar">
+                <img class="avatar user-thumb" src="<?= user_photo_profile() == '' ? base_url('assets/images/author/avatar.png') : base_url('users_profile_pic/' . user_photo_profile()); ?>" alt="avatar">
                 <h4 class="user-name dropdown-toggle" data-toggle="dropdown"><?= user_nama_lengkap(); ?><i class="fa fa-angle-down"></i></h4>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Message</a>
                     <a class="dropdown-item" href="<?= base_url('/user/profile'); ?>">Profile</a>
                     <a class="dropdown-item" href="<?= base_url('/logout'); ?>">Log Out</a>
                 </div>
