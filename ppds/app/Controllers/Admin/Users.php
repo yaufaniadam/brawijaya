@@ -347,6 +347,18 @@ class Users extends BaseController
             $tahap_selesai = false;
         }
 
+        $jumlah_tahap_ppds = $db->query(
+            "SELECT COUNT(tahap_ppds.id) AS jumlah_tahap FROM tahap_ppds
+            LEFT JOIN tahap ON tahap.id = tahap_ppds.id_tahap
+            WHERE tahap_ppds.id_user = $id_ppds AND tahap_ppds.tanggal_selesai != 0"
+        )->getRowObject()->jumlah_tahap;
+
+        if ($jumlah_tahap_ppds == 4) {
+            $semua_tahap_selesai = true;
+        } else {
+            $semua_tahap_selesai = false;
+        }
+
         // dd($jumlah_stase_ppds_on_current_tahap);
 
         $data = [
@@ -356,6 +368,7 @@ class Users extends BaseController
             'validation' => \Config\Services::validation(),
             'tahap' => $db->query("SELECT * FROM tahap")->getResultArray(),
             'tahap_selesai' => $tahap_selesai,
+            'semua_tahap_selesai' => $semua_tahap_selesai,
         ];
 
         return view('admin/ppds/detail', $data);
@@ -397,7 +410,6 @@ class Users extends BaseController
             }
         } elseif ($this->request->getVar('type') == 'tahap') {
             if ($tahap_ppds < 4) {
-
                 if ($this->user_model->staseSelesai($id_ppds)) {
                     date_default_timezone_set('Asia/Jakarta');
                     $dataForStase = [
@@ -424,6 +436,12 @@ class Users extends BaseController
 
                         return redirect()->to(base_url('/admin/ppds/lobby'))->with('success', 'PPDS dinyatakan naik ke tahap selanjutnya');
                     }
+                }
+            } else {
+                if ($this->user_model->tahapSelesai($id_ppds)) {
+                    $this->user_model->staseSelesai($id_ppds);
+                    $this->notif->send_mail($email_ppds, 'tahap selesai', 'anda telah menyelesaikan semua tahap');
+                    return redirect()->back()->with('success', 'PPDS dinyatakan telah menyelesaikan semua tahap');
                 }
             }
         }

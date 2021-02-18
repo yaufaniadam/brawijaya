@@ -27,9 +27,17 @@
                             </div>
                             <?php if (session('role') == 1) { ?>
                                 <?php if ($tahap_selesai) { ?>
-                                    <div class="form-group row">
-                                        <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="tahap">Tahap Selesai</button>
-                                    </div>
+                                    <?php if ($semua_tahap_selesai) { ?>
+                                        <div class="form-group row">
+                                            <button type="button" disabled class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="tahap">
+                                                PPDS telah menyelesaikan <br> semua tahap
+                                            </button>
+                                        </div>
+                                    <?php } else { ?>
+                                        <div class="form-group row">
+                                            <button type="button" class="tipe_btn btn btn-flat btn-outline-dark mb-3 btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" id="tahap">Tahap Selesai</button>
+                                        </div>
+                                    <?php } ?>
                                 <?php } else { ?>
                                     <?php if ($ppds->id_stase != 25) { ?>
                                         <div class="form-group row">

@@ -26,6 +26,24 @@ function user_photo_profile($id_user = 0)
     return $query->photo;
 }
 
+function countPpdsInLobby()
+{
+    $db      = \Config\Database::connect();
+    $builder = $db->table('ci_users');
+
+    $builder->select('*,role.role as nama_role,ci_users.id as id_ppds');
+    $builder->join('role', 'role.id = ci_users.role', 'LEFT');
+    $builder->join('stase_ppds', 'stase_ppds.id_user = ci_users.id', 'LEFT');
+    $builder->where(
+        [
+            'aktif' => 1,
+            'stase_ppds.id_stase' => 25
+        ]
+    );
+    return $builder->countAllResults();
+    // $query = $builder->get()->getResultArray();
+    // return $query;
+}
 
 function checkSpvPosition($pos, $id_tugas)
 {
@@ -64,6 +82,26 @@ function getPpdsTugas($jenis_tugas, $id_ppds, $id_stase)
     )->getResultArray();
 
     return $query;
+}
+
+function semuaTahapSelesai()
+{
+    $db      = \Config\Database::connect();
+    $id_ppds = session('user_id');
+    $jumlah_tahap_selesai = $db->query(
+        "SELECT 
+            COUNT(id) 
+            AS jumlah_tahap_selesai
+            FROM tahap_ppds
+            WHERE id_user = $id_ppds
+            AND tanggal_selesai != 0"
+    )->getRowObject()->jumlah_tahap_selesai;
+
+    if ($jumlah_tahap_selesai == 4) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 function listNotif()

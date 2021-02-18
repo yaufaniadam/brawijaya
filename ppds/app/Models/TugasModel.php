@@ -127,16 +127,30 @@ class TugasModel extends Model
         $this->builder->join('kategori', 'kategori.id = tugas.id_kategori');
         $this->builder->join('ci_users', 'ci_users.id = tugas.id_ppds');
         $this->builder->join('stase', 'stase.id = tugas.id_stase');
+
+        // $this->builder->where(
+        //     [
+        //         'tugas.deleted_at' => !0,
+        //         'tugas.jenis_tugas' => 1,
+        //         'tugas.id_pembimbing_1' => session('user_id')
+        //     ]
+        // );
+
         $this->builder->where('tugas.deleted_at', !0);
         $this->builder->where('tugas.jenis_tugas', 1);
+        $this->builder->groupStart();
+        $this->builder->where('tugas.id_pembimbing_1', session('user_id'));
+        $this->builder->orWhere('tugas.id_pembimbing_2', session('user_id'));
+        $this->builder->orWhere('tugas.id_penguji_1', session('user_id'));
+        $this->builder->orWhere('tugas.id_penguji_2', session('user_id'));
+        $this->builder->groupEnd();
+        $query = $this->builder->get()->getResultArray();
+        return $query;
+
         // $this->builder->groupStart();
         // $this->builder->where('tugas.id_penguji_1', session('user_id'));
         // $this->builder->orWhere('tugas.id_penguji_2', session('user_id'));
-        $this->builder->where('tugas.id_pembimbing_1', session('user_id'));
-        $this->builder->orWhere('tugas.id_pembimbing_2', session('user_id'));
         // $this->builder->groupEnd();
-        $query = $this->builder->get()->getResultArray();
-        return $query;
     }
 
     public function getMyBimbinganTugasBesar()

@@ -41,14 +41,16 @@
                         </div>
                     <?php } ?>
                     <?php if (session('role') == 4) { ?>
-                        <?php if (getCurrentPpdsStase() != 'temp') { ?>
-                            <div class="col-sm-2">
-                                <?php if ($page_header == 'Daftar Ilmiah' || $page_header == 'Daftar Ilmiah Saya') { ?>
-                                    <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/tugas/tambah/ilmiah'); ?>">Unggah Ilmiah</a>
-                                <?php } elseif ($page_header == 'Tugas Besar' || $page_header = 'Tugas Besar Saya') { ?>
-                                    <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/tugas/tambah/tugas_besar'); ?>">Unggah Tugas Besar</a>
-                                <?php } ?>
-                            </div>
+                        <?php if (semuaTahapSelesai() == false) { ?>
+                            <?php if (getCurrentPpdsStase() != 'temp') { ?>
+                                <div class="col-sm-2">
+                                    <?php if ($page_header == 'Daftar Ilmiah' || $page_header == 'Daftar Ilmiah Saya') { ?>
+                                        <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/tugas/tambah/ilmiah'); ?>">Unggah Ilmiah</a>
+                                    <?php } elseif ($page_header == 'Tugas Besar' || $page_header = 'Tugas Besar Saya') { ?>
+                                        <a class="btn btn-flat btn-outline-dark btn-sm" href="<?= base_url('/tugas/tambah/tugas_besar'); ?>">Unggah Tugas Besar</a>
+                                    <?php } ?>
+                                </div>
+                            <?php } ?>
                         <?php } ?>
                     <?php } ?>
                 </div>

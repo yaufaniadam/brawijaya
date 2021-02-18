@@ -94,25 +94,45 @@ class Tugas extends BaseController
 
     public function tambah($jenis_tugas = 0)
     {
-        if ($jenis_tugas == 'ilmiah') {
-            $data = [
-                'title' => 'Tambah Tugas',
-                'page_header' => 'Ilmiah',
-                'validation' => \Config\Services::validation(),
-                'kategori' => $this->kategori_model->getAllIlmiahKategories(),
-                'penguji' => $this->spv_model->getAllSpv(),
-            ];
-        } elseif ($jenis_tugas == 'tugas_besar') {
-            $data = [
-                'title' => 'Tambah Tugas',
-                'page_header' => 'Tugas Besar',
-                'validation' => \Config\Services::validation(),
-                'kategori' => $this->kategori_model->getAllTugasBesarKategories(),
-                'penguji' => $this->spv_model->getAllSpv(),
-            ];
+        $db      = \Config\Database::connect();
+        $id_ppds = session('user_id');
+        $jumlah_tahap_selesai = $db->query(
+            "SELECT 
+            COUNT(id) 
+            AS jumlah_tahap_selesai
+            FROM tahap_ppds
+            WHERE id_user = $id_ppds
+            AND tanggal_selesai != 0"
+        )->getRowObject()->jumlah_tahap_selesai;
+
+        if ($jumlah_tahap_selesai == 4) {
+            $semua_tahap_selesai = true;
+        } else {
+            $semua_tahap_selesai = false;
         }
 
-        return view('tugas/tambah', $data);
+        if ($semua_tahap_selesai) {
+            return redirect()->back()->with('danger', 'tidak ada tugas besar atau ilmiah yang perlu diunggah lagi');
+        } else {
+            if ($jenis_tugas == 'ilmiah') {
+                $data = [
+                    'title' => 'Tambah Tugas',
+                    'page_header' => 'Ilmiah',
+                    'validation' => \Config\Services::validation(),
+                    'kategori' => $this->kategori_model->getAllIlmiahKategories(),
+                    'penguji' => $this->spv_model->getAllSpv(),
+                ];
+            } elseif ($jenis_tugas == 'tugas_besar') {
+                $data = [
+                    'title' => 'Tambah Tugas',
+                    'page_header' => 'Tugas Besar',
+                    'validation' => \Config\Services::validation(),
+                    'kategori' => $this->kategori_model->getAllTugasBesarKategories(),
+                    'penguji' => $this->spv_model->getAllSpv(),
+                ];
+            }
+            return view('tugas/tambah', $data);
+        }
         // dd($this->kategori_model->getAllTugasBesarKategories());
     }
 

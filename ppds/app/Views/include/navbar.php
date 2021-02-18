@@ -21,8 +21,8 @@
                         <span><?= countNotif(); ?></span>
                     </i>
                     <div class="dropdown-menu bell-notify-box notify-box">
-                        <span class="notify-title"><?= countNotif(); ?> pemberitahuan <a href="<?= base_url('notifications'); ?>">view
-                                all</a></span>
+                        <span class="notify-title"><?= countNotif(); ?> pemberitahuan <a href="<?= base_url('notifications'); ?>">view all</a>
+                        </span>
                         <div class="nofity-list">
                             <?php foreach (listNotif() as $notif) { ?>
                                 <a href="<?= base_url('notification/' . $notif['id']); ?>" class="notify-item">

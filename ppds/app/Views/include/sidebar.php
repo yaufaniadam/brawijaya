@@ -1,3 +1,4 @@
+<?php helper('data_helper') ?>
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class=" logo">
@@ -90,7 +91,14 @@
                                 <a href="<?= base_url('admin/users'); ?>" aria-expanded="true">Daftar Users</a>
                             </li>
                             <li>
-                                <a href="<?= base_url('admin/ppds/lobby'); ?>" aria-expanded="true">Lobby PPDS</a>
+                                <a href="<?= base_url('admin/ppds/lobby'); ?>" aria-expanded="true">
+                                    Lobby PPDS
+                                    <?php if (countPpdsInLobby() > 0) { ?>
+                                        <span class="badge badge-pill badge-danger">
+                                            <?= countPpdsInLobby(); ?>
+                                        </span>
+                                    <?php } ?>
+                                </a>
                             </li>
                             <!-- <li>
                                 <a href="#" aria-expanded="true">Tambah Pengguna</a>
