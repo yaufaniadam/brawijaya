@@ -123,7 +123,8 @@
 
 <?= $this->section('js'); ?>
 <script>
-    $('#dashboard').addClass('active');
+    //trigger menu
+    $('#ppds').addClass('active');
 
     $(".pilih-stase").click(function(button) {
         var id_ppds = $(this).attr("id");
@@ -149,6 +150,7 @@
         });
     });
 </script>
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('data_css'); ?>

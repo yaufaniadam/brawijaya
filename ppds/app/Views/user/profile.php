@@ -3,6 +3,12 @@
 <?php session() ?>
 
 <?= $this->section('content'); ?>
+<style>
+    .save,
+    .cancel {
+        display: none;
+    }
+</style>
 <div class="main-content-inner">
 
     <div class="col-lg-8 mt-5 ml-auto mr-auto">
@@ -14,9 +20,11 @@
 
                         <div class="col-5">
                             <div class="ml-auto mr-auto" style="background-image: url(<?= $data_user->photo == '' ? base_url('images/profile/dummy.png') : base_url('users_profile_pic/' . $data_user->photo); ?>);width:170px;height:170px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;">
-                                <input disabled type="file" name="photo_profile" id="photo_profile" style="width:20px;width:20px;display:none;bottom: 0;" value="<?= $data_user->photo; ?>">
-                                <label for="photo_profile" style="width:170px;height:170px;border-radius: 100%;background-image: url(<?= base_url('images/icon/pic_add.png'); ?>);background-position:center center;background-size:50%;background-repeat: no-repeat;background-color: #9a9999;opacity: 70%;"></label>
+
+                                <label class="foto_profil" for="photo_profile" style="width:170px;height:170px;border-radius: 100%;background-position:center center; border:1px solid #ddd;"></label>
                                 <input type="hidden" name="old_photo" value="<?= $data_user->photo; ?>">
+
+                                <input style="display:none;" disabled type="file" name="photo_profile" id="photo_profile" value="<?= $data_user->photo; ?>">
                             </div>
                             <div class="text-center mt-1">
                                 <h5><?= $data_user->username; ?></h5>
@@ -27,12 +35,15 @@
                                     </span>
                                 <?php } ?>
                             </div>
-                            <div class="row">
-                                <?php if ($data_user->aktif == 0) { ?>
-                                    <a class="btn btn-dark float-left mb-3 mr-1" style="background: #370EFA;border-color: #370EFA;" href="<?= base_url('admin/user/aktifkan/' . $data_user->id_ppds); ?>">Aktifkan</a>
+                            <div class="d-flex justify-content-center">
+                                <?php if ($data_user->aktif == 0) {
+                                ?>
+                                    <a class="btn btn-info float-left mb-3 mx-1" href="<?= base_url('admin/user/aktifkan/' . $data_user->id_ppds); ?>">Aktifkan</a>
                                 <?php } ?>
-                                <input type="submit" id="submit" disabled class="btn btn-dark mb-3 mr-1 float-right" style="background: #370EFA;border-color: #370EFA;" value="Simpan">
-                                <button type="button" id="edit_btn" class="btn btn-dark mb-3 float-right mr-1">Edit</button>
+
+                                <a class="edit btn btn-dark mb-3 mx-1 text-white"><i class="fa fa-pencil"></i> Edit Profil</a>
+                                <a class="cancel btn btn-danger mb-3 mx-1 text-white"><i class="fa fa-times"></i> Batal</a>
+
                             </div>
                         </div>
                         <div class="col-7">
@@ -110,7 +121,10 @@
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. Rekening</label>
                                 <input disabled type='text' name='no_rekening' class='form-control form-control-primary' id='no_rekening' value='<?= $data_user->no_rekening; ?>'>
-                                <input type="hidden" name="old_nama" value="<?= $data_user->no_str; ?>">
+                                <input type="hidden" name="old_nama" value="<?= $data_user->no_rekening; ?>">
+                            </div>
+                            <div class="form-group has-primary">
+                                <button class="save btn btn-success mb-3 mx-1 text-white"><i class="fa fa-save"></i> Simpan</button>
                             </div>
                         </div>
 
@@ -125,32 +139,40 @@
 
 <?= $this->section('js'); ?>
 <script>
-    // window.onload = function() {
-    //     if (window.jQuery) {
-    //         // jQuery is loaded  
-    //         alert("Yeah!");
-    //     } else {
-    //         // jQuery is not loaded
-    //         alert("Doesn't Work");
-    //     }
-    // }
-
-    $('#edit_btn').click(function() {
-        $('input:disabled, select:disabled').each(function() {
+    $('.edit').click(function() {
+        $(this).hide();
+        $('.save, .cancel').show();
+        $('input:disabled, select:disabled, textarea:disabled').each(function() {
             $(this).removeAttr('disabled');
         });
-        $('#alamat_asal').prop('disabled', false)
-        $('#alamat_domisili').prop('disabled', false)
-        $(this).html('batal');
-        $(this).attr("id", "batal_btn");
+        $('.foto_profil').css('cursor', 'pointer');
+        $('.foto_profil').css('background', 'rgba(0,0,0,0.5) url(<?= base_url('images/icon/edit-foto.png'); ?>) center center no-repeat');
+
+    });
+    $('.cancel').click(function() {
+        $(this).siblings('.edit').show();
+        $('.save').hide();
+        $(this).hide();
+
+        $('#profile_form input[type=text], #profile_form input[type=file], #profile_form input[type=password], #profile_form input[type=email], #profile_form select, #profile_form textarea').each(function() {
+            $(this).attr('disabled', 'true');
+        });
+        $('.foto_profil').css('cursor', 'default');
+        $('.foto_profil').css('background', 'none');
     });
 
-    $('#batal_btn').click(function() {
-
-        $("#target :input").prop("disabled", true);
-        $(this).html('edit');
-        $(this).attr("id", "edit_btn");
+    $('#photo_profile').change(function() {
+        var file = this.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            $('.foto_profil').css('background-image', 'url("' + reader.result + '")');
+            $('.foto_profil').css('background-size', '100%');
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {}
     });
+
 
     <?php if (session('validation')) { ?>
         $('#email_static').replaceWith("<input type='email' name='email' class='form-control form-control-primary <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>' id='email' value='<?= old('email'); ?>'> ")

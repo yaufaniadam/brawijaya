@@ -12,6 +12,8 @@ use App\Models\StasePpdsModel;
 use App\Models\StaseModel;
 use App\Models\NotifModel;
 
+use App\Libraries\Notif;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -28,6 +30,7 @@ class Auth extends BaseController
     protected $stase_model;
     protected $spv_model;
     protected $notif_model;
+    protected $notif;
     public function __construct()
     {
         $this->auth_model = new AuthModel();
@@ -38,6 +41,7 @@ class Auth extends BaseController
         $this->stase_model = new StaseModel();
         $this->spv_model = new SuperVisorModel();
         $this->notif_model = new NotifModel();
+        $this->notif = new Notif();
     }
 
     public function login_view()
@@ -172,7 +176,17 @@ class Auth extends BaseController
             "spv" => $this->request->getVar("spv"),
         ];
 
-        if ($this->user_model->insert($data)) {
+        $last_id = $this->user_model->insert($data);
+        if ($last_id) {
+
+            //send notif ke email dan notif admin
+
+            $receivers = 3; //id admin
+            $isi = 'Registrasi Pengguna Baru';
+            $redirect = base_url('/admin/users/' . $last_id);
+
+            $this->notif->send_notif($receivers, 'Registrasi Pengguna baru', $isi, $redirect);
+
             return redirect()->to(base_url('/login'))->with('success', 'Pendaftaran akun baru berhasil dilakukan, mohon tunggu konfirmasi dari admin.');
         }
     }

@@ -28,6 +28,6 @@ class Notif extends BaseController
 
         $this->notif_model->update($id, $data);
 
-        return redirect()->to($data_notif['isi']);
+        return redirect()->to($data_notif['redirect']);
     }
 }

@@ -28,7 +28,7 @@
                                 <a href="<?= base_url('notification/' . $notif['id']); ?>" class="notify-item">
                                     <div class="notify-text">
                                         <p><?= substr($notif['title'], 0, 20); ?></p>
-                                        <span>PPDS mengunggah Tugas baru <?= $notif['isi']; ?></span> <br>
+                                        <span><?= $notif['isi']; ?></span> <br>
                                         <span><?= $notif['tanggal']; ?></span>
                                     </div>
                                 </a>

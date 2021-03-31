@@ -125,6 +125,9 @@
 
 <?= $this->section('js'); ?>
 <script>
+    //trigger menu
+    $('#sidang').addClass('active');
+
     $('#dataTable3').DataTable();
     $('#dashboard').addClass('active');
 </script>

@@ -123,6 +123,12 @@
 
 <?= $this->section('js'); ?>
 <script>
+    //trigger menu
+    $('#tugas').addClass('active');
+
+    $('#tugas ul.collapse').addClass('in');
+    $('#tugas ul.collapse li.<?= $class; ?>').addClass('active');
+
     var table = $('#dataTable3').DataTable();
     $('#filter-stase').on('change', function() {
         table.columns(1).search(this.value).draw();

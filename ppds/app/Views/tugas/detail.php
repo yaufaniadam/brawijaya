@@ -167,5 +167,7 @@
 
     <?= $this->section('js'); ?>
     <script>
+        $('#tugas ul.collapse').addClass('in');
+        $('#tugas ul.collapse li.<?= $class; ?>').addClass('active');
     </script>
     <?= $this->endSection(); ?>

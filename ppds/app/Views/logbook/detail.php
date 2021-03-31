@@ -92,5 +92,6 @@
 
     <?= $this->section('js'); ?>
     <script>
+        $('#logbook').addClass('active');
     </script>
     <?= $this->endSection(); ?>

@@ -293,6 +293,9 @@ class Users extends BaseController
             'page_header' => ($id_tahap != 0 ? 'Arsip PPDS Tahap ' . $id_tahap : 'Daftar Semua PPDS'),
             'query' => $this->user_model->getPpdsByTahap($id_tahap),
         ];
+
+        // dd($data);
+
         // dd($this->user_model->getPpdsByTahap($id_tahap));
         return view('admin/ppds/index', $data);
     }
@@ -362,17 +365,18 @@ class Users extends BaseController
         // dd($jumlah_stase_ppds_on_current_tahap);
 
         $data = [
-            'title' => 'Detail User',
-            'page_header' => 'Detail User',
+            // 'title' => 'Detail User',
+            // 'page_header' => 'Detail User',
             'ppds' => $this->user_model->getUserById($id_ppds),
-            'validation' => \Config\Services::validation(),
-            'tahap' => $db->query("SELECT * FROM tahap")->getResultArray(),
-            'tahap_selesai' => $tahap_selesai,
-            'semua_tahap_selesai' => $semua_tahap_selesai,
+            // 'validation' => \Config\Services::validation(),
+            // 'tahap' => $db->query("SELECT * FROM tahap")->getResultArray(),
+            // 'tahap_selesai' => $tahap_selesai,
+            // 'semua_tahap_selesai' => $semua_tahap_selesai,
+            // 'idppds' => $id_ppds
         ];
 
-        return view('admin/ppds/detail', $data);
-        // dd($data);
+        //   return view('admin/ppds/detail', $data);
+        dd($data);
     }
 
     // public function sendNotif($data)

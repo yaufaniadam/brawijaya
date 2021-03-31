@@ -18,13 +18,40 @@
                         </a>
                     </li>
 
-                    <li id="logbook">
+                    <li id="ppds">
                         <a href="<?= base_url('admin/ppds/tahap/0'); ?>">
-                            <i class="ti-user"></i> <span>PPDS</span>
+                            <i class="ti-layers"></i> <span>Stase Berjalan</span>
                         </a>
                     </li>
 
-                    <li id="pdps">
+
+                    <li id="tugas">
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-book"></i>
+                            <span>Tugas</span>
+                        </a>
+                        <ul class="collapse">
+                            <li class="semua-ilmiah">
+                                <a href="<?= base_url('tugas/jenis/ilmiah'); ?>" aria-expanded="true">Ilmiah</a>
+                            </li>
+                            <li class="tugas-besar">
+                                <a href=" <?= base_url('tugas/jenis/tugas_besar'); ?>" aria-expanded="true">Tugas Besar</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li id="logbook">
+                        <a href="<?= base_url('/logbook'); ?>">
+                            <i class="ti-book"></i> <span>Log Book</span>
+                        </a>
+                    </li>
+
+                    <li id="sidang">
+                        <a href="<?= base_url('/sidang'); ?>">
+                            <i class="ti-dashboard"></i> <span>Sidang</span>
+                        </a>
+                    </li>
+
+                    <li id="arsip-pdps">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
                             <span>Arsip PPDS</span>
                         </a>
@@ -42,38 +69,6 @@
                                 <a href="<?= base_url('admin/ppds/tahap/4'); ?>" aria-expanded="true">Tahap 4</a>
                             </li>
                         </ul>
-                    </li>
-
-                    <li id="tugas">
-                        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-book"></i>
-                            <span>Tugas</span>
-                        </a>
-                        <ul class="collapse">
-                            <li>
-                                <a href="#" aria-expanded="true">Ilmiah</a>
-                                <ul id="tugas_divisi" class="collapse">
-                                    <li id="tugas_saya"><a href="<?= base_url('tugas/jenis/ilmiah'); ?>">Semua Ilmiah</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" aria-expanded="true">Tugas Besar</a>
-                                <ul id="tugas_besar" class="collapse">
-                                    <li id="tugas_saya"><a href="<?= base_url('tugas/jenis/tugas_besar'); ?>">Semua Tugas</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li id="logbook">
-                        <a href="<?= base_url('/logbook'); ?>">
-                            <i class="ti-book"></i> <span>Log Book</span>
-                        </a>
-                    </li>
-
-                    <li id="sidang">
-                        <a href="<?= base_url('/sidang'); ?>">
-                            <i class="ti-dashboard"></i> <span>Sidang</span>
-                        </a>
                     </li>
 
                     <li id="spv">

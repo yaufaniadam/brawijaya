@@ -46,13 +46,15 @@ class Tugas extends BaseController
                 'title' => 'Daftar Ilmiah',
                 'query' => $this->tugas_model->getAllIlmiah(),
                 'page_header' => 'Daftar Ilmiah',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => 'semua-ilmiah'
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [
                 'title' => 'Tugas Besar',
                 'query' => $this->tugas_model->getAllTugasBesar(),
                 'page_header' => 'Tugas Besar',
+                'class' => 'tugas-besar',
             ];
         } else {
             $data = [
@@ -294,12 +296,6 @@ class Tugas extends BaseController
             $file_pdf_loc = realpath('ppds_tugas/' . $encrypted_file_name);
             $file_pre_loc = realpath('ppds_presentasi/' . $encrypted_file_pre_name);
 
-            // dd($file_pre_loc);
-
-            // echo $file_pdf_loc;
-
-            // $this->sidangMailer('subjek', 'pesan',  $file_pdf_loc,  $file_pre_loc);
-
             $attachment = [
                 'dokumen' => $file_pdf_loc,
                 'presentasi' => $file_pre_loc
@@ -361,11 +357,24 @@ class Tugas extends BaseController
 
     public function detail($id_tugas)
     {
-        $data = [
-            'title' => 'Ilmiah',
-            'page_header' => 'Detail Ilmiah',
-            'tugas' => $this->tugas_model->detailTugas($id_tugas),
-        ];
+        $detail = $this->tugas_model->detailTugas($id_tugas);
+
+        if ($detail['jenis_tugas'] == 1) {
+            $data = [
+                'title' => 'Ilmiah',
+                'page_header' => 'Detail Ilmiah',
+                'tugas' => $detail,
+                'class' => 'semua-ilmiah'
+            ];
+        } else {
+            $data = [
+                'title' => 'Tugas Besar',
+                'page_header' => 'Detail Tugas Besar',
+                'tugas' => $detail,
+                'class' => 'tugas-besar'
+            ];
+        }
+
         if ($this->tugas_model->detailTugas($id_tugas)) {
             return view('tugas/detail', $data);
         } else {
@@ -458,15 +467,17 @@ class Tugas extends BaseController
                 'kategori' => $this->kategori_model->getAllKategoriesBasedOnJenisTugas($id_tugas),
                 'data_tugas' => $this->tugas_model->getSpecificTugas($id_tugas),
                 'penguji' => $this->spv_model->getAllSpv(),
+                'class' => 'tugas-besar'
             ];
         } else {
             $data = [
-                'title' => 'Edit Tugas',
-                'page_header' => 'Edit Tugas',
+                'title' => 'Edit Ilmiah',
+                'page_header' => 'Edit Ilmiah',
                 'validation' => \Config\Services::validation(),
                 'kategori' => $this->kategori_model->getAllKategoriesBasedOnJenisTugas($id_tugas),
                 'data_tugas' => $this->tugas_model->getSpecificTugas($id_tugas),
                 'penguji' => $this->spv_model->getAllSpv(),
+                'class' => 'semua-ilmiah'
             ];
         }
         // dd($this->tugas_model->getSpecificTugas($id_tugas));

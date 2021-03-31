@@ -173,6 +173,8 @@ helper('data_helper');
 <?= $this->section('js'); ?>
 <script src="<?= base_url('assets/js/jquery.datetimepicker.full.js'); ?>"></script>
 <script>
+    $('#tugas ul.collapse').addClass('in');
+    $('#tugas ul.collapse li.<?= $class; ?>').addClass('active');
     jQuery('#datetimepicker').datetimepicker({
         format: 'Y/m/d H:i:s',
     });

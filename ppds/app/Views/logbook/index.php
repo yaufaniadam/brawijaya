@@ -76,6 +76,9 @@
 
 <?= $this->section('js'); ?>
 <script>
+    //trigger menu
+    $('#logbook').addClass('active');
+
     var table = $('#dataTable3').DataTable();
     $('#filter-stase').on('change', function() {
         table.columns(1).search(this.value).draw();

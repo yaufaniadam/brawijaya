@@ -6,13 +6,19 @@
 
 <div class="main-content-inner">
 
+    <?php
+    echo '<pre>';
+    print_r($ppds);
+    echo '</pre>';
+
+    ?>
     <div class="row m-4">
         <div class="col-sm-4 mt-5">
             <div class="card">
                 <div class="card-body">
                     <div class="col">
                         <div class="text-center">
-                            <div style="background-image: url('<?= base_url('images/profile/dummy.png'); ?>');width:200px;height:200px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;" class="ml-auto mr-auto">
+                            <div style="background-image: url(<?= $ppds->photo == '' ? base_url('images/profile/dummy.png') : base_url('users_profile_pic/' . $ppds->photo); ?>);width:200px;height:200px;background-position:center center;background-size:100%;border-radius: 100%;background-repeat: no-repeat;" class="ml-auto mr-auto">
                             </div>
                             <p class="mt-2"><b><?= $ppds->nama_lengkap; ?></b></p>
                         </div>
@@ -72,7 +78,7 @@
                                                     <a class="btn btn-dark mb-3 float-left" style="background: #370EFA;border-color: #370EFA;" href="<?= base_url('admin/users/' . $ppds->id_ppds); ?>">Edit Profile</a>
                                                     <tr>
                                                         <th scope="col">Nama Lengkap</th>
-                                                        <th scope="col"><?= $ppds->nama_lengkap; ?></th>
+
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Usia</th>
@@ -151,8 +157,9 @@
                                                     </div>
                                                     <div id="ChildCollapse<?= $stase['id_stase'] ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                         <div class="card-body" style="border : solid #EFF1F2; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius:5px;">
+                                                            <h6>Ilmiah</h6>
                                                             <table class="table" style="border: solid #EAECEE;border-width: thin;">
-                                                                <h5>ilmiah</h5>
+
                                                                 <thead>
                                                                     <tr style="background-color: #F8F9FB;">
                                                                         <th scope="col" style="width: 60%;">Judul Ilmiah</th>
@@ -162,6 +169,26 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php foreach (getPpdsTugas(1, $ppds->id_ppds, $stase['id_stase']) as $ilmiah) { ?>
+                                                                        <tr>
+                                                                            <th><a href="<?= base_url('tugas/' . $ilmiah['id_tugas']); ?>"><?= $ilmiah['judul']; ?></a></th>
+                                                                            <td><?= $ilmiah['kategori']; ?></td>
+                                                                            <td><a href="<?= base_url('ppds_tugas/' . $ilmiah['file']); ?>">Unduh</a></td>
+                                                                        </tr>
+                                                                    <?php } ?>
+                                                                </tbody>
+                                                            </table>
+                                                            <h6>Tugas Besar</h6>
+                                                            <table class="table" style="border: solid #EAECEE;border-width: thin;">
+
+                                                                <thead>
+                                                                    <tr style="background-color: #F8F9FB;">
+                                                                        <th scope="col" style="width: 60%;">Judul Ilmiah</th>
+                                                                        <th scope="col" style="width: 20%;">Kategori</th>
+                                                                        <th scope="col" style="width: 20%;">Unduh</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php foreach (getPpdsTugas(2, $ppds->id_ppds, $stase['id_stase']) as $ilmiah) { ?>
                                                                         <tr>
                                                                             <th><a href="<?= base_url('tugas/' . $ilmiah['id_tugas']); ?>"><?= $ilmiah['judul']; ?></a></th>
                                                                             <td><?= $ilmiah['kategori']; ?></td>
@@ -219,6 +246,9 @@
 
 <?= $this->section('js'); ?>
 <script>
+    //trigger menu
+    $('#ppds').addClass('active');
+
     $(".tipe_btn").click(function() {
         getIdButton = this.id;
         $("#type_btn").val(getIdButton);

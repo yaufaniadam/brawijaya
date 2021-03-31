@@ -16,14 +16,15 @@ class Notif
         $this->notif_model = new NotifModel();
     }
 
-    public function send_notif($receivers, $title, $body)
+    public function send_notif($receivers, $title, $body, $redirect)
     {
         if (is_array($receivers)) {
             foreach ($receivers as $receiver) {
                 $data = [
                     'receiver' => $receiver['id'],
                     'title' => $title,
-                    'isi' => $body
+                    'isi' => $body,
+                    'redirect' => $redirect
                 ];
                 $this->notif_model->insert($data);
             }
@@ -31,7 +32,8 @@ class Notif
             $data = [
                 'receiver' => $receivers,
                 'title' => $title,
-                'isi' => $body
+                'isi' => $body,
+                'redirect' => $redirect
             ];
             $this->notif_model->insert($data);
         }

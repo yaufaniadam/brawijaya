@@ -15,6 +15,7 @@ class NotifModel extends Model
         'receiver',
         'title',
         'isi',
+        'redirect',
         'status',
         // 'tanggal',
     ];
