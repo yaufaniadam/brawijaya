@@ -101,7 +101,7 @@ class UserModel extends Model
                 'tahap_ppds.id' => $tahap_ppds_id
             ])
             ->get()
-            ->getResultArray();
+            ->getRowObject();
 
         // $query = $this->db->query(
         //     "SELECT 
