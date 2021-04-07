@@ -7,9 +7,9 @@
 <div class="main-content-inner">
 
     <?php
-    echo '<pre>';
-    print_r($ppds);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($ppds);
+    // echo '</pre>';
 
     ?>
     <div class="row m-4">
