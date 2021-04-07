@@ -84,22 +84,24 @@ class UserModel extends Model
             ->where(['id_user' => $id_user])
             ->get()->getRowObject()->id;
 
-        // $this->db->select(
-        // 'cu.*,
-        // ci_users.id AS id_ppds,
-        // ci_users.nama_lengkap AS nama_lengkap,
-        // cu.nama_lengkap AS spv,
-        // stase.stase AS stase')
-        // ->from('ci_users')
-        // ->join('tahap_ppds','tahap_ppds.id_user = ci_users.id')
-        // ->join('stase_ppds','stase_ppds.id_user = ci_users.id')
-        // ->join('stase','stase.id = stase_ppds.id_stase')
-        // ->join('tahap','tahap.id = tahap_ppds.id_tahap')
-        // ->join('ci_users cu','cu.id = ci_users.spv')
-        // ->where([
-        //     'ci_users'=>$id_user,
-
-        // ]);
+        $data_ppds = $this->tableName('ci_users')->select(
+            'cu.*,
+        ci_users.id AS id_ppds,
+        ci_users.nama_lengkap AS nama_lengkap,
+        cu.nama_lengkap AS spv,
+        stase.stase AS stase'
+        )
+            ->join('tahap_ppds', 'tahap_ppds.id_user = ci_users.id')
+            ->join('stase_ppds', 'stase_ppds.id_user = ci_users.id')
+            ->join('stase', 'stase.id = stase_ppds.id_stase')
+            ->join('tahap', 'tahap.id = tahap_ppds.id_tahap')
+            ->join('ci_users cu', 'cu.id = ci_users.spv')
+            ->where([
+                'ci_users' => $id_user,
+                'tahap_ppds.id' => $tahap_ppds_id
+            ])
+            ->get()
+            ->getResultArray();
 
         // $query = $this->db->query(
         //     "SELECT 
@@ -109,7 +111,7 @@ class UserModel extends Model
         //        "
         // )->getRowObject();
 
-        return $tahap_ppds_id;
+        return $data_ppds;
     }
 
     public function getAll()
