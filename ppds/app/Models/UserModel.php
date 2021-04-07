@@ -73,6 +73,27 @@ class UserModel extends Model
             "
         )->getRowObject();
 
+        $tahap_ppds_id = $this->builder->selectMax('id')
+            ->where(['id_user' => $id_user])
+            ->get();
+
+        // $this->db->select(
+        // 'cu.*,
+        // ci_users.id AS id_ppds,
+        // ci_users.nama_lengkap AS nama_lengkap,
+        // cu.nama_lengkap AS spv,
+        // stase.stase AS stase')
+        // ->from('ci_users')
+        // ->join('tahap_ppds','tahap_ppds.id_user = ci_users.id')
+        // ->join('stase_ppds','stase_ppds.id_user = ci_users.id')
+        // ->join('stase','stase.id = stase_ppds.id_stase')
+        // ->join('tahap','tahap.id = tahap_ppds.id_tahap')
+        // ->join('ci_users cu','cu.id = ci_users.spv')
+        // ->where([
+        //     'ci_users'=>$id_user,
+
+        // ]);
+
         // $query = $this->db->query(
         //     "SELECT 
         //        cu.*           
@@ -81,7 +102,7 @@ class UserModel extends Model
         //        "
         // )->getRowObject();
 
-        return $query;
+        return $tahap_ppds_id;
     }
 
     public function getAll()
