@@ -74,21 +74,24 @@ class Tugas extends BaseController
                 'title' => 'Ilmiah Saya',
                 'query' => $this->tugas_model->getMyIlmiah(),
                 'page_header' => 'Daftar Ilmiah Saya',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => ''
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [
                 'title' => 'Tugas Besar Saya',
                 'query' => $this->tugas_model->getMyTugasBesar(),
                 'page_header' => 'Tugas Besar Saya',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => ''
             ];
         } else {
             $data = [
                 'title' => 'Tugas Saya',
                 'query' => $this->tugas_model->getMyTugas(),
                 'page_header' => 'Daftar Semua Tugas Saya',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => ''
             ];
         }
         return view('tugas/index', $data);
@@ -327,7 +330,7 @@ class Tugas extends BaseController
             }
             $id_tugas = $this->tugas_model->getInsertID();
             $isi = base_url('tugas/' . $id_tugas);
-            $this->notif->send_notif($receivers, 'Tugas Baru', $isi);
+            $this->notif->send_notif($receivers, 'Tugas Baru', $isi, base_url());
             // 
 
             if ($jenis == 1) {

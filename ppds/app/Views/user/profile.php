@@ -69,6 +69,15 @@
                                 <input type="hidden" name="old_nama" value="<?= $data_user->nama_lengkap; ?>">
                             </div>
                             <div class="form-group has-primary">
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                    <select disabled class="form-control" name="jenis_kelamin">
+                                        <option value="l" <?= $data_user->jenis_kelamin == 'l' ? 'selected' : ''; ?>>laki-laki</option>
+                                        <option value="p" <?= $data_user->jenis_kelamin == 'p' ? 'selected' : ''; ?>>perempuan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Alamat Asal</label>
                                 <textarea disabled class='form-control form-control-primary' name="alamat_asal" id="alamat_asal" cols="10" rows="2"><?= $data_user->alamat_asal; ?></textarea>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->alamat_asal; ?>">

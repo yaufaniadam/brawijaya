@@ -40,6 +40,7 @@ class User extends BaseController
     {
         $email = $this->request->getVar('email');
         $nama_lengkap = $this->request->getVar('nama_lengkap');
+        $jenis_kelamin = $this->request->getVar('jenis_kelamin');
         $password = $this->request->getVar('password');
         $hidden_pass = $this->request->getVar('old_password');
         $photo = $this->request->getFile('photo_profile');
@@ -95,6 +96,7 @@ class User extends BaseController
 
         $data = [
             'nama_lengkap' => $nama_lengkap,
+            'jenis_kelamin' => $jenis_kelamin,
             'email' => $email,
             'photo' => $photoName,
             'password' => $password == "" ? $hidden_pass : password_hash($password, PASSWORD_BCRYPT),

@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-class Spvresource extends ResourceController
+class spvresource extends ResourceController
 {
     protected $format       = 'json';
     protected $modelName    = 'App\Models\SupervisorModel';

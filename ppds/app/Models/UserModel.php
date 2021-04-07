@@ -55,31 +55,32 @@ class UserModel extends Model
 
     public function getUserById($id_user)
     {
-        // $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
-        // $query = $this->db->query(
-        //     "SELECT 
-        //     cu.*,
-        //     ci_users.id AS id_ppds,
-        //     ci_users.nama_lengkap AS nama_lengkap,
-        //     cu.nama_lengkap AS spv,
-        //     stase.stase AS stase 
-        //     FROM ci_users 
-        //     LEFT JOIN tahap_ppds ON tahap_ppds.id_user = ci_users.id
-        //     LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
-        //     LEFT JOIN stase ON stase.id = stase_ppds.id_stase
-        //     LEFT JOIN tahap ON tahap.id = tahap_ppds.id_tahap
-        //     LEFT JOIN ci_users cu ON cu.id = ci_users.spv
-        //     WHERE ci_users.id = $id_user AND tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = $id_user) AND stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = $id_user)
-        //     "
-        // )->getRowObject();
-
+        $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
         $query = $this->db->query(
             "SELECT 
-               cu.*           
-               FROM ci_users cu
-               WHERE cu.id = $id_user
-               "
+            cu.*,
+            ci_users.id AS id_ppds,
+            ci_users.nama_lengkap AS nama_lengkap,
+            cu.nama_lengkap AS spv,
+            stase.stase AS stase 
+            FROM ci_users 
+            LEFT JOIN tahap_ppds ON tahap_ppds.id_user = ci_users.id
+            LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+            LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+            LEFT JOIN tahap ON tahap.id = tahap_ppds.id_tahap
+            LEFT JOIN ci_users cu ON cu.id = ci_users.spv
+            WHERE ci_users.id = $id_user AND tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = $id_user) AND stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = $id_user)
+            "
         )->getRowObject();
+
+        // $query = $this->db->query(
+        //     "SELECT 
+        //        cu.*           
+        //        FROM ci_users cu
+        //        WHERE cu.id = $id_user
+        //        "
+        // )->getRowObject();
+
         return $query;
     }
 

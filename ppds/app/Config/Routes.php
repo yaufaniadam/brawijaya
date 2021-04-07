@@ -100,7 +100,7 @@ $routes->group('supervisor', function ($routes) {
 });
 
 // penguji api
-$routes->resource('SpvResource');
+$routes->resource('spvresource');
 
 $routes->group('residen', function ($routes) {
 	$routes->get('/', 'Home::index');

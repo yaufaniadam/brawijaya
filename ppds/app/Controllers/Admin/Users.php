@@ -365,18 +365,17 @@ class Users extends BaseController
         // dd($jumlah_stase_ppds_on_current_tahap);
 
         $data = [
-            // 'title' => 'Detail User',
-            // 'page_header' => 'Detail User',
+            'title' => 'Detail User',
+            'page_header' => 'Detail User',
             'ppds' => $this->user_model->getUserById($id_ppds),
-            // 'validation' => \Config\Services::validation(),
-            // 'tahap' => $db->query("SELECT * FROM tahap")->getResultArray(),
-            // 'tahap_selesai' => $tahap_selesai,
-            // 'semua_tahap_selesai' => $semua_tahap_selesai,
-            // 'idppds' => $id_ppds
+            'validation' => \Config\Services::validation(),
+            'tahap' => $db->query("SELECT * FROM tahap")->getResultArray(),
+            'tahap_selesai' => $tahap_selesai,
+            'semua_tahap_selesai' => $semua_tahap_selesai,
+            'idppds' => $id_ppds
         ];
-
-        //   return view('admin/ppds/detail', $data);
-        dd($data);
+        // dd($data);
+        return view('admin/ppds/detail', $data);
     }
 
     // public function sendNotif($data)
@@ -408,7 +407,7 @@ class Users extends BaseController
                 if ($this->stase_ppds_model->insert($dataForStase)) {
                     $this->notif->send_mail($email_ppds, 'stase selesai', 'anda telah menyelesaikan stase');
                     // $this->naikTahapOrStaseMailer($id_ppds);
-                    $this->notif->send_notif($id_ppds, 'stase selesai', 'ada telah menyelesaikan stase');
+                    $this->notif->send_notif($id_ppds, 'stase selesai', 'ada telah menyelesaikan stase', '');
                     return redirect()->to(base_url('/admin/ppds/lobby'))->with('success', 'PPDS telah menyelesaikan stase');
                 }
             }
