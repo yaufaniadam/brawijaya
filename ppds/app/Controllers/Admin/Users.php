@@ -374,7 +374,7 @@ class Users extends BaseController
             'semua_tahap_selesai' => $semua_tahap_selesai,
             'idppds' => $id_ppds
         ];
-        // dd($data);
+        dd($data);
         return view('admin/ppds/detail', $data);
     }
 
