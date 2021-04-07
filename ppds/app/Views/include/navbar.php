@@ -25,7 +25,7 @@
                         </span>
                         <div class="nofity-list">
                             <?php foreach (listNotif() as $notif) { ?>
-                                <a href="<?= base_url('notification/' . $notif['id']); ?>" class="notify-item">
+                                <a href="#<?//= base_url('notification/' . $notif['id']); ?>" class="notify-item read" id="read-<?= $notif['id']; ?>">
                                     <div class="notify-text">
                                         <p><?= substr($notif['title'], 0, 20); ?></p>
                                         <span><?= $notif['isi']; ?></span> <br>
@@ -61,4 +61,12 @@
         </div>
     </div>
 </div>
+
+<?= $this->section('js'); ?>
+<script>
+    $('.read').click(function() {
+        console.log(this.id);
+    });
+</script>
+<?= $this->endSection(); ?>
 <!-- page title area end -->
