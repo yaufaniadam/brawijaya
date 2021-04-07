@@ -97,7 +97,7 @@ class UserModel extends Model
             ->join('tahap', 'tahap.id = tahap_ppds.id_tahap')
             ->join('ci_users cu', 'cu.id = ci_users.spv')
             ->where([
-                'ci_users' => $id_user,
+                'ci_users.id' => $id_user,
                 'tahap_ppds.id' => $tahap_ppds_id
             ])
             ->get()
