@@ -62,7 +62,7 @@ class UserModel extends Model
 
     public function getUserById($id_user)
     {
-        $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
+        // $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
         $query = $this->db->query(
             "SELECT 
             cu.*,
@@ -80,9 +80,9 @@ class UserModel extends Model
             "
         )->getRowObject();
 
-        $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
-            ->where(['id_user' => $id_user])
-            ->get();
+        // $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
+        //     ->where(['id_user' => $id_user])
+        //     ->get();
 
         // $this->db->select(
         // 'cu.*,
@@ -109,7 +109,7 @@ class UserModel extends Model
         //        "
         // )->getRowObject();
 
-        return $tahap_ppds_id;
+        return $query;
     }
 
     public function getAll()
