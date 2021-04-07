@@ -46,6 +46,13 @@ class UserModel extends Model
         $this->builder = $this->db->table('ci_users');
     }
 
+    function tableName($table_name)
+    {
+        $db      = \Config\Database::connect();
+        $builder = $db->table($table_name);
+        return $builder;
+    }
+
     function userProfile($id_user)
     {
         $this->builder->select('*,ci_users.id as id_ppds');
@@ -73,7 +80,7 @@ class UserModel extends Model
             "
         )->getRowObject();
 
-        $tahap_ppds_id = $this->builder->selectMax('id')
+        $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
             ->where(['id_user' => $id_user])
             ->get();
 
