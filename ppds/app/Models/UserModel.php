@@ -80,9 +80,9 @@ class UserModel extends Model
             "
         )->getRowObject();
 
-        // $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
-        //     ->where(['id_user' => $id_user])
-        //     ->get();
+        $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
+            ->where(['id_user' => $id_user])
+            ->get()->getRowObject()->id;
 
         // $this->db->select(
         // 'cu.*,
@@ -109,7 +109,7 @@ class UserModel extends Model
         //        "
         // )->getRowObject();
 
-        return $query;
+        return $tahap_ppds_id;
     }
 
     public function getAll()
