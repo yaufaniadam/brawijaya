@@ -90,8 +90,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Jenis Kelamin</th>
-                                                        <?= $ppds->jenis_kelamin; ?>
-                                                        <th scope="col"><?= $ppds->jenis_kelamin == 'l' ? 'laki-laki' : 'perempuan'; ?></th>
+                                                        <th scope="col"><?= $ppds->jenis_kelamin_ppds == 'l' ? 'laki-laki' : 'perempuan'; ?></th>
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Alamat Asal</th>

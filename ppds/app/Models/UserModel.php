@@ -91,7 +91,8 @@ class UserModel extends Model
         cu.nama_lengkap AS spv,
         stase.stase AS stase,
         tahap.tahap,
-        stase_ppds.id_stase'
+        stase_ppds.id_stase,
+        ci_users.jenis_kelamin AS jenis_kelamin_ppds'
         )
             ->join('tahap_ppds', 'tahap_ppds.id_user = ci_users.id')
             ->join('stase_ppds', 'stase_ppds.id_user = ci_users.id')
