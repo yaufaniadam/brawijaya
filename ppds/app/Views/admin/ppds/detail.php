@@ -90,6 +90,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Jenis Kelamin</th>
+                                                        <?= $ppds->jenis_kelamin; ?>
                                                         <th scope="col"><?= $ppds->jenis_kelamin == 'l' ? 'laki-laki' : 'perempuan'; ?></th>
                                                     </tr>
                                                     <tr>
