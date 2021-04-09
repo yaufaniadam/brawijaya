@@ -392,21 +392,24 @@ class Tugas extends BaseController
                 'title' => 'Ilmiah',
                 'query' => $this->tugas_model->getMyBimbinganIlmiah(),
                 'page_header' => 'Daftar Ilmiah',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => '',
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [
                 'title' => 'Tugas Besar',
                 'query' => $this->tugas_model->getMyBimbinganTugasBesar(),
                 'page_header' => 'Daftar Tugas Besar',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => '',
             ];
         } else {
             $data = [
                 'title' => 'Semua Tugas',
                 'query' => $this->tugas_model->getMyTugas(),
                 'page_header' => 'Daftar Semua Tugas',
-                'stase' => $this->stase_model->getAllStase()
+                'stase' => $this->stase_model->getAllStase(),
+                'class' => '',
             ];
         }
         // dd($data);
