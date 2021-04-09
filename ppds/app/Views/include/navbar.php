@@ -71,7 +71,8 @@
         $.ajax({
             url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
-                window.location.href = "<?= base_url(''); ?>" + redirect;
+                console.log(redirect);
+                // window.location.href = "<?= base_url(''); ?>";
             }
         })
     });
