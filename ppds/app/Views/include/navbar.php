@@ -72,7 +72,7 @@
             url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
                 console.log(redirect);
-                // window.location.href = "<?= base_url(''); ?>";
+                window.location.href = redirect;
             }
         })
     });
