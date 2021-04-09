@@ -410,6 +410,7 @@ class Tugas extends BaseController
             ];
         }
         // dd($data);
+        $data['class'] = '';
         return view('tugas/index', $data);
     }
 
