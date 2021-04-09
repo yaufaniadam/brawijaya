@@ -24,10 +24,10 @@ class Notif extends BaseController
             'status' => 1
         ];
 
-        $data_notif = $this->notif_model->find($id);
+        // $data_notif = $this->notif_model->find($id);
 
         $this->notif_model->update($id, $data);
 
-        return redirect()->to($data_notif['redirect']);
+        // return redirect()->to($data_notif['redirect']);
     }
 }
