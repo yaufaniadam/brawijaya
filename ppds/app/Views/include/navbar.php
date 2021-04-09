@@ -65,9 +65,9 @@
 <?= $this->section('js'); ?>
 <script>
     $('.read').click(function() {
-        console.log("<?= base_url('notification/'); ?>" + this.id);
+        console.log("<?= base_url('notification'); ?>" + "/" + this.id);
         $.ajax({
-            url: "<?= base_url('notification/'); ?>" + this.id,
+            url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
                 window.location.href = "<?= base_url(''); ?>";
             }
