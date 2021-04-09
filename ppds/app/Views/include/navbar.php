@@ -65,12 +65,13 @@
 <?= $this->section('js'); ?>
 <script>
     $('.read').click(function() {
-        console.log("<?= base_url('notification'); ?>" + "/" + this.id);
-        console.log(this.name)
+        // console.log("<?= base_url('notification'); ?>" + "/" + this.id);
+        // console.log();
+        var redirect = this.name;
         $.ajax({
             url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
-                // window.location.href = "<?= base_url(''); ?>";
+                window.location.href = "<?= base_url(''); ?>" + redirect;
             }
         })
     });
