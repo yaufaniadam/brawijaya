@@ -84,7 +84,9 @@ class User extends BaseController
             $photoName = $photo->getRandomName();
             $photo->move('users_profile_pic', $photoName);
             if ($this->request->getVar('old_photo')) {
-                unlink('users_profile_pic/' . $this->request->getVar('old_photo'));
+                if (file_exists('users_profile_pic/' . $this->request->getVar('old_photo'))) {
+                    unlink('users_profile_pic/' . $this->request->getVar('old_photo'));
+                }
             }
         }
 
