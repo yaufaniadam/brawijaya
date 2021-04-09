@@ -66,10 +66,10 @@
 <script>
     $('.read').click(function() {
         console.log("<?= base_url('notification'); ?>" + "/" + this.id);
+        console.log(this.name)
         $.ajax({
             url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
-                console.log(this.name)
                 // window.location.href = "<?= base_url(''); ?>";
             }
         })
