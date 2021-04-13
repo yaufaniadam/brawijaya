@@ -393,7 +393,7 @@ class Tugas extends BaseController
                 'query' => $this->tugas_model->getMyBimbinganIlmiah(),
                 'page_header' => 'Daftar Ilmiah',
                 'stase' => $this->stase_model->getAllStase(),
-                'class' => '',
+                'class' => 'tugas',
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [
@@ -401,7 +401,7 @@ class Tugas extends BaseController
                 'query' => $this->tugas_model->getMyBimbinganTugasBesar(),
                 'page_header' => 'Daftar Tugas Besar',
                 'stase' => $this->stase_model->getAllStase(),
-                'class' => '',
+                'class' => 'tugas',
             ];
         } else {
             $data = [
@@ -409,7 +409,7 @@ class Tugas extends BaseController
                 'query' => $this->tugas_model->getMyTugas(),
                 'page_header' => 'Daftar Semua Tugas',
                 'stase' => $this->stase_model->getAllStase(),
-                'class' => '',
+                'class' => 'tugas',
             ];
         }
         // dd($data);
