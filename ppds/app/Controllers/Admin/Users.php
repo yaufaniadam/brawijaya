@@ -269,8 +269,6 @@ class Users extends BaseController
         ];
 
         return view('admin/ppds/index', $data);
-
-        // dd($data);
     }
 
     public function ppdsPerSpv()

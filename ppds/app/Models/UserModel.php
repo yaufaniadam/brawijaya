@@ -63,22 +63,22 @@ class UserModel extends Model
     public function getUserById($id_user)
     {
         // $query = $this->builder->getWhere(['id' => $id_user])->getRowObject();
-        $query = $this->db->query(
-            "SELECT 
-            cu.*,
-            ci_users.id AS id_ppds,
-            ci_users.nama_lengkap AS nama_lengkap,
-            cu.nama_lengkap AS spv,
-            stase.stase AS stase 
-            FROM ci_users 
-            LEFT JOIN tahap_ppds ON tahap_ppds.id_user = ci_users.id
-            LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
-            LEFT JOIN stase ON stase.id = stase_ppds.id_stase
-            LEFT JOIN tahap ON tahap.id = tahap_ppds.id_tahap
-            LEFT JOIN ci_users cu ON cu.id = ci_users.spv
-            WHERE ci_users.id = $id_user AND tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = $id_user) AND stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = $id_user)
-            "
-        )->getRowObject();
+        // $query = $this->db->query(
+        //     "SELECT 
+        //     cu.*,
+        //     ci_users.id AS id_ppds,
+        //     ci_users.nama_lengkap AS nama_lengkap,
+        //     cu.nama_lengkap AS spv,
+        //     stase.stase AS stase 
+        //     FROM ci_users 
+        //     LEFT JOIN tahap_ppds ON tahap_ppds.id_user = ci_users.id
+        //     LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+        //     LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+        //     LEFT JOIN tahap ON tahap.id = tahap_ppds.id_tahap
+        //     LEFT JOIN ci_users cu ON cu.id = ci_users.spv
+        //     WHERE ci_users.id = $id_user AND tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = $id_user) AND stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = $id_user)
+        //     "
+        // )->getRowObject();
 
         $tahap_ppds_id = $this->tableName('tahap_ppds')->selectMax('id')
             ->where(['id_user' => $id_user])
@@ -275,6 +275,7 @@ class UserModel extends Model
         LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
         LEFT JOIN stase ON stase.id = stase_ppds.id_stase
         WHERE stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = ci_users.id) AND stase_ppds.id_stase = $spv_stase")->getResultArray();
+
         return $query;
     }
 
@@ -376,16 +377,18 @@ class UserModel extends Model
 
     public function jumlahPpdsStatseSaya($id_stase)
     {
+        $this->tableName('stase_ppds')->selectMax('id')->where(['id_user']);
+
         return $this->db->query(
             "SELECT count(id_user) as jumlah FROM `ci_users` 
             LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
-            WHERE stase_ppds.id_stase = $id_stase
-            AND stase_ppds.id_user = (
+            WHERE  stase_ppds.id_user = (
                 SELECT id_user FROM stase_ppds  
                 WHERE id = (
                 SELECT MAX(id) FROM stase_ppds
                     WHERE id_user = ci_users.id
                 )
+                AND stase_ppds.id_stase = $id_stase
             )"
         )->getRowObject();
     }
