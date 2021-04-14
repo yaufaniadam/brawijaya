@@ -84,7 +84,13 @@
                                         <td class="text-center"><?= $tugas['stase']; ?></td>
                                         <td class="text-center"><?= $tugas['jadwal_sidang']; ?></td>
                                         <td class="text-center"><?= $tugas['nama_lengkap']; ?></td>
-                                        <?php $nilai = ($tugas['nilai_1'] + $tugas['nilai_2'] + $tugas['nilai_3'] + $tugas['nilai_4']) / 4 ?>
+                                        <?php
+                                        if ($tugas['jenis_tugas'] == 2) {
+                                            $nilai = ($tugas['nilai_1'] + $tugas['nilai_2'] + $tugas['nilai_3'] + $tugas['nilai_4']) / 4;
+                                        } else {
+                                            $nilai = ($tugas['nilai_3'] + $tugas['nilai_4']) / 2;
+                                        }
+                                        ?>
                                         <td class="text-center"><?= $nilai == 0 ? '-' : $nilai; ?></td>
                                         <td class="text-center">
                                             <a title="detail" href="<?= base_url("/tugas/" . $tugas['id']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-info"></span></a>

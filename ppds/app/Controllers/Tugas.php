@@ -330,7 +330,7 @@ class Tugas extends BaseController
             }
             $id_tugas = $this->tugas_model->getInsertID();
             $isi = base_url('tugas/' . $id_tugas);
-            $this->notif->send_notif($receivers, 'Tugas Baru', $isi, base_url());
+            $this->notif->send_notif($receivers, 'Tugas Baru', $isi, base_url('tugas/' . $id_tugas));
             // 
 
             if ($jenis == 1) {
