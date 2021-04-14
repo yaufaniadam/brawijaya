@@ -84,6 +84,10 @@ class UserModel extends Model
             ->where(['id_user' => $id_user])
             ->get()->getRowObject()->id;
 
+        $stase_ppds_id = $this->tableName('stase_ppds')->selectMax('id')
+            ->where(['id_user' => $id_user])
+            ->get()->getRowObject()->id;
+
         $data_ppds = $this->tableName('ci_users')->select(
             'cu.*,
         ci_users.id AS id_ppds,
@@ -101,7 +105,8 @@ class UserModel extends Model
             ->join('ci_users cu', 'cu.id = ci_users.spv')
             ->where([
                 'ci_users.id' => $id_user,
-                'tahap_ppds.id' => $tahap_ppds_id
+                'tahap_ppds.id' => $tahap_ppds_id,
+                'stase_ppds.id' => $stase_ppds_id,
             ])
             ->get()
             ->getRowObject();
