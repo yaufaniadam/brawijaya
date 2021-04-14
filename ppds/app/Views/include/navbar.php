@@ -25,7 +25,7 @@
                         </span>
                         <div class="nofity-list">
                             <?php foreach (listNotif() as $notif) { ?>
-                                <a href="#<?//= base_url('notification/' . $notif['id']); ?>" class="notify-item read" id="<?= $notif['id']; ?>" name="<?= $notif['isi']; ?>">
+                                <a href="#<?//= base_url('notification/' . $notif['id']); ?>" class="notify-item read" id="<?= $notif['id']; ?>" name="<?= $notif['redirect']; ?>">
                                     <div class="notify-text">
                                         <p><?= substr($notif['title'], 0, 20); ?></p>
                                         <span><?= $notif['isi']; ?></span> <br>
@@ -71,7 +71,7 @@
         $.ajax({
             url: "<?= base_url('notification'); ?>" + "/" + this.id,
             success: function() {
-                console.log(redirect);
+                // console.log(redirect);
                 window.location.href = redirect;
             }
         })

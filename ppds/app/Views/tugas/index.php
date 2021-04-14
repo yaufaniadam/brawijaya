@@ -28,8 +28,8 @@
                     </div>
                 <?php } ?>
 
-
                 <div class="row">
+
                     <?php if ($page_header == 'Daftar Ilmiah Saya' || $page_header == 'Daftar Ilmiah') { ?>
                         <div class="col-sm-2">
                             <select class="form-control btn-flat" id="filter-stase">
@@ -40,6 +40,7 @@
                             </select>
                         </div>
                     <?php } ?>
+
                     <?php if (session('role') == 4) { ?>
                         <?php if (semuaTahapSelesai() == false) { ?>
                             <?php if (getCurrentPpdsStase() != 'temp') { ?>
@@ -53,6 +54,7 @@
                             <?php } ?>
                         <?php } ?>
                     <?php } ?>
+
                 </div>
 
                 <div class="col-12 mt-3">
