@@ -318,7 +318,7 @@ class Users extends BaseController
         ];
         // dd($this->user_model->detailSpv($id_spv));
         return view('admin/spv/detail', $data);
-        echo "detail spv";
+        // echo "detail spv";
     }
 
     public function detailppds($id_ppds)

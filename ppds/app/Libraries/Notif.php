@@ -11,6 +11,7 @@ use PHPMailer\PHPMailer\SMTP;
 class Notif
 {
     protected $notif_model;
+
     public function __construct()
     {
         $this->notif_model = new NotifModel();

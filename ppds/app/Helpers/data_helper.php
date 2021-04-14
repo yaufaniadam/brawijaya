@@ -164,7 +164,8 @@ function ppdsBimbingan($id_spv)
         FROM ci_users
         LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
         LEFT JOIN stase ON stase.id = stase_ppds.id_stase
-        WHERE ci_users.spv = $id_spv"
+        WHERE stase_ppds.id = (SELECT MAX(id) FROM stase_ppds WHERE id_user = ci_users.id) 
+        AND ci_users.spv = $id_spv"
     )->getResultArray();
 
     return $query;
