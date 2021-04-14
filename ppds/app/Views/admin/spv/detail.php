@@ -52,7 +52,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Jenis Kelamin</th>
-                                                        <th scope="col"><?= $spv->jenis_kelamin == 'p' ? 'Pria' : 'Wanita'; ?></th>
+                                                        <th scope="col"><?= $spv->jenis_kelamin == 'l' ? 'laki-laki' : 'perempuan'; ?></th>
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">Alamat Asal</th>
