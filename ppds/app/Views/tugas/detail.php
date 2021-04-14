@@ -29,7 +29,16 @@
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-7 col-form-label">Nilai</label>
-                                <label class="col-sm-5 col-form-label text-right"><?= ($tugas['nilai_1'] + $tugas['nilai_2'] + $tugas['nilai_3'] + $tugas['nilai_4']) / 4; ?></label>
+                                <label class="col-sm-5 col-form-label text-right">
+                                    <?php
+                                    if ($tugas['jenis_tugas'] == 2) {
+                                        $nilai = ($tugas['nilai_1'] + $tugas['nilai_2'] + $tugas['nilai_3'] + $tugas['nilai_4']) / 4;
+                                    } else {
+                                        $nilai = ($tugas['nilai_3'] + $tugas['nilai_4']) / 2;
+                                    }
+                                    ?>
+                                    <?= $nilai; ?>
+                                </label>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-7 col-form-label">Pembimbing</label>
