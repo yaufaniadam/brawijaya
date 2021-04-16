@@ -227,6 +227,15 @@
                             <img src="<?= base_url('images/icon/warning.svg'); ?>" style="width: 110px;" alt="" srcset="">
                         </div>
                         <br>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="radio" aria-label="Radio button for following text input">
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" aria-label="Text input with radio button">
+                        </div>
+                        <br>
                         <h3 class="text-center">Anda yakin?</h3>
                         <p class="text-center mt-2">
                             Aksi ini tidak dapat dibatalkan. Pastikan PPDS sudah menyelesaikan semua tugas ilmiah sebelum melanjutkan.

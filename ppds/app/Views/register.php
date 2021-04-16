@@ -109,7 +109,7 @@
                             </div>
                         </div>
                         <div class="form-gp" id="spvr">
-                            <label for="spv">Supervisor</label>
+                            <label for="spv">Pembimbing Akademik</label>
                             <br>
                             <select class="custom-select" name="spv" id="spv">
                                 <option>Pilih Pembimbing Akademik</option>
