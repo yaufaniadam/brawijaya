@@ -227,13 +227,17 @@
                             <img src="<?= base_url('images/icon/warning.svg'); ?>" style="width: 110px;" alt="" srcset="">
                         </div>
                         <br>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="radio" aria-label="Radio button for following text input">
-                                </div>
-                            </div>
-                            <input type="text" class="form-control" aria-label="Text input with radio button">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Default radio
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Second default radio
+                            </label>
                         </div>
                         <br>
                         <h3 class="text-center">Anda yakin?</h3>
