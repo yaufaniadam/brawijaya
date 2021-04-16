@@ -112,7 +112,7 @@
                             <label for="spv">Supervisor</label>
                             <br>
                             <select class="custom-select" name="spv" id="spv">
-                                <option>Pilih Supervisor</option>
+                                <option>Pilih Pembimbing Akademik</option>
                                 <?php foreach ($spv as $spv) { ?>
                                     <option <?= $spv['id'] == old('spv') ? "selected" : ""; ?> value="<?= $spv['id']; ?>"><?= $spv['nama_lengkap']; ?></option>
                                 <?php } ?>
