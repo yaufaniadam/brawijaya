@@ -184,11 +184,11 @@
 
 
     <?php if (session('validation')) { ?>
-        $('#email_static').replaceWith("<input type='email' name='email' class='form-control form-control-primary <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>' id='email' value='<?= old('email'); ?>'> ")
-        $("<div id='error_email' class='valid-feedback'><?= $validation->getError('email'); ?> </div>").insertAfter()
-        $('#nama_lengkap_static').replaceWith("<input type='text' name='nama' class='form-control form-control-primary' id='nama_lengkap' value='<?= $data_user->nama_lengkap; ?>'>")
-        $('#password_static').replaceWith("<input type='password' nama='password' class='form-control form-control-primary' id='password'>")
-        $('#photo_profile').prop('disabled', false)
+        $('#email_static').replaceWith("<input type='email' name='email' class='form-control form-control-primary <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>' id='email' value='<?= old('email'); ?>'> ");
+        $("<div id='error_email' class='valid-feedback'><?= $validation->getError('email'); ?> </div>").insertAfter();
+        $('#nama_lengkap_static').replaceWith("<input type='text' name='nama' class='form-control form-control-primary' id='nama_lengkap' value='<?= $data_user->nama_lengkap; ?>'>");
+        $('#password_static').replaceWith("<input type='password' nama='password' class='form-control form-control-primary' id='password'>");
+        $('#photo_profile').prop('disabled', false);
     <?php } ?>
 </script>
 <?= $this->endSection(); ?>

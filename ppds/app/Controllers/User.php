@@ -77,6 +77,48 @@ class User extends BaseController
                     'required' => 'NO. BPJS wajib diisi'
                 ]
             ],
+            'alamat_asal' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'Alamat Asal wajib diisi'
+                ]
+            ],
+            'alamat_domisili' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'Alamat Domisili wajib diisi'
+                ]
+            ],
+            'no_telp' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'No. Telp wajib diisi'
+                ]
+            ],
+            'no_telp_drt' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'No. Telp Darurat/Keluarga wajib diisi'
+                ]
+            ],
+            'nim' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'NIM wajib diisi'
+                ]
+            ],
+            'status' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'Status wajib diisi'
+                ]
+            ],
+            'pembiayaan' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'Pembiayaan wajib diisi'
+                ]
+            ],
         ])) {
             $validation = \Config\Services::validation();
             return redirect()->back()->withInput()->with('validation', $validation);
