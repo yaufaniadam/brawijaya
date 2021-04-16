@@ -64,7 +64,7 @@
                             </div>
                             <hr>
                             <div class="form-group has-primary">
-                                <label for="inputHorizontalPrimary" class="col-form-label">Nama Lengkap</label>
+                                <label for="inputHorizontalPrimary" class="col-form-label">Nama Lengkap(beserta gelar)</label>
                                 <input disabled type='text' name='nama_lengkap' class='form-control form-control-primary' id='nama_lengkap' value='<?= $data_user->nama_lengkap; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->nama_lengkap; ?>">
                             </div>
