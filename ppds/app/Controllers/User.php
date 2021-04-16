@@ -58,24 +58,29 @@ class User extends BaseController
 
         // dd($this->request->getVar());
 
-        // if (!$this->validate([
-        //     'email' => [
-        //         'rules' => ['is_unique[ci_users.email]'],
-        //         'errors' => [
-        //             'is_unique' => 'email sudah dipakai'
-        //         ]
-        //     ],
-        //     'photo' => [
-        //         'rules' => ['is_image[photo_profile]'],
-        //         // |mime_in[photo,image/jpg,image/png]'
-        //         'errors' => [
-        //             'is_image' => 'file harus berupa gambar'
-        //         ]
-        //     ]
-        // ])) {
-        //     $validation = \Config\Services::validation();
-        //     return redirect()->back()->withInput()->with('validation', $validation);
-        // }
+        if (!$this->validate([
+            'no_str' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'NO. STR wajib diisi'
+                ]
+            ],
+            'no_bpjs' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'NO. BPJS wajib diisi'
+                ]
+            ],
+            'no_bpjs' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'NO. BPJS wajib diisi'
+                ]
+            ],
+        ])) {
+            $validation = \Config\Services::validation();
+            return redirect()->back()->withInput()->with('validation', $validation);
+        }
 
         // Photo
         if ($photo == '') {
