@@ -227,6 +227,11 @@
                             <img src="<?= base_url('images/icon/warning.svg'); ?>" style="width: 110px;" alt="" srcset="">
                         </div>
                         <br>
+                        <h3 class="text-center">Anda yakin?</h3>
+                        <p class="text-center mt-2">
+                            Aksi ini tidak dapat dibatalkan. Pastikan PPDS sudah menyelesaikan semua tugas ilmiah sebelum melanjutkan.
+                        </p>
+                        <br>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                             <label class="form-check-label" for="exampleRadios1">
@@ -239,11 +244,6 @@
                                 Second default radio
                             </label>
                         </div>
-                        <br>
-                        <h3 class="text-center">Anda yakin?</h3>
-                        <p class="text-center mt-2">
-                            Aksi ini tidak dapat dibatalkan. Pastikan PPDS sudah menyelesaikan semua tugas ilmiah sebelum melanjutkan.
-                        </p>
                         <br>
                         <div class="text-center">
                             <button type="button" class="btn btn-flat btn-outline-secondary mb-3" data-dismiss="modal">Batal</button>
