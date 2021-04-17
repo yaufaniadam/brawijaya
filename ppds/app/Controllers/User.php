@@ -60,61 +60,61 @@ class User extends BaseController
 
         if (!$this->validate([
             'no_str' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'NO. STR wajib diisi'
                 ]
             ],
             'no_bpjs' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'NO. BPJS wajib diisi'
                 ]
             ],
             'no_bpjs' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'NO. BPJS wajib diisi'
                 ]
             ],
             'alamat_asal' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Alamat Asal wajib diisi'
                 ]
             ],
             'alamat_domisili' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Alamat Domisili wajib diisi'
                 ]
             ],
             'no_telp' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'No. Telp wajib diisi'
                 ]
             ],
             'no_telp_drt' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'No. Telp Darurat/Keluarga wajib diisi'
                 ]
             ],
             'nim' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'NIM wajib diisi'
                 ]
             ],
             'status' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Status wajib diisi'
                 ]
             ],
             'pembiayaan' => [
-                'rules' => ['required'],
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Pembiayaan wajib diisi'
                 ]
