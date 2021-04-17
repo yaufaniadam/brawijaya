@@ -65,7 +65,7 @@
                             <hr>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Nama Lengkap(beserta gelar)</label>
-                                <input disabled type='text' name='nama_lengkap' class='form-control form-control-primary' id='nama_lengkap' value='<?= $data_user->nama_lengkap; ?>'>
+                                <input disabled type='text' name='nama_lengkap' class='form-control form-control-primary <?= $validation->hasError('nama_lengkap') ? "is-invalid" : ""; ?>' id='nama_lengkap' value='<?= $data_user->nama_lengkap; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->nama_lengkap; ?>">
                             </div>
                             <div class="form-group has-primary">
@@ -79,37 +79,37 @@
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Alamat Asal</label>
-                                <textarea disabled class='form-control form-control-primary' name="alamat_asal" id="alamat_asal" cols="10" rows="2"><?= $data_user->alamat_asal; ?></textarea>
+                                <textarea disabled class='form-control form-control-primary <?= $validation->hasError('alamat_asal') ? "is-invalid" : ""; ?>' name="alamat_asal" id="alamat_asal" cols="10" rows="2"><?= $data_user->alamat_asal; ?></textarea>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->alamat_asal; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Alamat Domisili</label>
-                                <textarea disabled class='form-control form-control-primary' name="alamat_domisili" id="alamat_domisili" cols="10" rows="2"><?= $data_user->alamat_domisili; ?></textarea>
+                                <textarea disabled class='form-control form-control-primary <?= $validation->hasError('alamat_domisili') ? "is-invalid" : ""; ?>' name="alamat_domisili" id="alamat_domisili" cols="10" rows="2"><?= $data_user->alamat_domisili; ?></textarea>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->alamat_domisili; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. Telp</label>
-                                <input disabled type='text' name='no_telp' class='form-control form-control-primary' id='no_telp' value='<?= $data_user->no_telp; ?>'>
+                                <input disabled type='text' name='no_telp' class='form-control form-control-primary <?= $validation->hasError('no_telp') ? "is-invalid" : ""; ?>' id='no_telp' value='<?= $data_user->no_telp; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_telp; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. Telp Darurat/Keluarga</label>
-                                <input disabled type='text' name='no_telp_drt' class='form-control form-control-primary' id='no_telp_drt' value='<?= $data_user->no_telp_drt; ?>'>
+                                <input disabled type='text' name='no_telp_drt' class='form-control form-control-primary <?= $validation->hasError('old_nama') ? "is-invalid" : ""; ?>' id='no_telp_drt' value='<?= $data_user->no_telp_drt; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_telp_drt; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">NIM</label>
-                                <input disabled type='text' name='nim' class='form-control form-control-primary' id='nim' value='<?= $data_user->nim; ?>'>
+                                <input disabled type='text' name='nim' class='form-control form-control-primary <?= $validation->hasError('nim') ? "is-invalid" : ""; ?>' id='nim' value='<?= $data_user->nim; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->nim; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Status</label>
-                                <input disabled type='text' name='status' class='form-control form-control-primary' id='status' value='<?= $data_user->status; ?>'>
+                                <input disabled type='text' name='status' class='form-control form-control-primary <?= $validation->hasError('status') ? "is-invalid" : ""; ?>' id='status' value='<?= $data_user->status; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->status; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Pembiayaan</label>
-                                <input disabled type='text' name='pembiayaan' class='form-control form-control-primary' id='pembiayaan' value='<?= $data_user->pembiayaan; ?>'>
+                                <input disabled type='text' name='pembiayaan' class='form-control form-control-primary <?= $validation->hasError('pembiayaan') ? "is-invalid" : ""; ?>' id='pembiayaan' value='<?= $data_user->pembiayaan; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->pembiayaan; ?>">
                             </div>
                             <div class="form-group has-primary">
@@ -119,17 +119,17 @@
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. STR</label>
-                                <input disabled type='text' name='no_str' class='form-control form-control-primary' id='no_str' value='<?= $data_user->no_str; ?>'>
+                                <input disabled type='text' name='no_str' class='form-control form-control-primary <?= $validation->hasError('no_str') ? "is-invalid" : ""; ?>' id='no_str' value='<?= $data_user->no_str; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_str; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. BPJS</label>
-                                <input disabled type='text' name='no_bpjs' class='form-control form-control-primary' id='no_bpjs' value='<?= $data_user->no_bpjs; ?>'>
+                                <input disabled type='text' name='no_bpjs' class='form-control form-control-primary <?= $validation->hasError('no_bpjs') ? "is-invalid" : ""; ?>' id='no_bpjs' value='<?= $data_user->no_bpjs; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_str; ?>">
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. Rekening</label>
-                                <input disabled type='text' name='no_rekening' class='form-control form-control-primary' id='no_rekening' value='<?= $data_user->no_rekening; ?>'>
+                                <input disabled type='text' name='no_rekening' class='form-control form-control-primary <?= $validation->hasError('no_rekening') ? "is-invalid" : ""; ?>' id='no_rekening' value='<?= $data_user->no_rekening; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_rekening; ?>">
                             </div>
                             <div class="form-group has-primary">
