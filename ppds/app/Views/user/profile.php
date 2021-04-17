@@ -49,7 +49,7 @@
                         <div class="col-7">
                             <input type="hidden" name="id_ppds" value="<?= $data_user->id_ppds; ?>">
 
-                            <?php $validation->getErrors(); ?>
+                            <?php echo $validation->getErrors(); ?>
 
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Email</label>
