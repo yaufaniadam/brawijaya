@@ -49,6 +49,8 @@
                         <div class="col-7">
                             <input type="hidden" name="id_ppds" value="<?= $data_user->id_ppds; ?>">
 
+                            <?php print_r($validation->getErrors()); ?>
+
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Email</label>
                                 <input disabled type='email' name='email' class='form-control form-control-primary' id='email' value='<?= $data_user->email; ?>'>
@@ -129,7 +131,7 @@
                             </div>
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">No. Rekening</label>
-                                <input disabled type='text' name='no_rekening' class='form-control form-control-primary is-invalid <?= $validation->hasError('no_rekening') ? "is-invalid" : ""; ?>' id='no_rekening' value='<?= $data_user->no_rekening; ?>'>
+                                <input disabled type='text' name='no_rekening' class='form-control form-control-primary <?= $validation->hasError('no_rekening') ? "is-invalid" : ""; ?>' id='no_rekening' value='<?= $data_user->no_rekening; ?>'>
                                 <input type="hidden" name="old_nama" value="<?= $data_user->no_rekening; ?>">
                             </div>
                             <div class="form-group has-primary">
