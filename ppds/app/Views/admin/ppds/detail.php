@@ -157,7 +157,7 @@
                                                     </div>
                                                     <div id="ChildCollapse<?= $stase['id_stase'] ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                         <?php if ($stase['tanggal_selesai'] != null && $stase['keterangan'] != null) { ?>
-                                                            <?= $stase['keterangan'] != null; ?>
+                                                            <?= $stase['keterangan'] ?>
                                                         <?php } ?>
                                                         <div class="card-body" style="border : solid #EFF1F2; border-top: none; border-bottom-left-radius: 5px; border-bottom-right-radius:5px;">
                                                             <h6>Ilmiah</h6>
