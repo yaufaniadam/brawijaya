@@ -197,7 +197,7 @@
                                                                     <?php } ?>
                                                                 </tbody>
                                                             </table>
-                                                            <?php if ($stase['tanggal_selesai'] != null && $stase['keterangan'] != null) { ?>
+                                                            <?php if ($stase['tanggal_selesai'] != 0 && $stase['keterangan'] != null) { ?>
                                                                 <p><?= $stase['keterangan'] ?></p>
                                                             <?php } else { ?>
                                                                 <p>Lulus</p>
