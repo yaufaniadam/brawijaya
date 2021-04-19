@@ -233,7 +233,7 @@
                         </p>
                         <br>
                         <div class="row text-center">
-                            <div class="col-12" id="keterangan">
+                            <div class="col-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="pilih_keterangan" id="exampleRadios1" value="lulus">
                                     <label class="form-check-label" for="exampleRadios1">
@@ -247,7 +247,8 @@
                                     </label>
                                 </div>
                                 <div class='form-group' style="display:none" id="keterangan_field">
-                                    <textarea class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>
+                                    <textarea name="keterangan" class='form-control' id='exampleFormControlTextarea1' rows='3'>
+                                    </textarea>
                                 </div>
                             </div>
                         </div>
@@ -281,5 +282,9 @@
             $("#keterangan_field").hide();
         }
     });
+
+    if ($("#keterangan_field").show() == true) {
+        $("#keterangan").prop('required', true);
+    }
 </script>
 <?= $this->endSection(); ?>
