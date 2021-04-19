@@ -210,6 +210,7 @@ class UserModel extends Model
         } else {
             return $this->db->query(
                 "SELECT 
+                stase_ppds.keterangan,
                 ci_users.nama_lengkap,
                 ci_users.id AS id_ppds,
                 stase_ppds.id_stase,
