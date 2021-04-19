@@ -232,8 +232,8 @@
                             Aksi ini tidak dapat dibatalkan. Pastikan PPDS sudah menyelesaikan semua tugas ilmiah sebelum melanjutkan.
                         </p>
                         <br>
-                        <div class="col-12 bg-primary">
-                            <div class="row text-center">
+                        <div class="row text-center">
+                            <div class="col-12 bg-primary">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
                                     <label class="form-check-label" for="exampleRadios1">
