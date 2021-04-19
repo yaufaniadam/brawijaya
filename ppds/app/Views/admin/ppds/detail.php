@@ -246,7 +246,7 @@
                                         Dengan Keterangan
                                     </label>
                                 </div>
-                                <div class='form-group' hidden>
+                                <div class='form-group' hidden id="keterangan_field">
                                     <textarea class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>
                                 </div>
                             </div>
@@ -276,7 +276,7 @@
 
     $('input[type=radio][name=pilih_keterangan]').change(function() {
         if ($(this).val() == 'dengan_keterangan') {
-            $("#keterangan").append(html);
+            $("#keterangan_field").show();
         }
     });
 </script>
