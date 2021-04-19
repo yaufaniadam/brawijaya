@@ -198,7 +198,14 @@
                                                                 </tbody>
                                                             </table>
                                                             <?php if ($stase['tanggal_selesai'] != 0 && $stase['keterangan'] != null) { ?>
-                                                                <p><?= $stase['keterangan'] ?></p>
+                                                                <div class="card">
+                                                                    <div class="card-header">
+                                                                        Selesai dengan catatan :
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <p class="card-text"><?= $stase['keterangan'] ?></p>
+                                                                    </div>
+                                                                </div>
                                                             <?php } ?>
                                                         </div>
                                                     </div>
