@@ -247,7 +247,7 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
                                 </div>
                             </div>
                         </div>
