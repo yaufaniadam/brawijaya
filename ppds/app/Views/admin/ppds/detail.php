@@ -246,9 +246,6 @@
                                         Dengan Keterangan
                                     </label>
                                 </div>
-                                <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                </div>
                             </div>
                         </div>
                         <br>
@@ -280,7 +277,7 @@
         html += "<textarea class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>";
         html += "</div>";
         if (this.value() == dengan_keterangan) {
-            $("#keterangan").append("Some appended text.");
+            $("#keterangan").append(html);
         }
     });
 </script>
