@@ -47,7 +47,7 @@
                             </thead>
                             <tbody>
                                 <?php foreach ($query as $ppds) { ?>
-                                    <tr class="text-left">
+                                    <tr class="text-left <?= ($ppds['keterangan'] ? 'danger' : ''); ?>">
                                         <td>
                                             <?= $ppds['nama_lengkap']; ?>
                                         </td>
