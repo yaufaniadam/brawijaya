@@ -278,10 +278,11 @@
         if ($(this).val() == 'dengan_keterangan') {
             $("#keterangan_field").show();
             $("#keterangan").prop('required', true);
-            $("#confirm").prop('disabled', false)
+            $("#confirm").prop('disabled', false);
         } else {
             $("#keterangan_field").hide();
             $("#keterangan").prop('required', false);
+            $("#confirm").prop('disabled', false);
         }
     });
 </script>

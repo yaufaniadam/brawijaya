@@ -302,12 +302,13 @@ class UserModel extends Model
         return $query;
     }
 
-    public function staseSelesai($id_ppds)
+    public function staseSelesai($id_ppds, $keterangan)
     {
         $id_stase_ppds = $this->db->query("SELECT MAX(id) AS id FROM stase_ppds WHERE id_user = $id_ppds")->getRowObject()->id;
         date_default_timezone_set("Asia/Jakarta");
         $data = [
             'tanggal_selesai' => date('Y:m:d'),
+            'keterangan' => $keterangan
         ];
 
         $query = $this->db->table('stase_ppds')->update($data, array('id' => $id_stase_ppds, 'id_user' => $id_ppds));

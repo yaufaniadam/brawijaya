@@ -393,8 +393,10 @@ class Users extends BaseController
 
         // dd($this->request->getVar());
 
+        $keterangan = $this->request->getVar('keterangan');
+
         if ($this->request->getVar('type') == 'stase') {
-            if ($this->user_model->staseSelesai($id_ppds)) {
+            if ($this->user_model->staseSelesai($id_ppds, $keterangan)) {
                 date_default_timezone_set('Asia/Jakarta');
                 $dataForStase = [
                     'id_user' => $id_ppds,
