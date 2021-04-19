@@ -254,7 +254,7 @@
                         <br>
                         <div class="text-center">
                             <button type="button" class="btn btn-flat btn-outline-secondary mb-3" data-dismiss="modal">Batal</button>
-                            <input disabled type="submit" class="btn btn-flat btn-outline-danger mb-3" value="Ya">
+                            <input disabled type="submit" id="confirm" class="btn btn-flat btn-outline-danger mb-3" value="Ya">
                         </div>
                     </div>
                 </form>
@@ -278,6 +278,7 @@
         if ($(this).val() == 'dengan_keterangan') {
             $("#keterangan_field").show();
             $("#keterangan").prop('required', true);
+            $("#confirm").prop('disabled', false)
         } else {
             $("#keterangan_field").hide();
             $("#keterangan").prop('required', false);
