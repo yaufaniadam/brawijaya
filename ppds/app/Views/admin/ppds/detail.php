@@ -282,8 +282,8 @@
         }
     });
 
-    if ($("#keterangan_field").show() == true) {
-        $("#keterangan").prop('required', true);
-    }
+    // if ($("#keterangan_field").show() == true) {
+    //     $("#keterangan").prop('required', true);
+    // }
 </script>
 <?= $this->endSection(); ?>
