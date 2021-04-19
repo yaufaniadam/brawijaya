@@ -193,6 +193,7 @@ class UserModel extends Model
         if ($tahap != 0) {
             return $this->db->query(
                 "SELECT 
+            stase_ppds.keterangan,
             ci_users.nama_lengkap,
             ci_users.id AS id_ppds,
             stase_ppds.id_stase,
