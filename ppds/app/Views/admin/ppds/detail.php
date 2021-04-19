@@ -277,6 +277,7 @@
     $('input[type=radio][name=pilih_keterangan]').change(function() {
         if ($(this).val() == 'dengan_keterangan') {
             $("#keterangan_field").show();
+            console.log($("#keterangan_field").show());
         } else {
             $("#keterangan_field").hide();
         }
