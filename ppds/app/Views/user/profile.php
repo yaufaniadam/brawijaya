@@ -49,9 +49,6 @@
                         <div class="col-7">
                             <input type="hidden" name="id_ppds" value="<?= $data_user->id_ppds; ?>">
 
-                            <?php print_r($validation->getErrors()); ?>
-                            <?= $validation->getError('alamat_asal'); ?>
-
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Email</label>
                                 <input disabled type='email' name='email' class='form-control form-control-primary' id='email' value='<?= $data_user->email; ?>'>
