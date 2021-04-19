@@ -292,7 +292,7 @@ class Users extends BaseController
             'query' => $this->user_model->getPpdsByTahap($id_tahap),
         ];
 
-        dd($data);
+        // dd($data);
 
         // dd($this->user_model->getPpdsByTahap($id_tahap));
         return view('admin/ppds/index', $data);
