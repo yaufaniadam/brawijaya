@@ -233,21 +233,21 @@
                         </p>
                         <br>
                         <div class="row text-center">
-                            <div class="col-12">
+                            <div class="col-12" id="keterangan">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                    <input class="form-check-input" type="radio" name="pilih_keterangan" id="exampleRadios1" value="lulus">
                                     <label class="form-check-label" for="exampleRadios1">
                                         Lulus
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                    <input class="form-check-input" type="radio" name="pilih_keterangan" id="exampleRadios2" value="dengan_keterangan">
                                     <label class="form-check-label" for="exampleRadios2">
                                         Dengan Keterangan
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -272,6 +272,16 @@
     $(".tipe_btn").click(function() {
         getIdButton = this.id;
         $("#type_btn").val(getIdButton);
+    });
+
+    $('input[type=radio][name=pilih_keterangan]').change(function() {
+        var html;
+        html += "<div class='form-group'>";
+        html += "<textarea class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>";
+        html += "</div>";
+        if (this.value() == dengan_keterangan) {
+            $("#keterangan").append("Some appended text.");
+        }
     });
 </script>
 <?= $this->endSection(); ?>
