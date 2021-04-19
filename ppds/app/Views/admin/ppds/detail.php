@@ -272,7 +272,7 @@
     });
 
     $('input[type=radio][name=pilih_keterangan]').change(function() {
-        if ($(this).val() == dengan_keterangan) {
+        if ($(this).val() == 'dengan_keterangan') {
             var html;
             html += "<div class='form-group'>";
             html += "<textarea class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>";
