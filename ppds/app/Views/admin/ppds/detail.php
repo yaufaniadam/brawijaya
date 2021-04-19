@@ -233,20 +233,22 @@
                         </p>
                         <br>
                         <div class="row text-center">
-                            <!-- <div class="col-12 bg-primary"> -->
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
-                                <label class="form-check-label" for="exampleRadios1">
-                                    Lulus
-                                </label>
+                            <div class="col-12 bg-primary">
+                                <div class="row">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Lulus
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Dengan Keterangan
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                                <label class="form-check-label" for="exampleRadios2">
-                                    Dengan Keterangan
-                                </label>
-                            </div>
-                            <!-- </div> -->
                         </div>
                         <br>
                         <div class="text-center">
