@@ -246,7 +246,7 @@
                                         Dengan Keterangan
                                     </label>
                                 </div>
-                                <div class='form-group' style="display:none" id="keterangan_field">
+                                <div class='form-group' style="display:[none|block]" id="keterangan_field">
                                     <textarea name="keterangan" class='form-control' id='exampleFormControlTextarea1' rows='3'></textarea>
                                 </div>
                             </div>
