@@ -29,6 +29,7 @@
 
                 <div class="col-12">
                     <div class="data-tables datatable-dark">
+                        * table dengan warna merah adalah ppds yang selesai dengan catatan
                         <table id="dataTable3" class="text-center">
                             <thead class="text-capitalize">
                                 <tr class="text-left">
