@@ -280,6 +280,7 @@
             $("#keterangan").prop('required', true);
         } else {
             $("#keterangan_field").hide();
+            $("#keterangan").prop('required', false);
         }
     });
 
