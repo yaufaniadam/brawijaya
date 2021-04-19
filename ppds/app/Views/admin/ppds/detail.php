@@ -199,7 +199,7 @@
                                                             </table>
                                                             <?php if ($stase['tanggal_selesai'] != 0 && $stase['keterangan'] != null) { ?>
                                                                 <div class="card">
-                                                                    <div class="card-header">
+                                                                    <div class="card-header bg-danger">
                                                                         Selesai dengan catatan :
                                                                     </div>
                                                                     <div class="card-body">
