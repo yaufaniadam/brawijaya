@@ -199,8 +199,6 @@
                                                             </table>
                                                             <?php if ($stase['tanggal_selesai'] != 0 && $stase['keterangan'] != null) { ?>
                                                                 <p><?= $stase['keterangan'] ?></p>
-                                                            <?php } else { ?>
-                                                                <p>Lulus</p>
                                                             <?php } ?>
                                                         </div>
                                                     </div>
