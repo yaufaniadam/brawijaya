@@ -28,7 +28,7 @@
                 <?php } ?>
 
                 <div class="col-12">
-                    * table dengan warna merah adalah ppds yang selesai dengan catatan
+                    <p class="mb-1">* table dengan warna merah adalah ppds yang selesai dengan catatan</p>
                     <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center">
                             <thead class="text-capitalize">
