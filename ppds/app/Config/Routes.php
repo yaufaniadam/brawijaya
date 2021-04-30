@@ -83,7 +83,10 @@ $routes->group('admin', function ($routes) {
 	$routes->post('ppds/selectstaseppds', 'Admin\Users::postPpdsStase');
 	$routes->post('ppds/staseselesai', 'Admin\Users::staseSelesai');
 	$routes->get('ppds/tahap/(:num)', 'Admin\Users::ppds/$1');
+	$routes->get('ppds/staseberjalan', 'Admin\Users::staseBerjalan');
 	$routes->get('ppds/(:num)', 'Admin\Users::detailppds/$1');
+	$routes->get('stase', 'Admin\Stase::index');
+	$routes->get('stase/(:num)', 'Admin\Stase::detail/$1');
 	// $routes->addRedirect('stase', '/');
 	$routes->addRedirect('ppds/', 'admin/users');
 	$routes->delete('users/(:num)', 'Admin\Users::delete/$1');

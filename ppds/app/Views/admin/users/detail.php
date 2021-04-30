@@ -86,15 +86,6 @@
 
 <?= $this->section('js'); ?>
 <script>
-    // window.onload = function() {
-    //     if (window.jQuery) {
-    //         // jQuery is loaded  
-    //         alert("Yeah!");
-    //     } else {
-    //         // jQuery is not loaded
-    //         alert("Doesn't Work");
-    //     }
-    // }
 
     $('#edit_btn').click(function() {
         $('#email_static').replaceWith("<input type='email' name='email' class='form-control form-control-primary' id='email' value='<?= $data_user->email; ?>'>")

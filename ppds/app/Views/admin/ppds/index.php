@@ -4,6 +4,7 @@
 
 <div class="main-content-inner">
     <div class="col-lg-12 mt-5">
+      
         <div class="card">
             <div class="card-body">
                 <?php if (session('success')) { ?>
@@ -27,56 +28,54 @@
                     </div>
                 <?php } ?>
 
-                <div class="col-12">
-                    <p class="mb-1">* table dengan warna merah adalah ppds yang selesai dengan catatan</p>
-                    <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center">
-                            <thead class="text-capitalize">
-                                <tr class="text-left">
-                                    <th style="width: 20%;">Nama Lengkap</th>
-                                    <!-- <th style="width: 10%;">Tahap</th> -->
-                                    <?php if ($page_header == 'Daftar Semua PPDS') { ?>
-                                        <th style="width: 3%;">Tahap</th>
-                                    <?php } ?>
-                                    <th style="width: 7%;">Stase</th>
-                                    <th style="width: 15%;">Tanggal Mulai</th>
-                                    <?php if ($title == "Arsip PPDS") { ?>
-                                        <th style="width: 15%;">Tanggal Selesai</th>
-                                    <?php } ?>
-                                    <th style="width: 10%;"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($query as $ppds) { ?>
-                                    <tr class="text-left <?= ($ppds['keterangan'] ? 'table-danger' : ''); ?>">
-                                        <td>
-                                            <?= $ppds['nama_lengkap']; ?>
-                                        </td>
-                                        <?php if ($page_header == 'Daftar Semua PPDS') { ?>
-                                            <td>
-                                                <?= $ppds['id_tahap']; ?>
-                                            </td>
-                                        <?php } ?>
-                                        <td>
-                                            <?= $ppds['stase']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $ppds['tanggal_mulai']; ?>
-                                        </td>
-                                        <?php if ($title == "Arsip PPDS") { ?>
-                                            <td>
-                                                <?= $ppds['tanggal_selesai']; ?>
-                                            </td>
-                                        <?php } ?>
-                                        <td class="text-center">
-                                            <a href="<?= base_url((session('role') == 1 ? "admin" : "supervisor") . "/ppds/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
-                                        </td>
-                                    </tr>
+                <div class="data-tables datatable-dark">
+                    <table id="dataTable-arsip" class="text-center">
+                        <thead class="text-capitalize">
+                            <tr class="text-left">
+                                <th style="width: 20%;">Nama Lengkap</th>
+                                <!-- <th style="width: 10%;">Tahap</th> -->
+                                <?php if ($page_header == 'Daftar Semua PPDS') { ?>
+                                    <th style="width: 3%;">Tahap</th>
                                 <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                <th style="width: 7%;">Stase</th>
+                                <th style="width: 15%;">Tanggal Mulai</th>
+                                <?php if ($title == "Arsip PPDS") { ?>
+                                    <th style="width: 15%;">Tanggal Selesai</th>
+                                <?php } ?>
+                                <th style="width: 10%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($query as $ppds) { ?>
+                                <tr class="text-left <?= ($ppds['keterangan'] ? 'table-danger' : ''); ?>">
+                                    <td>
+                                        <?= $ppds['nama_lengkap']; ?>
+                                    </td>
+                                    <?php if ($page_header == 'Daftar Semua PPDS') { ?>
+                                        <td>
+                                            <?= $ppds['id_tahap']; ?>
+                                        </td>
+                                    <?php } ?>
+                                    <td>
+                                        <?= $ppds['stase']; ?>
+                                    </td>
+                                    <td>
+                                        <?= $ppds['tanggal_mulai']; ?>
+                                    </td>
+                                    <?php if ($title == "Arsip PPDS") { ?>
+                                        <td>
+                                            <?= $ppds['tanggal_selesai']; ?>
+                                        </td>
+                                    <?php } ?>
+                                    <td class="text-center">
+                                        <a href="<?= base_url((session('role') == 1 ? "admin" : "supervisor") . "/ppds/" . $ppds['id_ppds']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </div>
     </div>
@@ -120,12 +119,31 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
+
+<!-- button untuk export data ke excel -->
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <?= $this->endSection(); ?>
 
 <?= $this->section('js'); ?>
 <script>
-    //trigger menu
-    $('#ppds').addClass('active');
+    $('#<?= $menu_id; ?>').addClass('active');
+
+    var table = $('#dataTable-arsip').DataTable({
+        "dom": 'Bfrtip',
+                "buttons":  [                      
+                        'excel',
+                        'print'
+                    ]
+               
+        }
+
+    );
+
+    
 
     $(".pilih-stase").click(function(button) {
         var id_ppds = $(this).attr("id");
@@ -152,11 +170,16 @@
     });
 </script>
 
+
 <?= $this->endSection(); ?>
+
 
 <?= $this->section('data_css'); ?>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+
 <?= $this->endSection(); ?>

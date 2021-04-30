@@ -92,7 +92,9 @@
 
 <?= $this->section('js'); ?>
 <script>
-    $('#dashboard').addClass('active');
+    $('#menu_users').addClass('active');
+    $('#menu_users ul.collapse').addClass('in');
+    $('#menu_users ul.collapse .daftar_users').addClass('active');
 </script>
 <?= $this->endSection(); ?>
 

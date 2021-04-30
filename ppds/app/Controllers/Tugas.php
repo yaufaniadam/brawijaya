@@ -75,7 +75,7 @@ class Tugas extends BaseController
                 'query' => $this->tugas_model->getMyIlmiah(),
                 'page_header' => 'Daftar Ilmiah Saya',
                 'stase' => $this->stase_model->getAllStase(),
-                'class' => ''
+                'class' => 'ilmiah-saya'
             ];
         } elseif ($jenis_tugas == 'tugas_besar') {
             $data = [

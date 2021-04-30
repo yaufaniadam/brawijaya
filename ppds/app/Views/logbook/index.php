@@ -25,12 +25,13 @@
                 <?php } ?>
                 <div class="col-12 mt-3">
                     <div class="data-tables datatable-dark">
-                        <table id="dataTable" class="text-center">
+                        <table id="dataTable-export" class="text-center">
                             <thead class="bg-dark">
                                 <tr>
                                     <th style="width: 30%;">Judul</th>
                                     <th style="width: 30%;">Tanggal</th>
                                     <th style="width: 20%;">PPDS</th>
+                                    <th style="width: 20%;">Stase</th>
                                     <th style="width: 20%;"></th>
                                 </tr>
                             </thead>
@@ -40,6 +41,7 @@
                                         <td><?= $logbook['judul']; ?></td>
                                         <td><?= $logbook['waktu']; ?></td>
                                         <td><?= $logbook['nama_lengkap']; ?></td>
+                                        <td><?= $logbook['stase']; ?></td>
                                         <td>
                                             <a href="<?= base_url("logbook/" . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-success btn-xs">
                                                 <span class="ti-info"></span>
@@ -72,6 +74,14 @@
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+
+
+<!-- button untuk export data ke excel -->
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+
 <?= $this->endSection(); ?>
 
 <?= $this->section('js'); ?>
@@ -79,10 +89,19 @@
     //trigger menu
     $('#logbook').addClass('active');
 
-    var table = $('#dataTable3').DataTable();
-    $('#filter-stase').on('change', function() {
-        table.columns(1).search(this.value).draw();
-    });
+    var table = $('#dataTable-export').DataTable({
+        "dom": 'Bfrtip',
+                "buttons":  [                      
+                        'excel',
+                        'print'
+                    ]
+               
+        }
+
+    );
+    // $('#filter-stase').on('change', function() {
+    //     table.columns(1).search(this.value).draw();
+    // });
     $('#logbook').addClass('active');
 </script>
 <?= $this->endSection(); ?>
@@ -92,4 +111,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <?= $this->endSection(); ?>

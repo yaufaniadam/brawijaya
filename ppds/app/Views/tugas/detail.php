@@ -4,7 +4,8 @@
 
 <?= $this->section('content'); ?>
 <div class="main-content-inner">
-    <div class="row m-4">
+    <div class="row mt-5">
+        <?php /*
         <div class="col-sm-4 mt-5">
             <div class="card">
                 <div class="card-body">
@@ -68,115 +69,119 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-8 mt-5">
-            <div class="col">
-                <div>
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="ml-4 mr-3">
-                                <h1><?= $tugas['judul']; ?></h1>
-                                <div class="mt-4">
-                                    <p><?= $tugas['deskripsi']; ?></p>
-                                </div>
-                                <div class="col-sm-12 mt-4">
-                                    <div class="row">
-                                        <a href="<?= base_url('ppds_tugas/' . $tugas['file']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File</a>
-                                        <a href="<?= base_url('ppds_presentasi/' . $tugas['file_presentasi']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File Presentasi</a>
-                                        <?php if (session('role') == 3 || session('role') == 1) { ?>
-                                            <button type="button" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block" data-toggle="modal" data-target="#exampleModalCenter">Masukkan Nilai</button>
-                                        <?php } ?>
-                                    </div>
-                                </div>
+        </div> */ ?>
+        <div class="col-sm-12">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h6><i class="ti-user"></i>&nbsp;<?= $tugas['nama_lengkap']; ?> <i class="ti-flag-alt"></i> <?= $tugas['stase']; ?></h6>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="ml-4 mr-3">
+                        <h4><?= $tugas['judul']; ?></h4>
+                        <div class="mt-4">
+                            <p><?= $tugas['deskripsi']; ?></p>
+                        </div>
+                        <div class="col-sm-12 mt-4">
+                            <div class="row">
+                                <a href="<?= base_url('ppds_tugas/' . $tugas['file']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File</a>
+                                <a href="<?= base_url('ppds_presentasi/' . $tugas['file_presentasi']); ?>" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block">Unduh File Presentasi</a>
+                                <?php if (session('role') == 3 || session('role') == 1) { ?>
+                                    <button type="button" class="btn btn-flat btn-xl btn-outline-dark mb-3 mr-3 btn-block" data-toggle="modal" data-target="#exampleModalCenter">Masukkan Nilai</button>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-    <!-- Modal -->
-    <?php if (session('role') == 3 || session('role') == 1) { ?>
-        <div class="modal fade" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <form action="<?= base_url('tugas/nilai/post'); ?>" method="POST">
-                        <input type="hidden" name="hidden_tugas_id" value="<?= $tugas['id']; ?>">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+</div>
+<!-- Modal -->
+<?php if (session('role') == 3 || session('role') == 1) { ?>
+    <div class="modal fade" id="exampleModalCenter">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="<?= base_url('tugas/nilai/post'); ?>" method="POST">
+                    <input type="hidden" name="hidden_tugas_id" value="<?= $tugas['id']; ?>">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <?php if (checkSpvPosition('id_penguji_1', $tugas['id']) || session('role') == 1) { ?>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Penguji 1</label>
+                                <div class="col-sm-8">
+                                    <input type="number" name="nilai_1" class="form-control" id="" value="<?= $tugas['nilai_1']; ?>">
+                                </div>
+                            </div>
                         </div>
-                        <?php if (checkSpvPosition('id_penguji_1', $tugas['id']) || session('role') == 1) { ?>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Penguji 1</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="nilai_1" class="form-control" id="" value="<?= $tugas['nilai_1']; ?>">
-                                    </div>
+                    <?php } ?>
+                    <input type="hidden" name="hidden_nilai_1" value="<?= $tugas['nilai_1']; ?>">
+
+                    <?php if (checkSpvPosition('id_penguji_2', $tugas['id']) || session('role') == 1) { ?>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Penguji 2</label>
+                                <div class="col-sm-8">
+                                    <input type="number" name="nilai_2" class="form-control" id="" value="<?= $tugas['nilai_2']; ?>">
                                 </div>
                             </div>
-                        <?php } ?>
-                        <input type="hidden" name="hidden_nilai_1" value="<?= $tugas['nilai_1']; ?>">
-
-                        <?php if (checkSpvPosition('id_penguji_2', $tugas['id']) || session('role') == 1) { ?>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Penguji 2</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="nilai_2" class="form-control" id="" value="<?= $tugas['nilai_2']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <input type="hidden" name="hidden_nilai_2" value="<?= $tugas['nilai_2']; ?>">
-
-                        <?php if (checkSpvPosition('id_pembimbing_1', $tugas['id']) || session('role') == 1) { ?>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Pembimbing 1</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="nilai_3" class="form-control" id="" value="<?= $tugas['nilai_3']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <input type="hidden" name="hidden_nilai_3" value="<?= $tugas['nilai_3']; ?>">
-
-                        <?php if (checkSpvPosition('id_pembimbing_2', $tugas['id']) || session('role') == 1) { ?>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                    <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Pembimbing 2</label>
-                                    <div class="col-sm-8">
-                                        <input type="number" name="nilai_4" class="form-control" id="" value="<?= $tugas['nilai_4']; ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <input type="hidden" name="hidden_nilai_4" value="<?= $tugas['nilai_4']; ?>">
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-flat btn-outline-secondary mb-3" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-flat btn-outline-primary mb-3" value="Masukkan Nilai">
                         </div>
-                    </form>
-                </div>
+                    <?php } ?>
+                    <input type="hidden" name="hidden_nilai_2" value="<?= $tugas['nilai_2']; ?>">
+
+                    <?php if (checkSpvPosition('id_pembimbing_1', $tugas['id']) || session('role') == 1) { ?>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Pembimbing 1</label>
+                                <div class="col-sm-8">
+                                    <input type="number" name="nilai_3" class="form-control" id="" value="<?= $tugas['nilai_3']; ?>">
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <input type="hidden" name="hidden_nilai_3" value="<?= $tugas['nilai_3']; ?>">
+
+                    <?php if (checkSpvPosition('id_pembimbing_2', $tugas['id']) || session('role') == 1) { ?>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nilai Pembimbing 2</label>
+                                <div class="col-sm-8">
+                                    <input type="number" name="nilai_4" class="form-control" id="" value="<?= $tugas['nilai_4']; ?>">
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                    <input type="hidden" name="hidden_nilai_4" value="<?= $tugas['nilai_4']; ?>">
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-flat btn-outline-secondary mb-3" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-flat btn-outline-primary mb-3" value="Masukkan Nilai">
+                    </div>
+                </form>
             </div>
         </div>
-    <?php } ?>
-    <!-- Modal -->
-    <?= $this->endSection(); ?>
+    </div>
+<?php } ?>
+<!-- Modal -->
+<?= $this->endSection(); ?>
 
-    <?= $this->section('data_table'); ?>
-    <!-- Start datatable js -->
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
-    <?= $this->endSection(); ?>
+<?= $this->section('data_table'); ?>
+<!-- Start datatable js -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<?= $this->endSection(); ?>
 
-    <?= $this->section('js'); ?>
-    <script>
-        $('#tugas ul.collapse').addClass('in');
-        $('#tugas ul.collapse li.<?= $class; ?>').addClass('active');
-    </script>
-    <?= $this->endSection(); ?>
+<?= $this->section('js'); ?>
+<script>
+    $('#tugas').addClass('active');
+    $('#tugas ul.collapse').addClass('in');
+    $('#tugas ul.collapse li.<?= $class; ?>').addClass('active');
+</script>
+<?= $this->endSection(); ?>

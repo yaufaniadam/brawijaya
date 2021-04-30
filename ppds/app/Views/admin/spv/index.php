@@ -26,7 +26,7 @@
                     </div>
                 <?php } ?>
 
-                <div class="col-12">
+                
                     <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center">
                             <thead class="text-capitalize">
@@ -55,7 +55,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -103,7 +103,11 @@
 
 <?= $this->section('js'); ?>
 <script>
-    $('#dashboard').addClass('active');
+
+    $('#<?= $menu_id; ?>').addClass('active');
+
+    $('#<?= $menu_id; ?> ul.collapse').addClass('in');
+    $('#<?= $menu_id; ?> ul.collapse li.<?= $menu_class; ?>').addClass('active');
 
     $(".pilih-stase").click(function(button) {
         var id_ppds = $(this).attr("id");

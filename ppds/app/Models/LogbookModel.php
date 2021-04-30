@@ -11,6 +11,7 @@ class LogbookModel extends Model
         'judul',
         'keterangan',
         'id_ppds',
+        'id_stase',
         'waktu',
         'pasien',
         'jenis_kelamin',
@@ -25,17 +26,13 @@ class LogbookModel extends Model
 
         $builder->select('*,ci_users.nama_lengkap,log_book.id AS id_logbook');
         $builder->join('ci_users', 'ci_users.id = log_book.id_ppds', 'LEFT');
+        $builder->join('stase', 'stase.id = log_book.id_stase', 'LEFT');
         if (session('role') != 1) {
             $builder->where(['log_book.id_ppds' => session('user_id')]);
         }
         $result = $builder->get();
         return $result->getResultArray();
 
-        // return $db->query(
-        //     "SELECT *,ci_users.nama_lengkap,log_book.id AS id_logbook FROM log_book
-        //     LEFT JOIN ci_users ON ci_users.id = log_book.id_ppds
-        //     "
-        // )->getResultArray();
     }
 
     public function detail($id_logbook)

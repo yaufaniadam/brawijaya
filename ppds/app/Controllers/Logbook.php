@@ -3,14 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\LogbookModel;
+use App\Models\StaseModel;
 
 class Logbook extends BaseController
 {
     protected $logbook_model;
+    protected $stase_model;
 
     public function __construct()
     {
         $this->logbook_model = new LogbookModel();
+        $this->stase_model = new StaseModel();
     }
 
     public function index()
@@ -30,6 +33,7 @@ class Logbook extends BaseController
             'title' => 'Logbook',
             'page_header' => 'Logbook PPDS',
             'validation' => \Config\Services::validation(),
+            'stase' => $this->stase_model->getAllStase()
         ];
 
         return view('logbook/tambah', $data);
@@ -54,6 +58,12 @@ class Logbook extends BaseController
                 'rules' => ['required'],
                 'errors' => [
                     'required' => 'waktu wajib diisi',
+                ]
+            ],
+            'stase' => [
+                'rules' => ['required'],
+                'errors' => [
+                    'required' => 'stase wajib diisi',
                 ]
             ],
             'pasien' => [
@@ -90,6 +100,7 @@ class Logbook extends BaseController
             'keterangan' => $this->request->getVar('keterangan'),
             'id_ppds' => session('user_id'),
             'waktu' => $this->request->getVar('waktu'),
+            'id_stase' => $this->request->getVar('stase'),
             // 'id_spv' => $this->request->getVar('id_spv'),
             'pasien' => $this->request->getVar('pasien'),
             'usia' => $this->request->getVar('usia'),

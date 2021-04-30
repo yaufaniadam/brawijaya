@@ -26,6 +26,15 @@ class StaseModel extends Model
         return $this->builder->getWhere(['id !=' => '25'])->getResultArray();
     }
 
+    public function getStaseByTahap($tahap)
+    {
+        return $this->builder->getWhere(['id_tahap' => $tahap])->getResultArray();
+    }
+    public function getStaseById($id)
+    {
+        return $this->builder->getWhere(['id' => $id])->getResultArray();
+    }
+
     public function getNotPpdsStase($id_ppds)
     {
         $tahap_ppds = $this->db->query("SELECT id_tahap FROM tahap_ppds WHERE id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = $id_ppds)")->getRowObject()->id_tahap;

@@ -148,6 +148,9 @@
 
 <?= $this->section('js'); ?>
 <script>
+    $('#menu_users').addClass('active');
+    $('#menu_users ul.collapse').addClass('in');
+
     $('.edit').click(function() {
         $(this).hide();
         $('.save, .cancel').show();

@@ -1,3 +1,4 @@
+<?php helper('data') ?>
 <?= $this->extend('layouts/main'); ?>
 
 <?= $this->section('content'); ?>
@@ -23,8 +24,10 @@
                     </b>
                 <?php } elseif (session('role') == 3 || session('role') == 1) { ?>
                     <b>
-                        <h5>Selamat datang Admin</h5>
+                        <h5>Selamat datang <?php echo user_nama_lengkap(); ?></h5>
                     </b>
+
+                   
                 <?php } ?>
             </div>
         </div>

@@ -22,12 +22,13 @@
                             <span>Ilmiah</span>
                         </a>
                         <ul class="collapse">
-                            <li id="tugas_divisi">
-                                <a href="<?= base_url('/tugas/jenis/ilmiah'); ?>">Semua Ilmiah</a>
-                            </li>
-                            <li>
+                            <li class="ilmiah-saya">
                                 <a href="<?= base_url('/tugas/saya/ilmiah'); ?>">Ilmiah Saya</a>
                             </li>
+                            <li class="semua-ilmiah">
+                                <a href="<?= base_url('/tugas/jenis/ilmiah'); ?>">Semua Ilmiah</a>
+                            </li>
+                           
                         </ul>
                     </li>
 

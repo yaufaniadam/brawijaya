@@ -14,15 +14,15 @@
                         </a>
                     </li>
 
-                    <li id="pdps">
+                    <li id="menu_ppds">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
                             <span>PPDS</span>
                         </a>
                         <ul class="collapse">
-                            <li>
+                            <li class="bimbingan_saya">
                                 <a href="<?= base_url('supervisor/ppds_saya/'); ?>" aria-expanded="true">Bimbingan Saya</a>
                             </li>
-                            <li>
+                            <li class="stase_saya">
                                 <a href="<?= base_url('supervisor/ppds_saya/stase'); ?>" aria-expanded="true">Stase Saya</a>
                             </li>
                         </ul>
@@ -33,7 +33,7 @@
                             <span>Tugas</span>
                         </a>
                         <ul class="collapse">
-                            <li>
+                            <li class="">
                                 <a href="<?= base_url('tugas/bimbingansaya/ilmiah'); ?>" aria-expanded="true">Ilmiah</a>
                             </li>
                             <li>

@@ -104,12 +104,9 @@
 
 <?= $this->section('js'); ?>
 <script>
-    $('#dashboard').addClass('active');
-
-    // function onclik() {
-    //     var asd = $(this).attr("id")
-    //     console.log(asd);
-    // }
+    $('#menu_users').addClass('active');
+    $('#menu_users ul.collapse').addClass('in');
+    $('#menu_users ul.collapse .lobby_ppds').addClass('active');
 
     $(".pilih-stase").click(function() {
         var id_ppds = $(this).attr("id");

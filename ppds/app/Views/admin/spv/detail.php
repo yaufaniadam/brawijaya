@@ -4,8 +4,8 @@
 
 <?= $this->section('content'); ?>
 <div class="main-content-inner">
-    <div class="row m-4">
-        <div class="col-4 mt-5">
+    <div class="row">
+        <!-- <div class="col-4 mt-5">
             <div class="card">
                 <div class="card-body">
                     <div class="col">
@@ -23,10 +23,19 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-8 mt-5">
+        </div> -->
+        <div class="col-12 mt-5">
             <div class="col">
-                <div>
+               
+                <div class="card mb-4">
+                    <div class="card-body pb-4">
+                        <div class="row mr-1 mb-0">
+                            <div class="col-md-7">
+                                <h4 class="mt-2"><i class="ti-user"></i>&nbsp;<?= $spv->nama_lengkap; ?> </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                     <div class="card">
                         <div class="card-body">
                             <div class="">
@@ -110,7 +119,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+               
             </div>
         </div>
     </div>

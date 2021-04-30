@@ -245,6 +245,37 @@ class UserModel extends Model
         // tahap_ppds.id = (SELECT MAX(id) FROM tahap_ppds WHERE id_user = ci_users.id) AND
     }
 
+    public function get_ppds_pertahap($tahap) {
+
+        if(isset($_SESSION['stase'])) {
+            if($_SESSION['stase'] == 0) {
+                $stase = '';
+            } else {
+                $stase = "AND stase.id = " . $_SESSION['stase'];
+            }
+         } else  {
+            $stase = '';
+        }        
+
+        return $this->db->query(
+            "SELECT 
+        stase_ppds.keterangan,
+        ci_users.nama_lengkap,
+        ci_users.id AS id_ppds,
+        stase_ppds.id_stase,
+        stase.stase,
+        stase_ppds.tanggal_mulai,
+        stase_ppds.tanggal_selesai 
+        FROM ci_users
+        LEFT JOIN stase_ppds ON stase_ppds.id_user = ci_users.id
+        LEFT JOIN stase ON stase.id = stase_ppds.id_stase
+        WHERE ci_users.aktif = 1
+        AND stase.id != 25
+        $stase
+        AND stase.id_tahap = $tahap"
+        )->getResultArray();
+    }
+
     public function getAllSupervisor()
     {
         // $query = $this->builder->getWhere(['id' => 2])->getRowObject();

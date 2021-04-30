@@ -24,7 +24,7 @@ class Home extends BaseController
 		$sidangku = $this->tugas_model->incomingSidang();
 		if (session('role') == 4) {
 			$data = [
-				'title' => 'Dashboard',
+				'title' => 'Dashboard PPDS',
 				'page_header' => 'Dashboard',
 				'user_data' => $this->user_model->getCurrentUserData(),
 				'my_ilmiah' => $this->tugas_model->countMyIlmiah(),
@@ -34,7 +34,7 @@ class Home extends BaseController
 			];
 		} elseif (session('role') == 1) {
 			$data = [
-				'title' => 'Dashboard',
+				'title' => 'Dashboard Admin',
 				'page_header' => 'Dashboard',
 				'number_of_ppds' => $this->user_model->countUserByRole(4),
 				'number_of_spv' => $this->user_model->countUserByRole(3),
@@ -42,7 +42,7 @@ class Home extends BaseController
 			];
 		} elseif (session('role') == 3) {
 			$data = [
-				'title' => 'Dashboard',
+				'title' => 'Dashboard Supervisor',
 				'page_header' => 'Dashboard',
 				'ppds_saya' => $this->user_model->jumlahPpdsBimbinganSaya(session('user_id')),
 				'ppds_stase_saya' => $this->user_model->jumlahPpdsStatseSaya(session('stase_spv')),

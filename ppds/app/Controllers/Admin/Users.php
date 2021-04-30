@@ -263,6 +263,8 @@ class Users extends BaseController
     public function ppdsPerStase()
     {
         $data = [
+            'menu_id' => 'menu_ppds',
+            'menu_class' => 'stase_saya',
             'title' => 'PPDS Stase Saya',
             'page_header' => 'PPDS Stase Saya',
             'query' => $this->user_model->getPpdsByStase(),
@@ -274,6 +276,8 @@ class Users extends BaseController
     public function ppdsPerSpv()
     {
         $data = [
+            'menu_id' => 'menu_ppds',
+            'menu_class' => 'bimbingan_saya',
             'title' => 'PPDS Bimbingan Saya',
             'page_header' => 'PPDS Bimbingan Saya',
             'query' => $this->user_model->getPpdsBySpv(),
@@ -284,12 +288,14 @@ class Users extends BaseController
         // dd($data);
     }
 
-    public function ppds($id_tahap = 0)
+    public function staseBerjalan()
     {
+      
         $data = [
-            'title' => ($id_tahap != 0 ? 'Arsip PPDS' : 'PPDS'),
-            'page_header' => ($id_tahap != 0 ? 'Arsip PPDS Tahap ' . $id_tahap : 'Daftar Semua PPDS'),
-            'query' => $this->user_model->getPpdsByTahap($id_tahap),
+            'menu_id' => 'staseBerjalan',
+            'title' => 'Stase Aktif',
+            'page_header' => 'Stase yang sedang Aktif',
+            'query' => $this->user_model->getPpdsByTahap(0),
         ];
 
         // dd($data);
@@ -298,9 +304,76 @@ class Users extends BaseController
         return view('admin/ppds/index', $data);
     }
 
+    public function ppds($id_tahap = 0)
+    {
+        unset($_SESSION['stase']);
+
+        // if(isset($_SESSION['stase'])) {
+        //    echo $_SESSION['stase'];
+        // } else {
+        //     echo "ga ada sesi";
+        // }
+
+        if($id_tahap > 0 ) {
+            $menu_id = 'arsip-pdps';
+        } else {
+            $menu_id = 'staseBerjalan';
+        }
+
+        $data = [
+            'tahap' => $id_tahap,
+            'menu_id' => $menu_id,
+            'menu_class' => 'tahap-' . $id_tahap,
+            'title' => ($id_tahap != 0 ? 'Arsip PPDS' : 'PPDS'),
+            'page_header' => ($id_tahap != 0 ? 'Arsip PPDS Tahap ' . $id_tahap : 'Daftar Semua PPDS'),
+            'stase' => $this->stase_model->getStaseByTahap($id_tahap),
+        ];
+
+        // dd($data);
+
+        // dd($this->user_model->getPpdsByTahap($id_tahap));
+        return view('admin/ppds/ppds_pertahap_ajx', $data);
+    }
+
+    public function get_ppds_pertahap_json($id_tahap = 0)
+    {
+
+        $records['data'] = $this->user_model->get_ppds_pertahap($id_tahap);
+
+       //  dd($records['data']);
+        $url = (session('role') == 1 ? 'admin': 'supervisor');
+        
+		$data = array();	
+		foreach ($records['data']  as $row) 
+		{  	
+            $keterangan = ($row['keterangan'] ? '<button type="button" data-toggle="tooltip" data-placement="top" title="Selesai dengan catatan" class="btn btn-flat btn-outline-danger btn-xs catatan"><span class="ti-alert"></span></button>': '');
+
+			$data[]= array(
+				$row['nama_lengkap'],
+				$row['stase'],
+				$row['tanggal_mulai'],
+				$row['tanggal_selesai'],
+			
+                '<a href="' . base_url( $url . '/ppds/' . $row['id_ppds'] ) . '" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>',			
+                $keterangan,			
+			);
+		}
+		$records['data'] = $data;
+		echo json_encode($records);	
+      
+    }
+
+    public function get_ppds_filter_json() {
+        $stase = $this->request->getVar('stase');
+        $session = session();
+        $session->set('stase', $stase);
+    }
+
     public function supervisor()
     {
         $data = [
+            'menu_id' => 'menu_spv',
+            'menu_class' => 'spv',
             'title' => 'Supervisor',
             'page_header' => 'Daftar Supervisor',
             'query' => $this->user_model->getAllSupervisor(),
