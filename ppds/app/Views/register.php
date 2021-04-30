@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="form-gp">
-                            <label for="fullname">Nama Lengkap</label>
+                            <label for="fullname">Nama Lengkap (beserta gelar)</label>
                             <input type="text" name="nama_lengkap" id="fullname" value="<?= old('nama_lengkap'); ?>">
                             <i class="ti-user"></i>
                             <div class="text-danger">
