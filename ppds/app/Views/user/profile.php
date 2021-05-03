@@ -70,7 +70,7 @@
                                                     <option value="3">3</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button id="removeRow" type="button" class="btn form-control mr-1">-</button>
+                                                    <button id="removeRow" type="button" class="btn form-control btn-sm mr-1">-</button>
                                                 </div>
                                             </div>
                                         </div>
