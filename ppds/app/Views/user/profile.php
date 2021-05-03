@@ -232,12 +232,17 @@
         $('#photo_profile').prop('disabled', false);
     <?php } ?>
 
+
     // add row
     $("#addRow").click(function() {
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
-        html += '<input type="text" name="title[]" class="form-control m-input mr-1" placeholder="Enter title" autocomplete="off">';
+        html += '<select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">';
+        html += '<option value="1">1</option>';
+        html += '<option value="2">2</option>';
+        html += '<option value="3">3</option>';
+        html += '</select>';
         html += '<div class="input-group-append">';
         html += '<button id="removeRow" type="button" class="btn mr-1">-</button>';
         html += '</div>';
@@ -251,4 +256,10 @@
         $(this).closest('#inputFormRow').remove();
     });
 </script>
+
+<!-- <select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+</select> -->
 <?= $this->endSection(); ?>
