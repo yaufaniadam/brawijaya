@@ -64,13 +64,13 @@
                                     <div class="col-lg-12">
                                         <div id="inputFormRow">
                                             <div class="input-group mb-3">
-                                                <select class="form-control" name="stase" id="exampleFormControlSelect1">
+                                                <select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
                                                 </select>
                                                 <div class="input-group-append">
-                                                    <button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>
+                                                    <button id="removeRow" type="button" class="btn form-control mr-1">-</button>
                                                 </div>
                                             </div>
                                         </div>
