@@ -66,12 +66,11 @@
                                             <div class="input-group mb-3">
                                                 <input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
                                                 <div class="input-group-append">
-                                                    <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                                                    <button id="removeRow" type="button" class="btn">-</button>
+                                                    <button id="addRow" type="button" class="btn">+</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="newRow"></div>
-                                        <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                     </div>
                                 </div>
                             </div>
