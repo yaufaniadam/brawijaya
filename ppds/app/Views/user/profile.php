@@ -58,19 +58,21 @@
                                 <input type="hidden" name="old_email" value="<?= $data_user->email; ?>">
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div id="inputFormRow">
-                                        <div class="input-group mb-3">
-                                            <input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
-                                            <div class="input-group-append">
-                                                <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                            <div class="form-group has-primary">
+                                <label for="inputHorizontalPrimary" class="col-form-label">Stase</label>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div id="inputFormRow">
+                                            <div class="input-group mb-3">
+                                                <input type="text" name="title[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">
+                                                <div class="input-group-append">
+                                                    <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                                                </div>
                                             </div>
                                         </div>
+                                        <div id="newRow"></div>
+                                        <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                     </div>
-
-                                    <div id="newRow"></div>
-                                    <button id="addRow" type="button" class="btn btn-info">Add Row</button>
                                 </div>
                             </div>
 
