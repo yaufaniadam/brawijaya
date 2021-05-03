@@ -89,7 +89,11 @@
                             </div>
                         </div>
                         <div class="form-gp">
+<<<<<<< HEAD
                             <label for="fullname">Nama Lengkap (Beserta Gelar)</label>
+=======
+                            <label for="fullname">Nama Lengkap (beserta gelar)</label>
+>>>>>>> origin/damar
                             <input type="text" name="nama_lengkap" id="fullname" value="<?= old('nama_lengkap'); ?>">
                             <i class="ti-user"></i>
                             <div class="text-danger">
