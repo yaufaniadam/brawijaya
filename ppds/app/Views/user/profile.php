@@ -239,9 +239,7 @@
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
         html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
-        <?php foreach ($stase as $stase) { ?>
-            html += '<option value=' + <?= $stase['id']; ?> + '>' + <?= $stase['stase']; ?> + '</option>';
-        <?php } ?>
+        html += ' <option>1</option>';
         html += '</select>';
         html += '<div class="input-group-append">';
         html += '<button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>';
