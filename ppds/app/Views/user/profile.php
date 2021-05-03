@@ -64,7 +64,11 @@
                                     <div class="col-lg-12">
                                         <div id="inputFormRow">
                                             <div class="input-group mb-3">
-                                                <input type="text" name="title[]" class="form-control m-input mr-1" placeholder="Enter title" autocomplete="off">
+                                                <select class="form-control" name="stase" id="exampleFormControlSelect1">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                </select>
                                                 <div class="input-group-append">
                                                     <button id="removeRow" type="button" class="btn mr-1">-</button>
                                                 </div>

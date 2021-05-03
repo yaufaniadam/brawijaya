@@ -56,7 +56,7 @@ class User extends BaseController
         $no_bpjs = $this->request->getVar('no_bpjs');
         $no_rekening = $this->request->getVar('no_rekening');
 
-        // dd($this->request->getVar());
+        dd($this->request->getVar());
 
         if (!$this->validate([
             'no_str' => [
