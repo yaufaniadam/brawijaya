@@ -233,7 +233,7 @@ class Users extends BaseController
         $builder = $db->table('stase');
         $data['stase'] = $builder->get();
 
-        // dd($data);
+        dd($data);
 
         return view('user/profile', $data);
     }
