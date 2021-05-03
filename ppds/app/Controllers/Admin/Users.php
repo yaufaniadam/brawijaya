@@ -231,9 +231,9 @@ class Users extends BaseController
 
         $db      = \Config\Database::connect();
         $builder = $db->table('stase');
-        $data['stase'] = $builder->get();
+        $data['stase'] = $builder->get()->getResultArray();
 
-        dd($data);
+        // dd($data);
 
         return view('user/profile', $data);
     }
