@@ -67,11 +67,11 @@
                                                 <input type="text" name="title[]" class="form-control m-input mr-1" placeholder="Enter title" autocomplete="off">
                                                 <div class="input-group-append">
                                                     <button id="removeRow" type="button" class="btn mr-1">-</button>
-                                                    <button id="addRow" type="button" class="btn">+</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="newRow"></div>
+                                        <button id="addRow" type="button" class="btn">tambah stase</button>
                                     </div>
                                 </div>
                             </div>
@@ -236,7 +236,7 @@
         html += '<input type="text" name="title[]" class="form-control m-input mr-1" placeholder="Enter title" autocomplete="off">';
         html += '<div class="input-group-append">';
         html += '<button id="removeRow" type="button" class="btn mr-1">-</button>';
-        html += '<button id="addRow" type="button" class="btn">+</button>';
+        html += '</div>';
         html += '</div>';
 
         $('#newRow').append(html);
