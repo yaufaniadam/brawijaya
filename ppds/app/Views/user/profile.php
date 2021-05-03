@@ -71,7 +71,7 @@
                                             </div>
                                         </div>
                                         <div id="newRow"></div>
-                                        <button id="addRow" type="button" class="btn">tambah stase</button>
+                                        <button id="addRow" type="button" class="btn btn-block">tambah stase</button>
                                     </div>
                                 </div>
                             </div>
