@@ -64,7 +64,7 @@
                                     <div class="col-lg-12">
                                         <div id="inputFormRow">
                                             <div class="input-group mb-3">
-                                                <select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">
+                                                <select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -238,7 +238,7 @@
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
-        html += '<select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">';
+        html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
         html += '<option value="1">1</option>';
         html += '<option value="2">2</option>';
         html += '<option value="3">3</option>';
