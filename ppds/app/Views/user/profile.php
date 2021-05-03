@@ -244,7 +244,7 @@
         html += '<option value="3">3</option>';
         html += '</select>';
         html += '<div class="input-group-append">';
-        html += '<button id="removeRow" type="button" class="btn mr-1">-</button>';
+        html += '<button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>';
         html += '</div>';
         html += '</div>';
 
