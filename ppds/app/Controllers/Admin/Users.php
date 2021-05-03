@@ -217,7 +217,8 @@ class Users extends BaseController
         //     'validation' => \Config\Services::validation(),
         // ];
 
-        // // dd($data);
+        // dd($data);
+
         // return view('admin/users/detail', $data);
 
         session();
@@ -227,6 +228,10 @@ class Users extends BaseController
             'page_header' => 'Detail User',
             'validation' => \Config\Services::validation(),
         ];
+
+        $db      = \Config\Database::connect();
+        $builder = $db->table('stase');
+        $data['stase'] = $builder->get();
 
         // dd($data);
 
@@ -290,7 +295,7 @@ class Users extends BaseController
 
     public function staseBerjalan()
     {
-      
+
         $data = [
             'menu_id' => 'staseBerjalan',
             'title' => 'Stase Aktif',
@@ -314,7 +319,7 @@ class Users extends BaseController
         //     echo "ga ada sesi";
         // }
 
-        if($id_tahap > 0 ) {
+        if ($id_tahap > 0) {
             $menu_id = 'arsip-pdps';
         } else {
             $menu_id = 'staseBerjalan';
@@ -340,30 +345,29 @@ class Users extends BaseController
 
         $records['data'] = $this->user_model->get_ppds_pertahap($id_tahap);
 
-       //  dd($records['data']);
-        $url = (session('role') == 1 ? 'admin': 'supervisor');
-        
-		$data = array();	
-		foreach ($records['data']  as $row) 
-		{  	
-            $keterangan = ($row['keterangan'] ? '<button type="button" data-toggle="tooltip" data-placement="top" title="Selesai dengan catatan" class="btn btn-flat btn-outline-danger btn-xs catatan"><span class="ti-alert"></span></button>': '');
+        //  dd($records['data']);
+        $url = (session('role') == 1 ? 'admin' : 'supervisor');
 
-			$data[]= array(
-				$row['nama_lengkap'],
-				$row['stase'],
-				$row['tanggal_mulai'],
-				$row['tanggal_selesai'],
-			
-                '<a href="' . base_url( $url . '/ppds/' . $row['id_ppds'] ) . '" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>',			
-                $keterangan,			
-			);
-		}
-		$records['data'] = $data;
-		echo json_encode($records);	
-      
+        $data = array();
+        foreach ($records['data']  as $row) {
+            $keterangan = ($row['keterangan'] ? '<button type="button" data-toggle="tooltip" data-placement="top" title="Selesai dengan catatan" class="btn btn-flat btn-outline-danger btn-xs catatan"><span class="ti-alert"></span></button>' : '');
+
+            $data[] = array(
+                $row['nama_lengkap'],
+                $row['stase'],
+                $row['tanggal_mulai'],
+                $row['tanggal_selesai'],
+
+                '<a href="' . base_url($url . '/ppds/' . $row['id_ppds']) . '" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>',
+                $keterangan,
+            );
+        }
+        $records['data'] = $data;
+        echo json_encode($records);
     }
 
-    public function get_ppds_filter_json() {
+    public function get_ppds_filter_json()
+    {
         $stase = $this->request->getVar('stase');
         $session = session();
         $session->set('stase', $stase);
