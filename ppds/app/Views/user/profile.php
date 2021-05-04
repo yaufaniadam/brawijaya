@@ -240,7 +240,7 @@
         html += '<div class="input-group mb-3">';
         html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
         <?php foreach (pilihan_stase() as $pilihan_stase) { ?>
-            html += '<option>' + <?= $pilihan_stase['stase']; ?> + '</option>';
+            html += '<option><?= $pilihan_stase['stase']; ?></option>';
         <?php } ?>
         html += '</select>';
         html += '<div class="input-group-append">';
