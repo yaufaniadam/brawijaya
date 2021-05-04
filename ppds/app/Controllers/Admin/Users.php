@@ -210,6 +210,7 @@ class Users extends BaseController
 
     public function detail($id_ppds)
     {
+        helper('data');
         // $data = [
         //     'title' => 'Detail User',
         //     'page_header' => 'Detail User',
