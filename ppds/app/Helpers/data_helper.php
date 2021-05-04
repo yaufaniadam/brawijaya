@@ -170,3 +170,10 @@ function ppdsBimbingan($id_spv)
 
     return $query;
 }
+
+function pilihan_stase()
+{
+    $db      = \Config\Database::connect();
+    $builder = $db->table('stase');
+    return $builder->get()->getResultArray();
+}
