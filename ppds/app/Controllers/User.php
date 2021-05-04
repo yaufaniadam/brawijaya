@@ -55,8 +55,9 @@ class User extends BaseController
         $no_str = $this->request->getVar('no_str');
         $no_bpjs = $this->request->getVar('no_bpjs');
         $no_rekening = $this->request->getVar('no_rekening');
+        $stase = $this->request->getVar('stase[]');
 
-        dd($this->request->getVar());
+        // dd($this->request->getVar());
 
         if (!$this->validate([
             'no_str' => [
@@ -161,7 +162,15 @@ class User extends BaseController
             'no_bpjs' => $no_bpjs,
             'no_rekening' => $no_rekening,
         ];
-        // dd($data);
+
+        foreach ($stase as $stase) {
+            $data_stase_spv[] = [
+                'id_spv' => $user_id,
+                'id_stase' => $stase
+            ];
+        }
+
+        dd($data_stase_spv);
         $result = $this->user_model->update($user_id, $data);
         if ($result) {
             return redirect()->back()->with('success', 'Profile berhasil diubah');

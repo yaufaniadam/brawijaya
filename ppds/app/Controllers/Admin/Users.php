@@ -233,6 +233,7 @@ class Users extends BaseController
         $db      = \Config\Database::connect();
         $builder = $db->table('stase');
         $data['stase'] = $builder->get()->getResultArray();
+        $data['selected_stase'] = '';
 
         // dd($data);
 
