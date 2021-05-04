@@ -185,7 +185,7 @@ class User extends BaseController
                 $builder->insert($data_stase_spv);
             } elseif (!in_array($stase, $all_stase_spv)) {
                 $builder->where([
-                    'id_stase' => $stase,
+                    'id_stase' => !$stase,
                     'id_spv' => $user_id
                 ]);
                 $builder->delete();
