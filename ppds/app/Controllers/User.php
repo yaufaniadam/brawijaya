@@ -38,6 +38,7 @@ class User extends BaseController
 
     function editProfile()
     {
+        $db      = \Config\Database::connect();
         $email = $this->request->getVar('email');
         $nama_lengkap = $this->request->getVar('nama_lengkap');
         $jenis_kelamin = $this->request->getVar('jenis_kelamin');
@@ -164,10 +165,30 @@ class User extends BaseController
         ];
 
         foreach ($stase as $stase) {
-            $data_stase_spv[] = [
+            $builder = $db->table('stase_spv');
+
+            $stase_spv = $builder->getWhere([
                 'id_spv' => $user_id,
                 'id_stase' => $stase
-            ];
+            ])->getResultObject();
+
+            $all_stase_spv = $builder->getWhere([
+                'id_spv' => $user_id,
+            ])->getResultObject();
+
+            if (count($stase_spv) > 0) {
+                $data_stase_spv = [
+                    'id_spv' => $user_id,
+                    'id_stase' => $stase
+                ];
+                $builder->insert($data_stase_spv);
+            } elseif (!in_array($stase, $all_stase_spv)) {
+                $builder->where([
+                    'id_stase' => $stase,
+                    'id_spv' => $user_id
+                ]);
+                $builder->delete();
+            }
         }
 
         dd($data_stase_spv);

@@ -211,6 +211,8 @@ class Users extends BaseController
     public function detail($id_ppds)
     {
         helper('data');
+        $db      = \Config\Database::connect();
+        $builder = $db->table('stase');
         // $data = [
         //     'title' => 'Detail User',
         //     'page_header' => 'Detail User',
@@ -230,8 +232,7 @@ class Users extends BaseController
             'validation' => \Config\Services::validation(),
         ];
 
-        $db      = \Config\Database::connect();
-        $builder = $db->table('stase');
+
         $data['stase'] = $builder->get()->getResultArray();
         $data['selected_stase'] = '';
 
