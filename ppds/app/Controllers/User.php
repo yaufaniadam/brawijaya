@@ -191,7 +191,7 @@ class User extends BaseController
                 $builder->delete();
             }
         }
-        dd($data_stase_spv);
+        // dd($data_stase_spv);
 
         $result = $this->user_model->update($user_id, $data);
         if ($result) {
