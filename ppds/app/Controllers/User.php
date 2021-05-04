@@ -177,7 +177,7 @@ class User extends BaseController
             ])->getResultObject();
 
             dd(count($stase_spv));
-            if (count($stase_spv) > 0) {
+            if (count($stase_spv) == 0) {
                 $data_stase_spv = [
                     'id_spv' => $user_id,
                     'id_stase' => $stase
