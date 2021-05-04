@@ -181,6 +181,8 @@ class User extends BaseController
                     'id_spv' => $user_id,
                     'id_stase' => $stase
                 ];
+                dd(count($stase_spv));
+
                 $builder->insert($data_stase_spv);
             }
             // } elseif (!in_array($stase, $all_stase_spv)) {
@@ -192,7 +194,7 @@ class User extends BaseController
             // }
         }
 
-        dd($data_stase_spv);
+        // dd($data_stase_spv);
         $result = $this->user_model->update($user_id, $data);
         if ($result) {
             return redirect()->back()->with('success', 'Profile berhasil diubah');
