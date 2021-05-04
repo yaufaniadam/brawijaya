@@ -176,7 +176,6 @@ class User extends BaseController
                 'id_spv' => $user_id,
             ])->getResultObject();
 
-            dd(count($stase_spv));
             if (count($stase_spv) == 0) {
                 $data_stase_spv = [
                     'id_spv' => $user_id,
@@ -184,17 +183,16 @@ class User extends BaseController
                 ];
 
                 $builder->insert($data_stase_spv);
+            } elseif (!in_array($stase, $all_stase_spv)) {
+                $builder->where([
+                    'id_stase' => $stase,
+                    'id_spv' => $user_id
+                ]);
+                $builder->delete();
             }
-            // } elseif (!in_array($stase, $all_stase_spv)) {
-            //     $builder->where([
-            //         'id_stase' => $stase,
-            //         'id_spv' => $user_id
-            //     ]);
-            //     $builder->delete();
-            // }
         }
+        dd($data_stase_spv);
 
-        // dd($data_stase_spv);
         $result = $this->user_model->update($user_id, $data);
         if ($result) {
             return redirect()->back()->with('success', 'Profile berhasil diubah');
