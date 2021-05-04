@@ -176,12 +176,12 @@ class User extends BaseController
                 'id_spv' => $user_id,
             ])->getResultObject();
 
+            dd(count($stase_spv));
             if (count($stase_spv) > 0) {
                 $data_stase_spv = [
                     'id_spv' => $user_id,
                     'id_stase' => $stase
                 ];
-                dd(count($stase_spv));
 
                 $builder->insert($data_stase_spv);
             }
