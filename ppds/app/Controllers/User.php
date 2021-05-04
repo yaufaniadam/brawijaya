@@ -182,13 +182,14 @@ class User extends BaseController
                     'id_stase' => $stase
                 ];
                 $builder->insert($data_stase_spv);
-            } elseif (!in_array($stase, $all_stase_spv)) {
-                $builder->where([
-                    'id_stase' => $stase,
-                    'id_spv' => $user_id
-                ]);
-                $builder->delete();
             }
+            // } elseif (!in_array($stase, $all_stase_spv)) {
+            //     $builder->where([
+            //         'id_stase' => $stase,
+            //         'id_spv' => $user_id
+            //     ]);
+            //     $builder->delete();
+            // }
         }
 
         dd($data_stase_spv);
