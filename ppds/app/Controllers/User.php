@@ -169,13 +169,15 @@ class User extends BaseController
             'id_spv' => $user_id,
         ])->getResultObject();
 
+        foreach ($all_stase_spv as $new_stase) {
+            $stase_spv[] = ($new_stase->id_stase);
+        }
+
         echo "<pre>";
         print_r($stase);
         echo "</pre>";
         echo "<pre>";
-        foreach ($all_stase_spv as $new_stase) {
-            print_r($new_stase->id_stase);
-        }
+        $stase_spv;
         echo "</pre>";
 
         die();
