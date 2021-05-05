@@ -176,33 +176,39 @@ class User extends BaseController
                 'id_spv' => $user_id,
             ])->getResultObject();
 
-            if (count($stase_spv) == 0) {
+            if ((count($stase_spv) == 0) || (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv))) {
                 $data_stase_spv = [
                     'id_spv' => $user_id,
                     'id_stase' => $stase
                 ];
-
                 $builder->insert($data_stase_spv);
+
+                $builder->where([
+                    'id_stase !=' => $stase,
+                    'id_spv' => $user_id
+                ]);
+                $builder->delete();
             } elseif (!in_array($stase, $all_stase_spv)) {
                 $builder->where([
                     'id_stase !=' => $stase,
                     'id_spv' => $user_id
                 ]);
                 $builder->delete();
-            } elseif (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv)) {
-                $data_stase_spv = [
-                    'id_spv' => $user_id,
-                    'id_stase' => $stase
-                ];
-
-                $builder->insert($data_stase_spv);
-
-                $builder->where([
-                    'id_stase !=' => $stase,
-                    'id_spv' => $user_id
-                ]);
-                $builder->delete();
             }
+            // elseif (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv)) {
+            //     $data_stase_spv = [
+            //         'id_spv' => $user_id,
+            //         'id_stase' => $stase
+            //     ];
+
+            //     $builder->insert($data_stase_spv);
+
+            //     $builder->where([
+            //         'id_stase !=' => $stase,
+            //         'id_spv' => $user_id
+            //     ]);
+            //     $builder->delete();
+            // }
         }
         // dd($data_stase_spv);
 
