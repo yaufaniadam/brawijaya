@@ -177,28 +177,18 @@ class User extends BaseController
             ])->getResultObject();
 
             if (count($stase_spv) == 0) {
-                if (!in_array($stase, $all_stase_spv)) {
-                    $builder->where([
-                        'id_stase !=' => $stase,
-                        'id_spv' => $user_id
-                    ]);
-                    $builder->delete();
-                } else {
-                    $data_stase_spv = [
-                        'id_spv' => $user_id,
-                        'id_stase' => $stase
-                    ];
-
-                    $builder->insert($data_stase_spv);
-                }
+                $data_stase_spv = [
+                    'id_spv' => $user_id,
+                    'id_stase' => $stase
+                ];
+                $builder->insert($data_stase_spv);
+            } elseif (!in_array($stase, $all_stase_spv)) {
+                $builder->where([
+                    'id_stase !=' => $stase,
+                    'id_spv' => $user_id
+                ]);
+                $builder->delete();
             }
-            // elseif (!in_array($stase, $all_stase_spv)) {
-            //     $builder->where([
-            //         'id_stase !=' => $stase,
-            //         'id_spv' => $user_id
-            //     ]);
-            //     $builder->delete();
-            // }
             // elseif (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv)) {
             //     $data_stase_spv = [
             //         'id_spv' => $user_id,
