@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Keterangan</label>
                         <div class="col-sm-8">
                             <textarea name="keterangan" class="form-control <?= $validation->hasError('keterangan') ? 'is-invalid' : ''; ?>" rows="5"><?= old('keterangan'); ?></textarea>
@@ -48,15 +48,15 @@
                                 <?= $validation->getError('waktu'); ?>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
                         <label for="stase" class="col-sm-4 col-form-label">Stase</label>
                         <div class="col-sm-8">
-                            
+
                             <select id="stase" class="custom-select <?= $validation->hasError('jenis_kelamin') ? 'is-invalid' : ''; ?>" name="stase">
                                 <option value="">pilih stase</option>
-                                <?php foreach($stase as $stase) { ?>
-                                <option value="<?= $stase['id']; ?>" <?= old('stase') == $stase['id'] ? 'selected' : '' ?>><?= $stase['stase']; ?></option>
+                                <?php foreach ($stase as $stase) { ?>
+                                    <option value="<?= $stase['id']; ?>" <?= old('stase') == $stase['id'] ? 'selected' : '' ?>><?= $stase['stase']; ?></option>
                                 <?php } ?>
                             </select>
 
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nama Pasien</label>
                         <div class="col-sm-8">
                             <input type="text" name="pasien" class="form-control <?= $validation->hasError('pasien') ? 'is-invalid' : ''; ?>" id="nama_pasien" value="<?= old('pasien'); ?>">
@@ -104,7 +104,7 @@
                                 <?= $validation->getError('jenis_tindakan'); ?>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <input type="submit" class="btn btn-dark mb-3 float-right" style="background: #370EFA;border-color: #370EFA;" value="Tambah">
                 </form>
             </div>
