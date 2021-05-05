@@ -167,7 +167,7 @@ class User extends BaseController
         $builder = $db->table('stase_spv');
         $all_stase_spv = $builder->getWhere([
             'id_spv' => $user_id,
-        ])->getResultArray();
+        ])->getRowArray();
 
         echo "<pre>";
         print_r($stase);
