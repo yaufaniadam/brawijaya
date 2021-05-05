@@ -176,6 +176,8 @@ class User extends BaseController
         print_r($all_stase_spv);
         echo "</pre>";
 
+        die();
+
         foreach ($stase as $stase) {
             $builder = $db->table('stase_spv');
 
