@@ -169,7 +169,12 @@ class User extends BaseController
             'id_spv' => $user_id,
         ])->getResultObject();
 
-        dd(in_array($stase, $all_stase_spv));
+        echo "<pre>";
+        print_r($stase);
+        echo "</pre>";
+        echo "<pre>";
+        print_r($all_stase_spv);
+        echo "</pre>";
 
         foreach ($stase as $stase) {
             $builder = $db->table('stase_spv');
