@@ -164,66 +164,66 @@ class User extends BaseController
             'no_rekening' => $no_rekening,
         ];
 
-        $builder = $db->table('stase_spv');
-        $all_stase_spv = $builder->getWhere([
-            'id_spv' => $user_id,
-        ])->getResultObject();
+        // $builder = $db->table('stase_spv');
+        // $all_stase_spv = $builder->getWhere([
+        //     'id_spv' => $user_id,
+        // ])->getResultObject();
 
-        foreach ($all_stase_spv as $new_stase) {
-            $stase_spv[] = ($new_stase->id_stase);
-        }
+        // foreach ($all_stase_spv as $new_stase) {
+        //     $stase_spv[] = ($new_stase->id_stase);
+        // }
 
-        echo "<pre>";
-        print_r($stase);
-        echo "</pre>";
-        echo "<pre>";
-        print_r($stase_spv);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($stase);
+        // echo "</pre>";
+        // echo "<pre>";
+        // print_r($stase_spv);
+        // echo "</pre>";
 
-        print_r(in_array(1, $stase_spv));
+        // print_r(in_array(1, $stase_spv));
 
-        die();
+        // die();
 
-        foreach ($stase as $stase) {
-            $builder = $db->table('stase_spv');
+        // foreach ($stase as $stase) {
+        //     $builder = $db->table('stase_spv');
 
-            $stase_spv = $builder->getWhere([
-                'id_spv' => $user_id,
-                'id_stase' => $stase
-            ])->getResultObject();
+        //     $stase_spv = $builder->getWhere([
+        //         'id_spv' => $user_id,
+        //         'id_stase' => $stase
+        //     ])->getResultObject();
 
-            $all_stase_spv = $builder->getWhere([
-                'id_spv' => $user_id,
-            ])->getResultObject();
+        //     $all_stase_spv = $builder->getWhere([
+        //         'id_spv' => $user_id,
+        //     ])->getResultObject();
 
-            if (count($stase_spv) == 0) {
-                $data_stase_spv = [
-                    'id_spv' => $user_id,
-                    'id_stase' => $stase
-                ];
-                $builder->insert($data_stase_spv);
-            } elseif (!in_array($stase, $all_stase_spv)) {
-                $builder->where([
-                    'id_stase !=' => $stase,
-                    'id_spv' => $user_id
-                ]);
-                $builder->delete();
-            }
-            // elseif (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv)) {
-            //     $data_stase_spv = [
-            //         'id_spv' => $user_id,
-            //         'id_stase' => $stase
-            //     ];
+        //     if (count($stase_spv) == 0) {
+        //         $data_stase_spv = [
+        //             'id_spv' => $user_id,
+        //             'id_stase' => $stase
+        //         ];
+        //         $builder->insert($data_stase_spv);
+        //     } elseif (!in_array($stase, $all_stase_spv)) {
+        //         $builder->where([
+        //             'id_stase !=' => $stase,
+        //             'id_spv' => $user_id
+        //         ]);
+        //         $builder->delete();
+        //     }
+        //     // elseif (count($stase_spv) == 0 && !in_array($stase, $all_stase_spv)) {
+        //     //     $data_stase_spv = [
+        //     //         'id_spv' => $user_id,
+        //     //         'id_stase' => $stase
+        //     //     ];
 
-            //     $builder->insert($data_stase_spv);
+        //     //     $builder->insert($data_stase_spv);
 
-            //     $builder->where([
-            //         'id_stase !=' => $stase,
-            //         'id_spv' => $user_id
-            //     ]);
-            //     $builder->delete();
-            // }
-        }
+        //     //     $builder->where([
+        //     //         'id_stase !=' => $stase,
+        //     //         'id_spv' => $user_id
+        //     //     ]);
+        //     //     $builder->delete();
+        //     // }
+        // }
         // dd($data_stase_spv);
 
         $result = $this->user_model->update($user_id, $data);

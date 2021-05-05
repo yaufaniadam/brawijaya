@@ -58,7 +58,7 @@
                                 <input type="hidden" name="old_email" value="<?= $data_user->email; ?>">
                             </div>
 
-                            <div class="form-group has-primary">
+                            <!-- <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Stase</label>
                                 <div class="row">
                                     <div class="col-lg-12">
@@ -78,7 +78,7 @@
                                         <button id="addRow" type="button" class="btn btn-block">tambah stase</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group has-primary">
                                 <label for="inputHorizontalPrimary" class="col-form-label">Password</label>
@@ -234,27 +234,27 @@
 
 
     // add row
-    $("#addRow").click(function() {
-        var html = '';
-        html += '<div id="inputFormRow">';
-        html += '<div class="input-group mb-3">';
-        html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
-        <?php foreach (pilihan_stase() as $pilihan_stase) { ?>
-            html += '<option value="<?= $pilihan_stase['id']; ?>"><?= $pilihan_stase['stase']; ?></option>';
-        <?php } ?>
-        html += '</select>';
-        html += '<div class="input-group-append">';
-        html += '<button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>';
-        html += '</div>';
-        html += '</div>';
+    // $("#addRow").click(function() {
+    //     var html = '';
+    //     html += '<div id="inputFormRow">';
+    //     html += '<div class="input-group mb-3">';
+    //     html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
+    //     <?php foreach (pilihan_stase() as $pilihan_stase) { ?>
+    //         html += '<option value="<?= $pilihan_stase['id']; ?>"><?= $pilihan_stase['stase']; ?></option>';
+    //     <?php } ?>
+    //     html += '</select>';
+    //     html += '<div class="input-group-append">';
+    //     html += '<button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>';
+    //     html += '</div>';
+    //     html += '</div>';
 
-        $('#newRow').append(html);
-    });
+    //     $('#newRow').append(html);
+    // });
 
     // remove row
-    $(document).on('click', '#removeRow', function() {
-        $(this).closest('#inputFormRow').remove();
-    });
+    // $(document).on('click', '#removeRow', function() {
+    //     $(this).closest('#inputFormRow').remove();
+    // });
 </script>
 
 <!-- <select class="form-control mr-1" name="stase" id="exampleFormControlSelect1">
