@@ -177,7 +177,7 @@ class User extends BaseController
         print_r($stase);
         echo "</pre>";
         echo "<pre>";
-        $stase_spv;
+        print_r($stase_spv);
         echo "</pre>";
 
         die();
