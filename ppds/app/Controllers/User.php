@@ -164,6 +164,13 @@ class User extends BaseController
             'no_rekening' => $no_rekening,
         ];
 
+        $builder = $db->table('stase_spv');
+        $all_stase_spv = $builder->getWhere([
+            'id_spv' => $user_id,
+        ])->getResultObject();
+
+        dd(in_array($stase, $all_stase_spv));
+
         foreach ($stase as $stase) {
             $builder = $db->table('stase_spv');
 
