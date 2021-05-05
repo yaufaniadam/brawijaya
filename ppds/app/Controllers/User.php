@@ -180,7 +180,7 @@ class User extends BaseController
         print_r($stase_spv);
         echo "</pre>";
 
-        print_r(in_array($stase, $stase_spv));
+        print_r(in_array(1, $stase_spv));
 
         die();
 
