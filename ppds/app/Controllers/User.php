@@ -167,13 +167,15 @@ class User extends BaseController
         $builder = $db->table('stase_spv');
         $all_stase_spv = $builder->getWhere([
             'id_spv' => $user_id,
-        ])->getResult();
+        ])->getResultObject();
 
         echo "<pre>";
         print_r($stase);
         echo "</pre>";
         echo "<pre>";
-        print_r($all_stase_spv);
+        foreach ($all_stase_spv as $new_stase) {
+            print_r($new_stase->id_stase);
+        }
         echo "</pre>";
 
         die();
