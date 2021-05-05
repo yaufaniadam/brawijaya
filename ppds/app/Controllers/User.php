@@ -186,7 +186,7 @@ class User extends BaseController
             } elseif (!in_array($stase, $all_stase_spv)) {
                 $unused_stase = $builder->getWhere(
                     [
-                        'id_stase' => !$stase,
+                        'id_stase !=' => $stase,
                         'id_spv' => $user_id
                     ]
                 )->getResultObject();
