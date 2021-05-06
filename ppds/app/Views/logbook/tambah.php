@@ -65,6 +65,24 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="exampleInputEmail1" class="col-sm-4 col-form-label">File Tugas</label>
+                        <div class="col-sm-8">
+                            <div class="custom-file">
+                                <input required type="file" name="file" class="file-tugas custom-file-input form-control-sm <?= $validation->hasError('file') ? "is-invalid" : ""; ?>" id="customFile" value="<?= old('file'); ?>" onchange="onFileUpload()">
+                                <label class="custom-file-label" for="customFile" id="nama-file-baru">tidak ada file dipilih</label>
+                            </div>
+                            <?php if ($validation->hasError('file')) { ?>
+                                <small id="error_file" class="text-danger">
+                                    <?= $validation->getError('file'); ?>
+                                </small>
+                            <?php } ?>
+                            <small>
+                                * format file yang didukung : pdf,doc,docx,ppt,pptx
+                            </small>
+                        </div>
+                    </div>
                     <!-- <div class="form-group row">
                         <label for="exampleInputEmail1" class="col-sm-4 col-form-label">Nama Pasien</label>
                         <div class="col-sm-8">
