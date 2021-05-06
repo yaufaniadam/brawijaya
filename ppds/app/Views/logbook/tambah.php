@@ -138,5 +138,12 @@
     jQuery('#datetimepicker').datetimepicker({
         format: 'Y/m/d H:i',
     });
+
+    function onFileUpload() {
+        var namaFile = $('.file-tugas')[0].files[0].name
+        if (namaFile) {
+            $('#nama-file-baru').html(namaFile)
+        }
+    }
 </script>
 <?= $this->endSection(); ?>
