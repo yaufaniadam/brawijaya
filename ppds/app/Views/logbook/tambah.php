@@ -78,9 +78,9 @@
                                     <?= $validation->getError('file'); ?>
                                 </small>
                             <?php } ?>
-                            <small>
+                            <!-- <small>
                                 * format file yang didukung : pdf,doc,docx,ppt,pptx
-                            </small>
+                            </small> -->
                         </div>
                     </div>
                     <!-- <div class="form-group row">
