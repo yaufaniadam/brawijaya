@@ -124,7 +124,7 @@ class Logbook extends BaseController
             'judul' => $this->request->getVar('judul'),
             'keterangan' => $this->request->getVar('keterangan'),
             'id_ppds' => session('user_id'),
-            'waktu' => $this->request->getVar('waktu'),
+            // 'waktu' => $this->request->getVar('waktu'),
             'id_stase' => $this->request->getVar('stase'),
             // 'id_spv' => $this->request->getVar('id_spv'),
             'pasien' => $this->request->getVar('pasien'),
