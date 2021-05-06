@@ -10,7 +10,7 @@ class LogbookModel extends Model
     protected $allowedFields = [
         'judul',
         // 'keterangan',
-        // 'id_ppds',
+        'id_ppds',
         'id_stase',
         // 'waktu',
         // 'pasien',
