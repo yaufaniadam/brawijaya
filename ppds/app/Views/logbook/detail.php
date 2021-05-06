@@ -33,8 +33,8 @@
                                             <table class="table table-borderless">
                                                 <tbody>
                                                     <tr class="text-left">
-                                                        <td><b><span>Nama Pasien</span></b></td>
-                                                        <td><span><?= $logbook->pasien; ?></span></td>
+                                                        <td><b><span>file</span></b></td>
+                                                        <td><a href="" class="btn btn-primary">Unduh</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
