@@ -12,7 +12,7 @@ class LogbookModel extends Model
         // 'keterangan',
         'id_ppds',
         'id_stase',
-        // 'waktu',
+        'waktu',
         // 'pasien',
         // 'jenis_kelamin',
         // 'usia',
