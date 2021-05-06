@@ -16,7 +16,8 @@ class LogbookModel extends Model
         'pasien',
         'jenis_kelamin',
         'usia',
-        'jenis_tindakan'
+        'jenis_tindakan',
+        'file'
     ];
 
     public function getLogbook()
@@ -32,7 +33,6 @@ class LogbookModel extends Model
         }
         $result = $builder->get();
         return $result->getResultArray();
-
     }
 
     public function detail($id_logbook)

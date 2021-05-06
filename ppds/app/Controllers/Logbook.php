@@ -70,52 +70,55 @@ class Logbook extends BaseController
                     'required' => 'judul tugas wajib diisi'
                 ]
             ],
-            'keterangan' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'keterangan wajib diisi'
-                ]
-            ],
-            'waktu' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'waktu wajib diisi',
-                ]
-            ],
-            'stase' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'stase wajib diisi',
-                ]
-            ],
-            'pasien' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'nama pasien wajib diisi',
-                ]
-            ],
-            'usia' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'usia pasien wajib diisi',
-                ]
-            ],
-            'jenis_kelamin' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'jenis kelamin pasien wajib diisi',
-                ]
-            ],
-            'jenis_tindakan' => [
-                'rules' => ['required'],
-                'errors' => [
-                    'required' => 'jenis tindakan wajib diisi',
-                ]
-            ],
+            // 'keterangan' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'keterangan wajib diisi'
+            //     ]
+            // ],
+            // 'waktu' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'waktu wajib diisi',
+            //     ]
+            // ],
+            // 'stase' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'stase wajib diisi',
+            //     ]
+            // ],
+            // 'pasien' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'nama pasien wajib diisi',
+            //     ]
+            // ],
+            // 'usia' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'usia pasien wajib diisi',
+            //     ]
+            // ],
+            // 'jenis_kelamin' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'jenis kelamin pasien wajib diisi',
+            //     ]
+            // ],
+            // 'jenis_tindakan' => [
+            //     'rules' => ['required'],
+            //     'errors' => [
+            //         'required' => 'jenis tindakan wajib diisi',
+            //     ]
+            // ],
         ])) {
             $validation = \Config\Services::validation();
             return redirect()->back()->withInput()->with('validation', $validation);
         }
+
+        $file = $this->request->getFile('file');
+        $encrypted_file_name = $file->getRandomName();
 
         $data = [
             'judul' => $this->request->getVar('judul'),
@@ -129,9 +132,11 @@ class Logbook extends BaseController
             'jenis_kelamin' => $this->request->getVar('jenis_kelamin'),
             // 'rekam_medik' => $this->request->getFile('rekam_medik'),
             'jenis_tindakan' => $this->request->getVar('jenis_tindakan'),
+            'file' => $encrypted_file_name
         ];
         // dd($data);
         if ($this->logbook_model->insert($data)) {
+            $file->move('ppds_logbook', $encrypted_file_name);
             return redirect()->to(base_url('/logbook'))->with('success', 'logbook baru berhasil ditambahkan!');
         } else {
             return redirect()->back()->with('warning', 'terjadi kesalahan :(');
