@@ -29,7 +29,6 @@
                             <thead class="bg-dark">
                                 <tr>
                                     <th style="width: 30%;">Judul</th>
-                                    <th style="width: 30%;">Tanggal</th>
                                     <th style="width: 20%;">PPDS</th>
                                     <th style="width: 20%;">Stase</th>
                                     <th style="width: 20%;"></th>
@@ -39,7 +38,6 @@
                                 <?php foreach ($query as $logbook) { ?>
                                     <tr>
                                         <td><?= $logbook['judul']; ?></td>
-                                        <td><?= $logbook['waktu']; ?></td>
                                         <td><?= $logbook['nama_lengkap']; ?></td>
                                         <td><?= $logbook['stase']; ?></td>
                                         <td>
@@ -90,12 +88,12 @@
     $('#logbook').addClass('active');
 
     var table = $('#dataTable-export').DataTable({
-        "dom": 'Bfrtip',
-                "buttons":  [                      
-                        'excel',
-                        'print'
-                    ]
-               
+            "dom": 'Bfrtip',
+            "buttons": [
+                'excel',
+                'print'
+            ]
+
         }
 
     );
