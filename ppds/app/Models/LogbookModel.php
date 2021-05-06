@@ -9,14 +9,14 @@ class LogbookModel extends Model
     protected $table = 'log_book';
     protected $allowedFields = [
         'judul',
-        'keterangan',
-        'id_ppds',
+        // 'keterangan',
+        // 'id_ppds',
         'id_stase',
-        'waktu',
-        'pasien',
-        'jenis_kelamin',
-        'usia',
-        'jenis_tindakan',
+        // 'waktu',
+        // 'pasien',
+        // 'jenis_kelamin',
+        // 'usia',
+        // 'jenis_tindakan',
         'file'
     ];
 
