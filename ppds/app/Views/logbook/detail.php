@@ -36,7 +36,7 @@
                                                         <td>
                                                             <h5>file</h5>
                                                         </td>
-                                                        <td><a href="" class="btn btn-primary btn-sm">Unduh</a></td>
+                                                        <td><a href="<?= base_url('ppds_logbook/' . $logbook['file']); ?>" class="btn btn-primary btn-sm">Unduh</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
