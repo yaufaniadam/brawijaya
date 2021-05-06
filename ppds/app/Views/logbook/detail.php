@@ -29,30 +29,12 @@
                                 </div>
                                 <div class="mt-4">
                                     <div class="row text-center">
-                                        <div class="col-sm-6 mr-0">
+                                        <div class="col-12 mr-0">
                                             <table class="table table-borderless">
                                                 <tbody>
                                                     <tr class="text-left">
                                                         <td><b><span>Nama Pasien</span></b></td>
                                                         <td><span><?= $logbook->pasien; ?></span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-sm-6 ml-0">
-                                            <table class="table borderless">
-                                                <tbody>
-                                                    <tr class="text-left">
-                                                        <td><b><span>Jenis Kelamin</span></b></td>
-                                                        <td>
-                                                            <span>
-                                                                <?= $logbook->gender_pasien === 'p' ? 'Perempuan' : 'Laki-laki'; ?>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="text-left">
-                                                        <td><b><span>Umur</span></b></td>
-                                                        <td><span><?= $logbook->usia_pasien; ?></span></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
