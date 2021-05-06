@@ -45,7 +45,6 @@
                                                 <span class="ti-info"></span>
                                             </a>
                                             <?php if ($logbook['id_ppds'] == session('user_id')) { ?>
-                                                <a href="<?= base_url('/logbook/edit/' . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-warning btn-xs"><span class="ti-pencil"></span></a>
                                                 <form class="d-inline" action="<?= base_url('logbook/' . $logbook['id_logbook']); ?>" method="POST">
                                                     <?= csrf_field(); ?>
                                                     <input type="hidden" name="_method" value="DELETE">
