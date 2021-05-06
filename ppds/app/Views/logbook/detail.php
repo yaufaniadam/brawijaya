@@ -33,7 +33,9 @@
                                             <table class="table table-borderless">
                                                 <tbody>
                                                     <tr class="text-left">
-                                                        <td><b>file</b></td>
+                                                        <td>
+                                                            <h5>file</h5>
+                                                        </td>
                                                         <td><a href="" class="btn btn-primary">Unduh</a></td>
                                                     </tr>
                                                 </tbody>
