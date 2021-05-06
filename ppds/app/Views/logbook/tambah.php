@@ -105,7 +105,7 @@
                             </div>
                         </div>
                     </div> -->
-                    <input type="submit" class="btn btn-dark mb-3 float-right" style="background: #370EFA;border-color: #370EFA;" value="Tambah">
+                    <input type="submit" class="btn btn-dark mb-3 float-right" style="background: #370EFA;border-color: #370EFA;" value="Simpan">
                 </form>
             </div>
         </div>
