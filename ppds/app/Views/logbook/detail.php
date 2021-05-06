@@ -36,7 +36,7 @@
                                                         <td>
                                                             <h5>file</h5>
                                                         </td>
-                                                        <td><a href="" class="btn btn-primary">Unduh</a></td>
+                                                        <td><a href="" class="btn btn-primary btn-sm">Unduh</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
