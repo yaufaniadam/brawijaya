@@ -44,7 +44,7 @@
                                             <a href="<?= base_url("logbook/" . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-success btn-xs">
                                                 <span class="ti-info"></span>
                                             </a>
-                                            <a href="<?= base_url("logbook/" . $logbook['id_logbook']); ?>" class="btn btn-flat btn-outline-success btn-xs">
+                                            <a href="<?= base_url("ppds_logbook/" . $logbook['file']); ?>" class="btn btn-flat btn-outline-primary btn-xs">
                                                 <span class="ti-download"></span>
                                             </a>
                                             <?php if ($logbook['id_ppds'] == session('user_id')) { ?>
