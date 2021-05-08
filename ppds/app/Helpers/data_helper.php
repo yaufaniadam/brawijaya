@@ -184,7 +184,7 @@ function all_stase_spv($id_spv)
     $builder = $db->table('stase_spv');
     $builder->join('stase', 'stase.id=stase_spv.id_stase');
 
-    $builder->getWhere([
+    return $builder->getWhere([
         'stase_spv.id_spv' => $id_spv
     ])->getResultArray();
 }
