@@ -24,7 +24,6 @@
                         </a>
                     </li>
 
-
                     <li id="tugas">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-book"></i>
                             <span>Tugas</span>
@@ -100,7 +99,7 @@
                             </li> -->
                         </ul>
                     </li>
-                   
+
                     <li id="menu_setting">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-user"></i>
                             <span>Setting</span>
@@ -109,7 +108,7 @@
                             <li class="setting_stase">
                                 <a href="<?= base_url('admin/stase'); ?>" aria-expanded="true">Stase</a>
                             </li>
-                            
+
                             <!-- <li>
                                 <a href="#" aria-expanded="true">Tambah Pengguna</a>
                             </li> -->

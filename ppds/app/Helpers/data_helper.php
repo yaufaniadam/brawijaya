@@ -177,3 +177,14 @@ function pilihan_stase()
     $builder = $db->table('stase');
     return $builder->get()->getResultArray();
 }
+
+function all_stase_spv($id_spv)
+{
+    $db      = \Config\Database::connect();
+    $builder = $db->table('stase_spv');
+    $builder->join('stase', 'stase.id=stase_spv.id_stase');
+
+    $builder->getWhere([
+        'stase_spv.id_spv' => $id_spv
+    ])->getResultArray();
+}

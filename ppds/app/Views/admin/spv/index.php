@@ -26,36 +26,38 @@
                     </div>
                 <?php } ?>
 
-                
-                    <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center">
-                            <thead class="text-capitalize">
-                                <tr class="text-left">
-                                    <th style="width: 20%;">Nama Lengkap</th>
-                                    <th style="width: 10%;">Stase</th>
-                                    <!-- <th style="width: 15%;">Tanggal Mulai</th>
+
+                <div class="data-tables datatable-dark">
+                    <table id="dataTable3" class="text-center">
+                        <thead class="text-capitalize">
+                            <tr class="text-left">
+                                <th style="width: 20%;">Nama Lengkap</th>
+                                <th style="width: 10%;">Stase</th>
+                                <!-- <th style="width: 15%;">Tanggal Mulai</th>
                                     <th style="width: 15%;">Tanggal Selesai</th> -->
-                                    <th style="width: 10%;"></th>
+                                <th style="width: 10%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($query as $spv) { ?>
+                                <tr class="text-left">
+                                    <td>
+                                        <?= $spv['nama_lengkap']; ?>
+                                    </td>
+                                    <td>
+                                        <?php foreach (all_stase_spv($spv['id_spv']) as $stase) { ?>
+                                            <?= $stase['stase'] ?>
+                                        <?php } ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="<?= base_url(" admin/supervisor/" . $spv['id_spv']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($query as $spv) { ?>
-                                    <tr class="text-left">
-                                        <td>
-                                            <?= $spv['nama_lengkap']; ?>
-                                        </td>
-                                        <td>
-                                            <?= $spv['stase']; ?>
-                                        </td>
-                                        <td class="text-center">
-                                            <a href="<?= base_url(" admin/supervisor/" . $spv['id_spv']); ?>" class="btn btn-flat btn-outline-success btn-xs"><span class="ti-eye"></span></a>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
@@ -103,7 +105,6 @@
 
 <?= $this->section('js'); ?>
 <script>
-
     $('#<?= $menu_id; ?>').addClass('active');
 
     $('#<?= $menu_id; ?> ul.collapse').addClass('in');

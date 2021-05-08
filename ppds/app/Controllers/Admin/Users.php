@@ -378,6 +378,7 @@ class Users extends BaseController
 
     public function supervisor()
     {
+        helper('data');
         $data = [
             'menu_id' => 'menu_spv',
             'menu_class' => 'spv',
