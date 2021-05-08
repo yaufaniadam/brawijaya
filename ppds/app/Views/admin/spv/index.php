@@ -46,7 +46,7 @@
                                     </td>
                                     <td>
                                         <?php foreach (all_stase_spv($spv['id_spv']) as $stase) { ?>
-                                            <?= $stase['stase'] ?>
+                                            <?= $stase['stase'] ?><br>
                                         <?php } ?>
                                     </td>
                                     <td class="text-center">
