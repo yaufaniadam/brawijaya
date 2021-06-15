@@ -65,9 +65,9 @@
                                         <div id="inputFormRow">
                                             <div class="input-group mb-3">
                                                 <select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">
-                                                    <?php foreach ($stase as $stase) { ?>
+                                                    <?php /* foreach ($stase as $stase) { */ ?>
                                                         <option value="<?= $stase['id']; ?>"><?= $stase['stase']; ?></option>
-                                                    <?php } ?>
+                                                    <?php /* }*/ ?>
                                                 </select>
                                                 <div class="input-group-append">
                                                     <button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>
