@@ -66,7 +66,7 @@
                                             <div class="input-group mb-3">
                                                 <select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">
                                                     <?php /* foreach ($stase as $stase) { */ ?>
-                                                        <option value="<?= $stase['id']; ?>"><?= $stase['stase']; ?></option>
+                                                        <option value="<?/*= $stase['id']; */?>"><?/*= $stase['stase']; */?></option>
                                                     <?php /* }*/ ?>
                                                 </select>
                                                 <div class="input-group-append">
