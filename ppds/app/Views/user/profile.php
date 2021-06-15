@@ -66,7 +66,7 @@
                                             <div class="input-group mb-3">
                                                 <select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">
                                                     <?php /* foreach ($stase as $stase) { */ ?>
-                                                        <option value="<?/*= $stase['id']; */?>"><?/*= $stase['stase']; */?></option>
+                                                        <option value="<?/*= $stase['id']; */ ?>"><?/*= $stase['stase']; */ ?></option>
                                                     <?php /* }*/ ?>
                                                 </select>
                                                 <div class="input-group-append">
@@ -239,9 +239,9 @@
     //     html += '<div id="inputFormRow">';
     //     html += '<div class="input-group mb-3">';
     //     html += '<select class="form-control mr-1" name="stase[]" id="exampleFormControlSelect1">';
-    //     <?php foreach (pilihan_stase() as $pilihan_stase) { ?>
+    //     <?/*php foreach (pilihan_stase() as $pilihan_stase) { ?>
     //         html += '<option value="<?= $pilihan_stase['id']; ?>"><?= $pilihan_stase['stase']; ?></option>';
-    //     <?php } ?>
+    //     <?php } */ ?>
     //     html += '</select>';
     //     html += '<div class="input-group-append">';
     //     html += '<button id="removeRow" type="button" class="btn btn-sm mr-1">-</button>';
